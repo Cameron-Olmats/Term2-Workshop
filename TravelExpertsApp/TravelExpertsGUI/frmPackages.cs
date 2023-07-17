@@ -13,6 +13,8 @@ namespace TravelExpertsGUI
 {
     public partial class frmPackages : Form
     {
+        public Package currentPackage;
+        public bool isAdd = true; // set to true for now but will be null later
         public frmPackages()
         {
             InitializeComponent();
@@ -20,10 +22,24 @@ namespace TravelExpertsGUI
 
         private void frmPackages_Load(object sender, EventArgs e)
         {
-            using (TravelExpertsContext db = new TravelExpertsContext())
+            if (isAdd)
             {
-                cboPackages.DataSource = db.Packages.ToList();
+                currentPackage = new Package();
             }
+            
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            // !!!!! Validation here !!!!!!
+            //currentPackage.PackageId = Convert.ToInt32(txtID.Text);
+            currentPackage.PkgName = txtName.Text;
+            currentPackage.PkgStartDate = Convert.ToDateTime(txtStartDate.Text);
+            currentPackage.PkgEndDate = Convert.ToDateTime(txtEndDate.Text);
+            currentPackage.PkgDesc = txtDescription.Text;
+            currentPackage.PkgBasePrice = Convert.ToDecimal(txtBasePrice.Text);
+            currentPackage.PkgAgencyCommission = Convert.ToDecimal(txtAgencyCommission.Text);
+            this.DialogResult = DialogResult.OK;
         }
     }
 }

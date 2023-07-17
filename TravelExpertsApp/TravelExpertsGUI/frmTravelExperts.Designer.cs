@@ -31,14 +31,14 @@
             btnTravelPackage = new Button();
             btnProducts = new Button();
             btnSuppliers = new Button();
-            dgvMain = new DataGridView();
             groupBox1 = new GroupBox();
             btnModify = new Button();
             btnRemove = new Button();
             btnAdd = new Button();
             btnExit = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgvMain).BeginInit();
+            dgvMain = new DataGridView();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvMain).BeginInit();
             SuspendLayout();
             // 
             // btnTravelPackage
@@ -71,21 +71,12 @@
             btnSuppliers.UseVisualStyleBackColor = true;
             btnSuppliers.Click += btnSuppliers_Click;
             // 
-            // dgvMain
-            // 
-            dgvMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMain.Location = new Point(30, 22);
-            dgvMain.Name = "dgvMain";
-            dgvMain.RowTemplate.Height = 25;
-            dgvMain.Size = new Size(439, 339);
-            dgvMain.TabIndex = 3;
-            // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(dgvMain);
             groupBox1.Controls.Add(btnModify);
             groupBox1.Controls.Add(btnRemove);
             groupBox1.Controls.Add(btnAdd);
-            groupBox1.Controls.Add(dgvMain);
             groupBox1.Location = new Point(225, 9);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(582, 457);
@@ -130,6 +121,15 @@
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
             // 
+            // dgvMain
+            // 
+            dgvMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMain.Location = new Point(19, 27);
+            dgvMain.Name = "dgvMain";
+            dgvMain.RowTemplate.Height = 25;
+            dgvMain.Size = new Size(505, 355);
+            dgvMain.TabIndex = 7;
+            // 
             // frmTravelExperts
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -144,8 +144,8 @@
             Name = "frmTravelExperts";
             Text = "Travel Experts";
             Load += frmTravelExperts_Load;
-            ((System.ComponentModel.ISupportInitialize)dgvMain).EndInit();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgvMain).EndInit();
             ResumeLayout(false);
         }
 
@@ -154,11 +154,11 @@
         private Button btnTravelPackage;
         private Button btnProducts;
         private Button btnSuppliers;
-        private DataGridView dgvMain;
         private GroupBox groupBox1;
         private Button btnModify;
         private Button btnRemove;
         private Button btnAdd;
         private Button btnExit;
+        private DataGridView dgvMain;
     }
 }
