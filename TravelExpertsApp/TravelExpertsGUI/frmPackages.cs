@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Form for adding and editing travel packages
+ * 
+ * Author: Cameron Olmats
+ * Date: 7/10/2023
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

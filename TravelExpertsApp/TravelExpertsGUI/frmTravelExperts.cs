@@ -26,10 +26,11 @@ namespace TravelExpertsGUI
 
         private void frmTravelExperts_Load(object sender, EventArgs e)
         {
-            //using (TravelExpertsContext db = new TravelExpertsContext())
-            //{
-            //    //dataGridView1.DataSource = db.Customers.ToList();
-            //}
+            tableMode = "Packages";
+            using (TravelExpertsContext db = new TravelExpertsContext())
+            {
+                dgvMain.DataSource = db.Packages.ToList();
+            }
 
         }
 
