@@ -26,12 +26,39 @@ namespace TravelExpertsGUI
 
         private void frmTravelExperts_Load(object sender, EventArgs e)
         {
+
             tableMode = "Packages";
+            btnLink.Enabled = false;
+            btnLink.Text = "Add Products To Package";
+
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                dgvMain.DataSource = db.Packages.ToList();
-            }
+                var source = db.Packages.Select(i => new
+                {
+                    i.PackageId,
+                    i.PkgName,
+                    i.PkgBasePrice
+                })
+                    .ToList();
+                dgvMain.DataSource = source;
 
+                //code only for testing frmProductsSuppliers
+                packages.Clear();
+                foreach (Package p in db.Packages)
+                {
+                    packages.Add(p);
+                }
+                products.Clear();
+                foreach (Product p in db.Products)
+                {
+                    products.Add(p);
+                }
+                suppliers.Clear();
+                foreach (Supplier s in db.Suppliers)
+                {
+                    suppliers.Add(s);
+                }
+            }
         }
 
 
@@ -43,9 +70,15 @@ namespace TravelExpertsGUI
             tableMode = "Packages";
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                dgvMain.DataSource = db.Packages.ToList();
+                packages.Clear();
+                foreach (Package p in db.Packages)
+                {
+                    packages.Add(p);
+                }
+                dgvMain.DataSource = packages;
             }
-
+            btnLink.Enabled = false;
+            btnLink.Text = "Add Products To Package";
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
@@ -53,9 +86,15 @@ namespace TravelExpertsGUI
             tableMode = "Products";
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                
-                dgvMain.DataSource = db.Products.ToList();
+                products.Clear();
+                foreach (Product p in db.Products)
+                {
+                    products.Add(p);
+                }
+                dgvMain.DataSource = products;
             }
+            btnLink.Enabled = false;
+            btnLink.Text = "notImplemented";
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
@@ -63,8 +102,15 @@ namespace TravelExpertsGUI
             tableMode = "Suppliers";
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                dgvMain.DataSource = db.Suppliers.ToList();
+                suppliers.Clear();
+                foreach (Supplier s in db.Suppliers)
+                {
+                    suppliers.Add(s);
+                }
+                dgvMain.DataSource = suppliers;
             }
+            btnLink.Enabled = true;
+            btnLink.Text = "Add Products To Supplier";
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -133,6 +179,17 @@ namespace TravelExpertsGUI
             //{
 
             //}
+        }
+
+        private void btnLink_Click(object sender, EventArgs e)
+        {
+            if (true)
+            {
+                frmProductsSuppliers secondForm = new frmProductsSuppliers();
+                secondForm.selectedSupplier = suppliers[dgvMain.CurrentCell.RowIndex];
+                DialogResult result = secondForm.ShowDialog();
+
+            }
         }
 
         //method for displaying data in the list view. It takes a list as a parrameter.

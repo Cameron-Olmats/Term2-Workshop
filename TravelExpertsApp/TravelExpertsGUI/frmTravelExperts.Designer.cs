@@ -32,20 +32,22 @@
             btnProducts = new Button();
             btnSuppliers = new Button();
             groupBox1 = new GroupBox();
+            btnLink = new Button();
+            dgvMain = new DataGridView();
             btnModify = new Button();
             btnRemove = new Button();
             btnAdd = new Button();
             btnExit = new Button();
-            dgvMain = new DataGridView();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMain).BeginInit();
             SuspendLayout();
             // 
             // btnTravelPackage
             // 
-            btnTravelPackage.Location = new Point(12, 31);
+            btnTravelPackage.Location = new Point(24, 62);
+            btnTravelPackage.Margin = new Padding(6);
             btnTravelPackage.Name = "btnTravelPackage";
-            btnTravelPackage.Size = new Size(200, 26);
+            btnTravelPackage.Size = new Size(400, 52);
             btnTravelPackage.TabIndex = 0;
             btnTravelPackage.Text = "Edit Travel Packages";
             btnTravelPackage.UseVisualStyleBackColor = true;
@@ -53,9 +55,10 @@
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(12, 79);
+            btnProducts.Location = new Point(24, 158);
+            btnProducts.Margin = new Padding(6);
             btnProducts.Name = "btnProducts";
-            btnProducts.Size = new Size(75, 23);
+            btnProducts.Size = new Size(150, 46);
             btnProducts.TabIndex = 1;
             btnProducts.Text = "Products";
             btnProducts.UseVisualStyleBackColor = true;
@@ -63,9 +66,10 @@
             // 
             // btnSuppliers
             // 
-            btnSuppliers.Location = new Point(137, 79);
+            btnSuppliers.Location = new Point(274, 158);
+            btnSuppliers.Margin = new Padding(6);
             btnSuppliers.Name = "btnSuppliers";
-            btnSuppliers.Size = new Size(75, 23);
+            btnSuppliers.Size = new Size(150, 46);
             btnSuppliers.TabIndex = 2;
             btnSuppliers.Text = "Suppliers";
             btnSuppliers.UseVisualStyleBackColor = true;
@@ -73,40 +77,68 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(btnLink);
             groupBox1.Controls.Add(dgvMain);
             groupBox1.Controls.Add(btnModify);
             groupBox1.Controls.Add(btnRemove);
             groupBox1.Controls.Add(btnAdd);
-            groupBox1.Location = new Point(225, 9);
+            groupBox1.Location = new Point(450, 18);
+            groupBox1.Margin = new Padding(6);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(582, 457);
+            groupBox1.Padding = new Padding(6);
+            groupBox1.Size = new Size(1164, 914);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
             // 
+            // btnLink
+            // 
+            btnLink.AutoSize = true;
+            btnLink.Location = new Point(684, 828);
+            btnLink.Name = "btnLink";
+            btnLink.Size = new Size(150, 46);
+            btnLink.TabIndex = 8;
+            btnLink.Text = "btnLink";
+            btnLink.UseVisualStyleBackColor = true;
+            btnLink.Click += btnLink_Click;
+            // 
+            // dgvMain
+            // 
+            dgvMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvMain.Location = new Point(38, 54);
+            dgvMain.Margin = new Padding(6);
+            dgvMain.Name = "dgvMain";
+            dgvMain.RowHeadersWidth = 82;
+            dgvMain.RowTemplate.Height = 25;
+            dgvMain.Size = new Size(1010, 710);
+            dgvMain.TabIndex = 7;
+            // 
             // btnModify
             // 
-            btnModify.Location = new Point(138, 414);
+            btnModify.Location = new Point(276, 828);
+            btnModify.Margin = new Padding(6);
             btnModify.Name = "btnModify";
-            btnModify.Size = new Size(75, 23);
+            btnModify.Size = new Size(150, 46);
             btnModify.TabIndex = 6;
             btnModify.Text = "Modify";
             btnModify.UseVisualStyleBackColor = true;
             // 
             // btnRemove
             // 
-            btnRemove.Location = new Point(240, 414);
+            btnRemove.Location = new Point(480, 828);
+            btnRemove.Margin = new Padding(6);
             btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(75, 23);
+            btnRemove.Size = new Size(150, 46);
             btnRemove.TabIndex = 5;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(30, 414);
+            btnAdd.Location = new Point(60, 828);
+            btnAdd.Margin = new Padding(6);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(150, 46);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -114,37 +146,30 @@
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(713, 492);
+            btnExit.Location = new Point(1426, 984);
+            btnExit.Margin = new Padding(6);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(75, 23);
+            btnExit.Size = new Size(150, 46);
             btnExit.TabIndex = 5;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
             // 
-            // dgvMain
-            // 
-            dgvMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMain.Location = new Point(19, 27);
-            dgvMain.Name = "dgvMain";
-            dgvMain.RowTemplate.Height = 25;
-            dgvMain.Size = new Size(505, 355);
-            dgvMain.TabIndex = 7;
-            // 
             // frmTravelExperts
             // 
-            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleDimensions = new SizeF(192F, 192F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(819, 527);
+            ClientSize = new Size(1638, 1054);
             Controls.Add(btnExit);
             Controls.Add(groupBox1);
             Controls.Add(btnSuppliers);
             Controls.Add(btnProducts);
             Controls.Add(btnTravelPackage);
-            Margin = new Padding(2, 1, 2, 1);
+            Margin = new Padding(4, 2, 4, 2);
             Name = "frmTravelExperts";
             Text = "Travel Experts";
             Load += frmTravelExperts_Load;
             groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMain).EndInit();
             ResumeLayout(false);
         }
@@ -160,5 +185,6 @@
         private Button btnAdd;
         private Button btnExit;
         private DataGridView dgvMain;
+        private Button btnLink;
     }
 }
