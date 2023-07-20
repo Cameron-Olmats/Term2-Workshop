@@ -29,25 +29,47 @@
         private void InitializeComponent()
         {
             label1 = new Label();
+            label2 = new Label();
+            tbxName = new TextBox();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(74, 52);
+            label1.Location = new Point(42, 35);
             label1.Name = "label1";
-            label1.Size = new Size(55, 15);
+            label1.Size = new Size(70, 20);
             label1.TabIndex = 0;
             label1.Text = "Suppliers";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(127, 83);
+            label2.Name = "label2";
+            label2.Size = new Size(52, 20);
+            label2.TabIndex = 1;
+            label2.Text = "Name:";
+            // 
+            // tbxName
+            // 
+            tbxName.Location = new Point(196, 80);
+            tbxName.Name = "tbxName";
+            tbxName.Size = new Size(408, 27);
+            tbxName.TabIndex = 2;
+            // 
             // frmSuppliers
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(765, 556);
+            Controls.Add(tbxName);
+            Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmSuppliers";
             Text = "frmSuppliers";
+            Load += frmSuppliers_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -55,5 +77,7 @@
         #endregion
 
         private Label label1;
+        private Label label2;
+        private TextBox tbxName;
     }
 }

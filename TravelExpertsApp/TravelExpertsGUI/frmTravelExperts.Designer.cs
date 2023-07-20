@@ -44,10 +44,10 @@
             // 
             // btnTravelPackage
             // 
-            btnTravelPackage.Location = new Point(24, 62);
-            btnTravelPackage.Margin = new Padding(6);
+            btnTravelPackage.Location = new Point(15, 39);
+            btnTravelPackage.Margin = new Padding(4);
             btnTravelPackage.Name = "btnTravelPackage";
-            btnTravelPackage.Size = new Size(400, 52);
+            btnTravelPackage.Size = new Size(250, 32);
             btnTravelPackage.TabIndex = 0;
             btnTravelPackage.Text = "Edit Travel Packages";
             btnTravelPackage.UseVisualStyleBackColor = true;
@@ -55,10 +55,10 @@
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(24, 158);
-            btnProducts.Margin = new Padding(6);
+            btnProducts.Location = new Point(15, 99);
+            btnProducts.Margin = new Padding(4);
             btnProducts.Name = "btnProducts";
-            btnProducts.Size = new Size(150, 46);
+            btnProducts.Size = new Size(94, 29);
             btnProducts.TabIndex = 1;
             btnProducts.Text = "Products";
             btnProducts.UseVisualStyleBackColor = true;
@@ -66,10 +66,10 @@
             // 
             // btnSuppliers
             // 
-            btnSuppliers.Location = new Point(274, 158);
-            btnSuppliers.Margin = new Padding(6);
+            btnSuppliers.Location = new Point(171, 99);
+            btnSuppliers.Margin = new Padding(4);
             btnSuppliers.Name = "btnSuppliers";
-            btnSuppliers.Size = new Size(150, 46);
+            btnSuppliers.Size = new Size(94, 29);
             btnSuppliers.TabIndex = 2;
             btnSuppliers.Text = "Suppliers";
             btnSuppliers.UseVisualStyleBackColor = true;
@@ -82,11 +82,11 @@
             groupBox1.Controls.Add(btnModify);
             groupBox1.Controls.Add(btnRemove);
             groupBox1.Controls.Add(btnAdd);
-            groupBox1.Location = new Point(450, 18);
-            groupBox1.Margin = new Padding(6);
+            groupBox1.Location = new Point(281, 11);
+            groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(6);
-            groupBox1.Size = new Size(1164, 914);
+            groupBox1.Padding = new Padding(4);
+            groupBox1.Size = new Size(728, 571);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
@@ -94,9 +94,10 @@
             // btnLink
             // 
             btnLink.AutoSize = true;
-            btnLink.Location = new Point(684, 828);
+            btnLink.Location = new Point(428, 518);
+            btnLink.Margin = new Padding(2);
             btnLink.Name = "btnLink";
-            btnLink.Size = new Size(150, 46);
+            btnLink.Size = new Size(94, 30);
             btnLink.TabIndex = 8;
             btnLink.Text = "btnLink";
             btnLink.UseVisualStyleBackColor = true;
@@ -105,40 +106,42 @@
             // dgvMain
             // 
             dgvMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMain.Location = new Point(38, 54);
-            dgvMain.Margin = new Padding(6);
+            dgvMain.Location = new Point(24, 34);
+            dgvMain.Margin = new Padding(4);
             dgvMain.Name = "dgvMain";
             dgvMain.RowHeadersWidth = 82;
             dgvMain.RowTemplate.Height = 25;
-            dgvMain.Size = new Size(1010, 710);
+            dgvMain.Size = new Size(631, 444);
             dgvMain.TabIndex = 7;
+            dgvMain.CellClick += dgvMain_CellContentClick;
             // 
             // btnModify
             // 
-            btnModify.Location = new Point(276, 828);
-            btnModify.Margin = new Padding(6);
+            btnModify.Location = new Point(172, 518);
+            btnModify.Margin = new Padding(4);
             btnModify.Name = "btnModify";
-            btnModify.Size = new Size(150, 46);
+            btnModify.Size = new Size(94, 29);
             btnModify.TabIndex = 6;
             btnModify.Text = "Modify";
             btnModify.UseVisualStyleBackColor = true;
+            btnModify.Click += btnModify_Click;
             // 
             // btnRemove
             // 
-            btnRemove.Location = new Point(480, 828);
-            btnRemove.Margin = new Padding(6);
+            btnRemove.Location = new Point(300, 518);
+            btnRemove.Margin = new Padding(4);
             btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(150, 46);
+            btnRemove.Size = new Size(94, 29);
             btnRemove.TabIndex = 5;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = true;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(60, 828);
-            btnAdd.Margin = new Padding(6);
+            btnAdd.Location = new Point(38, 518);
+            btnAdd.Margin = new Padding(4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(150, 46);
+            btnAdd.Size = new Size(94, 29);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -146,25 +149,25 @@
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(1426, 984);
-            btnExit.Margin = new Padding(6);
+            btnExit.Location = new Point(891, 615);
+            btnExit.Margin = new Padding(4);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(150, 46);
+            btnExit.Size = new Size(94, 29);
             btnExit.TabIndex = 5;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
             // 
             // frmTravelExperts
             // 
-            AutoScaleDimensions = new SizeF(192F, 192F);
+            AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1638, 1054);
+            ClientSize = new Size(1024, 659);
             Controls.Add(btnExit);
             Controls.Add(groupBox1);
             Controls.Add(btnSuppliers);
             Controls.Add(btnProducts);
             Controls.Add(btnTravelPackage);
-            Margin = new Padding(4, 2, 4, 2);
+            Margin = new Padding(2, 1, 2, 1);
             Name = "frmTravelExperts";
             Text = "Travel Experts";
             Load += frmTravelExperts_Load;
