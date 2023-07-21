@@ -100,15 +100,22 @@ namespace TravelExpertsGUI
                         }
                     }
                     //add it to the products that the supplier offers if it isn't offered
-                    int linkProdId = prodToAdd.ProductId;
+                    
                     
 
                     ProductsSupplier nextLink = new ProductsSupplier();
-                    nextLink.ProductId = linkProdId;
+                    nextLink.ProductId = prodToAdd.ProductId;
                     nextLink.SupplierId = selectedSupplier.SupplierId;
-                    db.ProductsSuppliers.Add(nextLink);
-                    db.SaveChanges();
-                    MessageBox.Show(lvwProducts.Items[selectedIndex].Text);
+
+                    DialogResult result = MessageBox.Show(
+                        $"do you want to add {prodToAdd.ProdName} to {selectedSupplier.SupName}?", 
+                        "confirm", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        db.ProductsSuppliers.Add(nextLink);
+                        db.SaveChanges();
+                        //MessageBox.Show("Success");
+                    }
                 }
 
             }
