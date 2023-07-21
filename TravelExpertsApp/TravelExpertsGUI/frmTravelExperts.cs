@@ -19,7 +19,7 @@ namespace TravelExpertsGUI
         private List<Package> packages = new List<Package>();
         private List<Supplier> suppliers = new List<Supplier>();
 
-        int CurrentSelected;
+        int CurrentSelected = -1;
 
         public frmTravelExperts()
         {
@@ -36,12 +36,12 @@ namespace TravelExpertsGUI
                     packages = db.Packages.ToList();
                     dgvMain.DataSource = packages;
                 }
-                else if(tableMode == "Products")
+                else if (tableMode == "Products")
                 {
                     products = db.Products.ToList();
                     dgvMain.DataSource = products;
                 }
-                else if(tableMode == "Suppliers")
+                else if (tableMode == "Suppliers")
                 {
                     suppliers = db.Suppliers.ToList();
                     dgvMain.DataSource = suppliers;
@@ -106,8 +106,26 @@ namespace TravelExpertsGUI
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
             DisplayData("Suppliers");
-            btnLink.Enabled = true;
-            btnLink.Text = "Add Products To Supplier";
+            btnLink.Enabled = false;
+            btnLink.Text = "";
+        }
+
+        private int GetNextInt(List<SupplierContact> lst, TravelExpertsContext db, int Strt)
+        {
+            int i = lst.Count();
+            if (Strt > i)
+            {
+                i = Strt;
+            }
+            while (true)
+            {
+                if (db.SupplierContacts.Find(i) != null)
+                {
+                    break;
+                }
+                i++;
+            }
+            return i;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -131,18 +149,29 @@ namespace TravelExpertsGUI
                 {
                     using (TravelExpertsContext db = new TravelExpertsContext())
                     {
-                        int i = db.Suppliers.ToList().Count;
+                        int nextInt = db.Suppliers.ToList().Count;
                         while (true)
                         {
-                            if (db.Suppliers.Find(i) == null)
+                            if (db.Suppliers.Find(nextInt) == null)
                             {
                                 break;
                             }
-                            i++;
+                            nextInt++;
                         }
-
-
+                        Supplier cont = secondForm.sup;
+                        cont.SupplierId = nextInt;
+                        db.Suppliers.Add(cont);
+                        int lstI = -1;
+                        for (int x = 0; x < secondForm.contacts.Count; x++)
+                        {
+                            lstI = GetNextInt(db.SupplierContacts.ToList(), db, lstI);
+                            secondForm.contacts[x].SupplierContactId = lstI;
+                            db.SupplierContacts.Add(secondForm.contacts[x]);
+                            lstI++;
+                        }
+                        db.SaveChanges();
                     }
+                    DisplayData("Suppliers");
                 }
             }
             else  // tableMode == "Packages"
@@ -190,8 +219,73 @@ namespace TravelExpertsGUI
             }
             else if (tableMode == "Suppliers")
             {
+                if (CurrentSelected == -1 || suppliers.Count <= CurrentSelected)
+                {
+                    return;
+                }
                 frmSuppliers secondForm = new frmSuppliers();
+                Supplier currentSupplier = suppliers[CurrentSelected];
+                secondForm.sup = currentSupplier;
+                List<SupplierContact> contacts;
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    contacts = db.SupplierContacts.Where(s => s.SupplierId == currentSupplier.SupplierId).ToList();
+                }
+                secondForm.contacts = contacts;
                 result = secondForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        int lstI = -1;
+                        for (int x = 0; x < secondForm.contacts.Count; x++)
+                        {
+                            if (secondForm.contacts[x].SupplierContactId == 0 || db.SupplierContacts.Find(secondForm.contacts[x].SupplierContactId) == null)
+                            {
+                                lstI = GetNextInt(db.SupplierContacts.ToList(), db, lstI);
+                                secondForm.contacts[x].SupplierContactId = lstI;
+                                db.SupplierContacts.Add(secondForm.contacts[x]);
+                                lstI++;
+                            }
+                            else
+                            {
+                                SupplierContact contact = db.SupplierContacts.Find(secondForm.contacts[x].SupplierContactId);
+                                contact.SupConFirstName = secondForm.contacts[x].SupConFirstName;
+                                contact.SupConLastName = secondForm.contacts[x].SupConLastName;
+                                contact.SupConEmail = secondForm.contacts[x].SupConEmail;
+                                contact.SupConCity = secondForm.contacts[x].SupConCity;
+                                contact.SupConBusPhone = secondForm.contacts[x].SupConBusPhone;
+                                contact.SupConCompany = secondForm.contacts[x].SupConCompany;
+                                contact.SupConCountry = secondForm.contacts[x].SupConCountry;
+                                contact.SupConFax = secondForm.contacts[x].SupConFax;
+                                contact.SupConPostal = secondForm.contacts[x].SupConPostal;
+                                contact.SupConProv = secondForm.contacts[x].SupConProv;
+                                contact.SupConAddress = secondForm.contacts[x].SupConAddress;
+                                contact.SupConUrl = secondForm.contacts[x].SupConUrl;
+                            }
+
+                        }
+                        for (int x = 0; x < secondForm.removedContacts.Count; x++)
+                        {
+                            SupplierContact contact = db.SupplierContacts.Find(secondForm.removedContacts[x].SupplierContactId);
+                            if (contact != null)
+                            {
+                                db.SupplierContacts.Remove(contact);
+                            }
+                        }
+                        currentSupplier = db.Suppliers.Find(currentSupplier.SupplierId);
+                        if (currentSupplier == null)
+                        {
+                            db.Suppliers.Add(secondForm.sup);
+                            db.SaveChanges();
+                            return;
+                        }
+                        currentSupplier.SupName = secondForm.sup.SupName;
+                        db.SaveChanges();
+
+                    }
+                }
+                DisplayData("Suppliers");
             }
             else  // tableMode == "Packages"
             {
@@ -220,6 +314,48 @@ namespace TravelExpertsGUI
         {
             CurrentSelected = dgvMain.CurrentRow.Index;
             print(CurrentSelected);
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (tableMode == null)
+            {
+                MessageBox.Show("Please select a table to remove data from");
+                return;
+            }
+            else if (tableMode == "Products")
+            {
+            }
+            else if (tableMode == "Suppliers")
+            {
+                if (CurrentSelected == -1 || suppliers.Count <= CurrentSelected)
+                {
+                    return;
+                }
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    Supplier supplier = db.Suppliers.Find(suppliers[CurrentSelected].SupplierId);
+                    if (supplier != null)
+                    {
+                        List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                        for (int i = 0; i< contacts.Count; i++)
+                        {
+                            db.SupplierContacts.Remove(contacts[i]);
+                        }
+                        List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                        for (int i =0; i< prods.Count; i++)
+                        {
+                            db.ProductsSuppliers.Remove(prods[i]);
+                        }
+                        db.Suppliers.Remove(supplier);
+                        db.SaveChanges();
+                    }
+                }
+                DisplayData("Suppliers");
+            }
+            else { 
+                
+            }
         }
     }
 }

@@ -47,5 +47,10 @@ namespace TravelExpertsData
         [ForeignKey("SupplierId")]
         [InverseProperty("SupplierContacts")]
         public virtual Supplier? Supplier { get; set; }
+
+        public override string ToString()
+        {
+            return SupConCompany.ToString();
+        }
     }
 }
