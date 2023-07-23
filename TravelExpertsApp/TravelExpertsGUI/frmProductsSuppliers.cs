@@ -44,7 +44,7 @@ namespace TravelExpertsGUI
                     lvwProducts.Items.Add(nextItem);
                 }
             }
-            
+
             UpdateOfferedProductList();
         }
 
@@ -100,15 +100,15 @@ namespace TravelExpertsGUI
                         }
                     }
                     //add it to the products that the supplier offers if it isn't offered
-                    
-                    
+
+
 
                     ProductsSupplier nextLink = new ProductsSupplier();
                     nextLink.ProductId = prodToAdd.ProductId;
                     nextLink.SupplierId = selectedSupplier.SupplierId;
 
                     DialogResult result = MessageBox.Show(
-                        $"do you want to add {prodToAdd.ProdName} to {selectedSupplier.SupName}?", 
+                        $"do you want to add {prodToAdd.ProdName} to {selectedSupplier.SupName}?",
                         "confirm", MessageBoxButtons.YesNo);
                     if (result == DialogResult.Yes)
                     {
@@ -126,9 +126,9 @@ namespace TravelExpertsGUI
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            
+
             // check that there are products to delete
-            if (lvwOfferedProducts.Items.Count == 0) 
+            if (lvwOfferedProducts.Items.Count == 0)
             {
                 MessageBox.Show("There are no products to delete");
                 return;
@@ -139,7 +139,7 @@ namespace TravelExpertsGUI
                 MessageBox.Show("Please select a product to delete");
                 return;
             }
-            
+
             int selectedIndex = lvwOfferedProducts.SelectedIndices[0];
             // delete link
             using (TravelExpertsContext db = new TravelExpertsContext())

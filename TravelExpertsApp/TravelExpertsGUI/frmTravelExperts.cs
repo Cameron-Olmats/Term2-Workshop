@@ -195,12 +195,31 @@ namespace TravelExpertsGUI
 
         private void btnLink_Click(object sender, EventArgs e)
         {
-            if (true)
+            if (tableMode == "Suppliers")
             {
                 frmProductsSuppliers secondForm = new frmProductsSuppliers();
                 secondForm.selectedSupplier = suppliers[dgvMain.CurrentCell.RowIndex];
                 DialogResult result = secondForm.ShowDialog();
+            }
+            else if (tableMode == "Packages")
+            {
+                frmPackagesProductsSuppliers secondForm = new frmPackagesProductsSuppliers();
+                secondForm.selectedPackage = packages[dgvMain.CurrentCell.RowIndex];
+                using (TravelExpertsContext db = new TravelExpertsContext())
+                {
+                    DialogResult result = secondForm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        db.Dispose();
+                    }
+                }
+                
 
+                
             }
         }
 

@@ -45,9 +45,9 @@
             lblInstructions.AutoSize = true;
             lblInstructions.Location = new Point(732, 41);
             lblInstructions.Name = "lblInstructions";
-            lblInstructions.Size = new Size(304, 32);
+            lblInstructions.Size = new Size(299, 32);
             lblInstructions.TabIndex = 0;
-            lblInstructions.Text = "Select a package to add to ";
+            lblInstructions.Text = "Select a product to add to ";
             // 
             // lvwProducts
             // 
