@@ -5,6 +5,7 @@
  * Date created: 7/10/2023
  */
 
+using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using TravelExpertsData;
 
@@ -34,7 +35,18 @@ namespace TravelExpertsGUI
                 if (tableMode == "Packages")
                 {
                     packages = db.Packages.ToList();
-                    dgvMain.DataSource = packages;
+                    var query = db.Packages.
+                        Select(p => new
+                        {
+                            p.PackageId,
+                            p.PkgName,
+                            p.PkgStartDate,
+                            p.PkgEndDate,
+                            p.PkgBasePrice,
+                            p.PkgAgencyCommission
+                        })
+                        .ToList();
+                    dgvMain.DataSource = query;
                 }
                 else if (tableMode == "Products")
                 {
@@ -58,14 +70,16 @@ namespace TravelExpertsGUI
 
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                var source = db.Packages.Select(i => new
-                {
-                    i.PackageId,
-                    i.PkgName,
-                    i.PkgBasePrice
-                })
-                    .ToList();
-                dgvMain.DataSource = source;
+                //var source = db.Packages.Select(i => new
+                //{
+                //    i.PackageId,
+                //    i.PkgName,
+                //    i.PkgBasePrice
+                //})
+                //    .ToList();
+                //dgvMain.DataSource = source;
+
+                DisplayData(tableMode);
 
                 //code only for testing frmProductsSuppliers
                 packages.Clear();
@@ -376,6 +390,11 @@ namespace TravelExpertsGUI
             {
 
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -164,5 +164,10 @@ namespace TravelExpertsGUI
             // update offered products list
             UpdateOfferedProductList();
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

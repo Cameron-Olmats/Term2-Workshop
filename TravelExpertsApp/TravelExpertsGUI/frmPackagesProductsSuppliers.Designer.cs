@@ -40,7 +40,6 @@
             lblInstructions = new Label();
             btnRemove = new Button();
             btnAdd = new Button();
-            button1 = new Button();
             button2 = new Button();
             SuspendLayout();
             // 
@@ -100,18 +99,23 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.AliceBlue;
+            label1.Font = new Font("Segoe UI", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(48, 38);
             label1.Name = "label1";
-            label1.Size = new Size(499, 32);
+            label1.Size = new Size(598, 37);
             label1.TabIndex = 7;
             label1.Text = "Select a product to remove from the package";
             // 
             // lblInstructions
             // 
             lblInstructions.AutoSize = true;
+            lblInstructions.BackColor = Color.AliceBlue;
+            lblInstructions.Font = new Font("Segoe UI", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
+            lblInstructions.ForeColor = SystemColors.ControlText;
             lblInstructions.Location = new Point(747, 38);
             lblInstructions.Name = "lblInstructions";
-            lblInstructions.Size = new Size(137, 32);
+            lblInstructions.Size = new Size(169, 37);
             lblInstructions.TabIndex = 8;
             lblInstructions.Text = "Instructions";
             // 
@@ -135,15 +139,6 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // button1
-            // 
-            button1.Location = new Point(908, 828);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 46);
-            button1.TabIndex = 11;
-            button1.Text = "Apply";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // button2
             // 
             button2.Location = new Point(1102, 828);
@@ -152,6 +147,7 @@
             button2.TabIndex = 12;
             button2.Text = "Exit";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // frmPackagesProductsSuppliers
             // 
@@ -160,7 +156,6 @@
             BackColor = Color.LightSlateGray;
             ClientSize = new Size(1488, 886);
             Controls.Add(button2);
-            Controls.Add(button1);
             Controls.Add(btnAdd);
             Controls.Add(btnRemove);
             Controls.Add(lblInstructions);
@@ -188,7 +183,6 @@
         private ColumnHeader columnHeader3;
         private Button btnRemove;
         private Button btnAdd;
-        private Button button1;
         private Button button2;
     }
 }

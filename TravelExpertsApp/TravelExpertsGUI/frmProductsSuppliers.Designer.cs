@@ -38,14 +38,18 @@
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             label1 = new Label();
+            btnExit = new Button();
             SuspendLayout();
             // 
             // lblInstructions
             // 
             lblInstructions.AutoSize = true;
-            lblInstructions.Location = new Point(732, 41);
+            lblInstructions.BackColor = Color.AliceBlue;
+            lblInstructions.Font = new Font("Segoe UI", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
+            lblInstructions.Location = new Point(783, 18);
+            lblInstructions.MaximumSize = new Size(505, 74);
             lblInstructions.Name = "lblInstructions";
-            lblInstructions.Size = new Size(299, 32);
+            lblInstructions.Size = new Size(358, 37);
             lblInstructions.TabIndex = 0;
             lblInstructions.Text = "Select a product to add to ";
             // 
@@ -114,18 +118,31 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.AliceBlue;
+            label1.Font = new Font("Segoe UI", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(40, 41);
             label1.Name = "label1";
-            label1.Size = new Size(403, 32);
+            label1.Size = new Size(483, 37);
             label1.TabIndex = 5;
             label1.Text = "Select an offered product to remove";
+            // 
+            // btnExit
+            // 
+            btnExit.Location = new Point(1181, 841);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(150, 46);
+            btnExit.TabIndex = 6;
+            btnExit.Text = "Exit";
+            btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // frmProductsSuppliers
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSlateGray;
-            ClientSize = new Size(1362, 836);
+            ClientSize = new Size(1362, 909);
+            Controls.Add(btnExit);
             Controls.Add(label1);
             Controls.Add(lvwOfferedProducts);
             Controls.Add(btnRemove);
@@ -151,5 +168,6 @@
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private Label label1;
+        private Button btnExit;
     }
 }

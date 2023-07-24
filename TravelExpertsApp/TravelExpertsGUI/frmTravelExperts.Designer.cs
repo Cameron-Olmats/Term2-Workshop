@@ -159,6 +159,7 @@
             btnExit.TabIndex = 5;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // pictureBox1
             // 
