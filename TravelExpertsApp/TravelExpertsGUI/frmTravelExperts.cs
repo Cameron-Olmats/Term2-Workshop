@@ -100,7 +100,7 @@ namespace TravelExpertsGUI
         {
             DisplayData("Products");
             btnLink.Enabled = false;
-            btnLink.Text = "notImplemented";
+            btnLink.Text = "";
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
@@ -217,9 +217,9 @@ namespace TravelExpertsGUI
                         db.Dispose();
                     }
                 }
-                
 
-                
+
+
             }
         }
 
@@ -357,12 +357,12 @@ namespace TravelExpertsGUI
                     if (supplier != null)
                     {
                         List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();
-                        for (int i = 0; i< contacts.Count; i++)
+                        for (int i = 0; i < contacts.Count; i++)
                         {
                             db.SupplierContacts.Remove(contacts[i]);
                         }
                         List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();
-                        for (int i =0; i< prods.Count; i++)
+                        for (int i = 0; i < prods.Count; i++)
                         {
                             db.ProductsSuppliers.Remove(prods[i]);
                         }
@@ -372,8 +372,9 @@ namespace TravelExpertsGUI
                 }
                 DisplayData("Suppliers");
             }
-            else { 
-                
+            else
+            {
+
             }
         }
     }

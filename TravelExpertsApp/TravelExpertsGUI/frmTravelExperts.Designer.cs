@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTravelExperts));
             btnTravelPackage = new Button();
             btnProducts = new Button();
             btnSuppliers = new Button();
@@ -38,16 +39,18 @@
             btnRemove = new Button();
             btnAdd = new Button();
             btnExit = new Button();
+            pictureBox1 = new PictureBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMain).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnTravelPackage
             // 
-            btnTravelPackage.Location = new Point(15, 39);
-            btnTravelPackage.Margin = new Padding(4);
+            btnTravelPackage.Location = new Point(27, 320);
+            btnTravelPackage.Margin = new Padding(6);
             btnTravelPackage.Name = "btnTravelPackage";
-            btnTravelPackage.Size = new Size(250, 32);
+            btnTravelPackage.Size = new Size(400, 161);
             btnTravelPackage.TabIndex = 0;
             btnTravelPackage.Text = "Edit Travel Packages";
             btnTravelPackage.UseVisualStyleBackColor = true;
@@ -55,10 +58,10 @@
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(15, 99);
-            btnProducts.Margin = new Padding(4);
+            btnProducts.Location = new Point(27, 554);
+            btnProducts.Margin = new Padding(6);
             btnProducts.Name = "btnProducts";
-            btnProducts.Size = new Size(94, 29);
+            btnProducts.Size = new Size(400, 161);
             btnProducts.TabIndex = 1;
             btnProducts.Text = "Products";
             btnProducts.UseVisualStyleBackColor = true;
@@ -66,10 +69,10 @@
             // 
             // btnSuppliers
             // 
-            btnSuppliers.Location = new Point(171, 99);
-            btnSuppliers.Margin = new Padding(4);
+            btnSuppliers.Location = new Point(27, 784);
+            btnSuppliers.Margin = new Padding(6);
             btnSuppliers.Name = "btnSuppliers";
-            btnSuppliers.Size = new Size(94, 29);
+            btnSuppliers.Size = new Size(400, 161);
             btnSuppliers.TabIndex = 2;
             btnSuppliers.Text = "Suppliers";
             btnSuppliers.UseVisualStyleBackColor = true;
@@ -82,22 +85,20 @@
             groupBox1.Controls.Add(btnModify);
             groupBox1.Controls.Add(btnRemove);
             groupBox1.Controls.Add(btnAdd);
-            groupBox1.Location = new Point(281, 11);
-            groupBox1.Margin = new Padding(4);
+            groupBox1.Location = new Point(453, 276);
+            groupBox1.Margin = new Padding(6);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(728, 571);
+            groupBox1.Padding = new Padding(6);
+            groupBox1.Size = new Size(1165, 914);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
             // 
             // btnLink
             // 
             btnLink.AutoSize = true;
-            btnLink.Location = new Point(428, 518);
-            btnLink.Margin = new Padding(2);
+            btnLink.Location = new Point(685, 829);
             btnLink.Name = "btnLink";
-            btnLink.Size = new Size(94, 30);
+            btnLink.Size = new Size(165, 46);
             btnLink.TabIndex = 8;
             btnLink.Text = "btnLink";
             btnLink.UseVisualStyleBackColor = true;
@@ -105,22 +106,23 @@
             // 
             // dgvMain
             // 
+            dgvMain.BackgroundColor = Color.FromArgb(60, 80, 99);
             dgvMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMain.Location = new Point(24, 34);
-            dgvMain.Margin = new Padding(4);
+            dgvMain.Location = new Point(38, 54);
+            dgvMain.Margin = new Padding(6);
             dgvMain.Name = "dgvMain";
             dgvMain.RowHeadersWidth = 82;
             dgvMain.RowTemplate.Height = 25;
-            dgvMain.Size = new Size(631, 444);
+            dgvMain.Size = new Size(1010, 710);
             dgvMain.TabIndex = 7;
             dgvMain.CellClick += dgvMain_CellContentClick;
             // 
             // btnModify
             // 
-            btnModify.Location = new Point(172, 518);
-            btnModify.Margin = new Padding(4);
+            btnModify.Location = new Point(275, 829);
+            btnModify.Margin = new Padding(6);
             btnModify.Name = "btnModify";
-            btnModify.Size = new Size(94, 29);
+            btnModify.Size = new Size(150, 46);
             btnModify.TabIndex = 6;
             btnModify.Text = "Modify";
             btnModify.UseVisualStyleBackColor = true;
@@ -128,10 +130,10 @@
             // 
             // btnRemove
             // 
-            btnRemove.Location = new Point(300, 518);
-            btnRemove.Margin = new Padding(4);
+            btnRemove.Location = new Point(480, 829);
+            btnRemove.Margin = new Padding(6);
             btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(94, 29);
+            btnRemove.Size = new Size(150, 46);
             btnRemove.TabIndex = 5;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = true;
@@ -139,10 +141,10 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(38, 518);
-            btnAdd.Margin = new Padding(4);
+            btnAdd.Location = new Point(61, 829);
+            btnAdd.Margin = new Padding(6);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
+            btnAdd.Size = new Size(150, 46);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -150,31 +152,44 @@
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(891, 615);
-            btnExit.Margin = new Padding(4);
+            btnExit.Location = new Point(1421, 1202);
+            btnExit.Margin = new Padding(6);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(94, 29);
+            btnExit.Size = new Size(150, 46);
             btnExit.TabIndex = 5;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(-2, -6);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(1646, 206);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            // 
             // frmTravelExperts
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(192F, 192F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            ClientSize = new Size(1024, 659);
+            BackColor = Color.LightSlateGray;
+            ClientSize = new Size(1638, 1274);
+            Controls.Add(pictureBox1);
             Controls.Add(btnExit);
             Controls.Add(groupBox1);
             Controls.Add(btnSuppliers);
             Controls.Add(btnProducts);
             Controls.Add(btnTravelPackage);
-            Margin = new Padding(2, 1, 2, 1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "frmTravelExperts";
             Text = "Travel Experts";
             Load += frmTravelExperts_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMain).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -190,5 +205,6 @@
         private Button btnExit;
         private DataGridView dgvMain;
         private Button btnLink;
+        private PictureBox pictureBox1;
     }
 }
