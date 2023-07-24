@@ -48,120 +48,135 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(128, 58);
+            label1.Location = new Point(238, 124);
+            label1.Margin = new Padding(6, 0, 6, 0);
             label1.Name = "label1";
-            label1.Size = new Size(21, 15);
+            label1.Size = new Size(42, 32);
             label1.TabIndex = 0;
             label1.Text = "ID:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(107, 102);
+            label2.Location = new Point(199, 218);
+            label2.Margin = new Padding(6, 0, 6, 0);
             label2.Name = "label2";
-            label2.Size = new Size(42, 15);
+            label2.Size = new Size(83, 32);
             label2.TabIndex = 1;
             label2.Text = "Name:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(88, 140);
+            label3.Location = new Point(163, 299);
+            label3.Margin = new Padding(6, 0, 6, 0);
             label3.Name = "label3";
-            label3.Size = new Size(61, 15);
+            label3.Size = new Size(124, 32);
             label3.TabIndex = 2;
             label3.Text = "Start Date:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(92, 191);
+            label4.Location = new Point(171, 407);
+            label4.Margin = new Padding(6, 0, 6, 0);
             label4.Name = "label4";
-            label4.Size = new Size(57, 15);
+            label4.Size = new Size(116, 32);
             label4.TabIndex = 3;
             label4.Text = "End Date:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(79, 241);
+            label5.Location = new Point(147, 514);
+            label5.Margin = new Padding(6, 0, 6, 0);
             label5.Name = "label5";
-            label5.Size = new Size(70, 15);
+            label5.Size = new Size(140, 32);
             label5.TabIndex = 4;
             label5.Text = "Description:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(86, 281);
+            label6.Location = new Point(160, 599);
+            label6.Margin = new Padding(6, 0, 6, 0);
             label6.Name = "label6";
-            label6.Size = new Size(63, 15);
+            label6.Size = new Size(126, 32);
             label6.TabIndex = 5;
             label6.Text = "Base Price:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(29, 326);
+            label7.Location = new Point(54, 695);
+            label7.Margin = new Padding(6, 0, 6, 0);
             label7.Name = "label7";
-            label7.Size = new Size(120, 15);
+            label7.Size = new Size(236, 32);
             label7.TabIndex = 6;
             label7.Text = "Agency Commission:";
             // 
             // txtID
             // 
-            txtID.Location = new Point(204, 61);
+            txtID.Location = new Point(379, 130);
+            txtID.Margin = new Padding(6, 6, 6, 6);
             txtID.Name = "txtID";
-            txtID.Size = new Size(100, 23);
+            txtID.Size = new Size(182, 39);
             txtID.TabIndex = 7;
             // 
             // txtName
             // 
-            txtName.Location = new Point(204, 99);
+            txtName.Location = new Point(379, 211);
+            txtName.Margin = new Padding(6, 6, 6, 6);
             txtName.Name = "txtName";
-            txtName.Size = new Size(100, 23);
+            txtName.Size = new Size(182, 39);
             txtName.TabIndex = 8;
             // 
             // txtStartDate
             // 
-            txtStartDate.Location = new Point(192, 137);
+            txtStartDate.Location = new Point(357, 292);
+            txtStartDate.Margin = new Padding(6, 6, 6, 6);
             txtStartDate.Name = "txtStartDate";
-            txtStartDate.Size = new Size(100, 23);
+            txtStartDate.Size = new Size(182, 39);
             txtStartDate.TabIndex = 9;
             // 
             // txtEndDate
             // 
-            txtEndDate.Location = new Point(204, 188);
+            txtEndDate.Location = new Point(379, 401);
+            txtEndDate.Margin = new Padding(6, 6, 6, 6);
             txtEndDate.Name = "txtEndDate";
-            txtEndDate.Size = new Size(100, 23);
+            txtEndDate.Size = new Size(182, 39);
             txtEndDate.TabIndex = 10;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(239, 243);
+            txtDescription.Location = new Point(444, 518);
+            txtDescription.Margin = new Padding(6, 6, 6, 6);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(100, 23);
+            txtDescription.Size = new Size(182, 39);
             txtDescription.TabIndex = 11;
             // 
             // txtBasePrice
             // 
-            txtBasePrice.Location = new Point(239, 284);
+            txtBasePrice.Location = new Point(444, 606);
+            txtBasePrice.Margin = new Padding(6, 6, 6, 6);
             txtBasePrice.Name = "txtBasePrice";
-            txtBasePrice.Size = new Size(100, 23);
+            txtBasePrice.Size = new Size(182, 39);
             txtBasePrice.TabIndex = 12;
             // 
             // txtAgencyCommission
             // 
-            txtAgencyCommission.Location = new Point(239, 326);
+            txtAgencyCommission.Location = new Point(444, 695);
+            txtAgencyCommission.Margin = new Padding(6, 6, 6, 6);
             txtAgencyCommission.Name = "txtAgencyCommission";
-            txtAgencyCommission.Size = new Size(100, 23);
+            txtAgencyCommission.Size = new Size(182, 39);
             txtAgencyCommission.TabIndex = 13;
             // 
             // btnSubmit
             // 
-            btnSubmit.Location = new Point(88, 394);
+            btnSubmit.Location = new Point(163, 841);
+            btnSubmit.Margin = new Padding(6, 6, 6, 6);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(75, 23);
+            btnSubmit.Size = new Size(139, 49);
             btnSubmit.TabIndex = 14;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = true;
@@ -169,9 +184,10 @@
             // 
             // frmPackages
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.LightSlateGray;
+            ClientSize = new Size(1486, 960);
             Controls.Add(btnSubmit);
             Controls.Add(txtAgencyCommission);
             Controls.Add(txtBasePrice);
@@ -187,6 +203,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Margin = new Padding(6, 6, 6, 6);
             Name = "frmPackages";
             Text = "Travel Packages";
             Load += frmPackages_Load;

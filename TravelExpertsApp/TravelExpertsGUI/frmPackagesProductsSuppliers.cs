@@ -24,11 +24,11 @@ namespace TravelExpertsGUI
     {
         public TravelExpertsData.Package selectedPackage;
         private List<Int32> includedProductSupplierIds = new List<Int32>(); // list of ProductSupplierIds included in
-        private List<Int32> offeredProductSupplierIds = new List<Int32>();     
-        
+        private List<Int32> offeredProductSupplierIds = new List<Int32>();
+
         private List<PackagesProductsSupplier> packprodsups = new List<PackagesProductsSupplier>();
         private List<ProductsSupplier> prodSups = new List<ProductsSupplier>();
-        
+
         // the selected package
         public frmPackagesProductsSuppliers()
         {
@@ -100,10 +100,10 @@ namespace TravelExpertsGUI
                 nextItem.SubItems.Add(query[i].SupName);
                 lvwIncludedProducts.Items.Add(nextItem);
 
-                
+
                 includedProductSupplierIds.Add(query[i].ProductSupplierId);
             }
-            
+
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -216,7 +216,7 @@ namespace TravelExpertsGUI
                 // update offered products list
                 UpdateIncludedProductsList(db);
             }
-            
+
         }
     }
 }

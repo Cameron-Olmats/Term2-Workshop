@@ -33,7 +33,7 @@ namespace TravelExpertsGUI
             {
                 currentPackage = new Package();
             }
-            
+
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
