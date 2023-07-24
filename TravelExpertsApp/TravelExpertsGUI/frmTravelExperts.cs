@@ -53,7 +53,7 @@ namespace TravelExpertsGUI
         {
 
             tableMode = "Packages";
-            btnLink.Enabled = false;
+            btnLink.Enabled = true;
             btnLink.Text = "Add Products To Package";
 
             using (TravelExpertsContext db = new TravelExpertsContext())
@@ -92,7 +92,7 @@ namespace TravelExpertsGUI
         private void btnTravelPackage_Click(object sender, EventArgs e)
         {
             DisplayData("Packages");
-            btnLink.Enabled = false;
+            btnLink.Enabled = true;
             btnLink.Text = "Add Products To Package";
         }
 
@@ -106,8 +106,8 @@ namespace TravelExpertsGUI
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
             DisplayData("Suppliers");
-            btnLink.Enabled = false;
-            btnLink.Text = "";
+            btnLink.Enabled = true;
+            btnLink.Text = "Add Products To Supplier";
         }
 
         private int GetNextInt(List<SupplierContact> lst, TravelExpertsContext db, int Strt)

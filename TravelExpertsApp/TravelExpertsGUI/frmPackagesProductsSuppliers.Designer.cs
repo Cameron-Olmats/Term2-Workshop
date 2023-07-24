@@ -31,13 +31,13 @@
             lvwIncludedProducts = new ListView();
             productID = new ColumnHeader();
             prodName = new ColumnHeader();
+            supplierName = new ColumnHeader();
             lvwAvailableProducts = new ListView();
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
             label1 = new Label();
             lblInstructions = new Label();
-            supplierName = new ColumnHeader();
-            columnHeader3 = new ColumnHeader();
             btnRemove = new Button();
             btnAdd = new Button();
             button1 = new Button();
@@ -65,6 +65,11 @@
             prodName.Text = "Product";
             prodName.Width = 200;
             // 
+            // supplierName
+            // 
+            supplierName.Text = "Supplier";
+            supplierName.Width = 200;
+            // 
             // lvwAvailableProducts
             // 
             lvwAvailableProducts.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3 });
@@ -72,19 +77,25 @@
             lvwAvailableProducts.Location = new Point(747, 94);
             lvwAvailableProducts.MultiSelect = false;
             lvwAvailableProducts.Name = "lvwAvailableProducts";
-            lvwAvailableProducts.Size = new Size(505, 616);
+            lvwAvailableProducts.Size = new Size(704, 616);
             lvwAvailableProducts.TabIndex = 6;
             lvwAvailableProducts.UseCompatibleStateImageBehavior = false;
             lvwAvailableProducts.View = View.Details;
             // 
             // columnHeader1
             // 
-            columnHeader1.Text = "Product ID";
+            columnHeader1.Text = "Product";
+            columnHeader1.Width = 130;
             // 
             // columnHeader2
             // 
-            columnHeader2.Text = "Product";
-            columnHeader2.Width = 200;
+            columnHeader2.Text = "Supplier";
+            columnHeader2.Width = 300;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "Supplier ID";
+            columnHeader3.Width = 200;
             // 
             // label1
             // 
@@ -104,16 +115,6 @@
             lblInstructions.TabIndex = 8;
             lblInstructions.Text = "Instructions";
             // 
-            // supplierName
-            // 
-            supplierName.Text = "Supplier";
-            supplierName.Width = 200;
-            // 
-            // columnHeader3
-            // 
-            columnHeader3.Text = "Supplier";
-            columnHeader3.Width = 200;
-            // 
             // btnRemove
             // 
             btnRemove.Location = new Point(397, 738);
@@ -122,6 +123,7 @@
             btnRemove.TabIndex = 9;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = true;
+            btnRemove.Click += btnRemove_Click;
             // 
             // btnAdd
             // 
@@ -131,6 +133,7 @@
             btnAdd.TabIndex = 10;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // button1
             // 
@@ -154,7 +157,7 @@
             // 
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1279, 886);
+            ClientSize = new Size(1488, 886);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnAdd);
