@@ -1,15 +1,18 @@
 ﻿/*
  * Form for adding and editing travel packages
  * 
- * Author: Cameron Olmats
- * Date: 7/10/2023
+ * Author: Dreesha 
+ * Date: July 2023
  */
 
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +25,16 @@ namespace TravelExpertsGUI
     {
         public Package currentPackage;
         public bool isAdd = true; // set to true for now but will be null later
+        private object model;
+        private object secondform;
+
         public frmPackages()
         {
             InitializeComponent();
+
+
         }
+
 
         private void frmPackages_Load(object sender, EventArgs e)
         {
@@ -33,20 +42,42 @@ namespace TravelExpertsGUI
             {
                 currentPackage = new Package();
             }
-            
+
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // !!!!! Validation here !!!!!!
-            //currentPackage.PackageId = Convert.ToInt32(txtID.Text);
-            currentPackage.PkgName = txtName.Text;
-            currentPackage.PkgStartDate = Convert.ToDateTime(txtStartDate.Text);
-            currentPackage.PkgEndDate = Convert.ToDateTime(txtEndDate.Text);
-            currentPackage.PkgDesc = txtDescription.Text;
-            currentPackage.PkgBasePrice = Convert.ToDecimal(txtBasePrice.Text);
-            currentPackage.PkgAgencyCommission = Convert.ToDecimal(txtAgencyCommission.Text);
-            this.DialogResult = DialogResult.OK;
+            package.PkgName = txtName.Text; 
+            package.PkgStartDate = txtStartDate.Text; 
+            package.PkgEndDate = txtEndDate.Text; 
+            package.PkgDesc = txtDescription.Text;
+            package.PkgAgencyCommission = txtAgencyCommission.Text;
+            using (TravelExpertsContext db = new TravelExpertsContext()
+            {
+                db.Packages.Add(secondform.currentPackage)
+            { 
+            object value = db.Packages.SaveChanges.();
+            }
+            MessageBox.Show("Data has been added");
+
+
+
+            
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (Package.CurrentPackage != null)
+            {
+                Package.CurrentPackage.Clear();
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
+
 }
+
+   
+    
