@@ -8,6 +8,8 @@ namespace TravelExpertsData
 {
     public partial class TravelExpertsContext : DbContext
     {
+        public static object Package;
+
         public TravelExpertsContext()
         {
         }
@@ -17,6 +19,7 @@ namespace TravelExpertsData
         {
         }
 
+        public static object CurrentRow { get; set; }
         public virtual DbSet<Affiliation> Affiliations { get; set; } = null!;
         public virtual DbSet<Agency> Agencies { get; set; } = null!;
         public virtual DbSet<Agent> Agents { get; set; } = null!;

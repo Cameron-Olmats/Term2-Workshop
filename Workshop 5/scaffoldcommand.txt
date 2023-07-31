@@ -1,0 +1,5 @@
+
+This is the command I used to import the database. It's here in case we need it going forward
+
+
+Scaffold-DbContext -Connection "Data Source=localhost\sqlexpress;Initial Catalog=TravelExperts5;Integrated Security=True;TrustServerCertificate=True" -Provider Microsoft.EntityFrameworkCore.SqlServer -Context TravelExpertsContext -DataAnnotations -Force

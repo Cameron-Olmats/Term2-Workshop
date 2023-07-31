@@ -4,9 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TravelExpertsMVC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TravelExpertsMVC.styles.css" asp-append-version="true" />
+
 </head>
 <body>
     <header>
@@ -25,6 +27,54 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        @*<li class="nav-item dropdown">
+                            <p class="nav-link text-dark">
+                                Dropdown
+                                <i class="fa fa-caret-down"></i>
+                            </p>
+                            <div class="dropdown-content">
+                                <a class="nav-link" asp-controller="Customer" asp-action="Index">Details</a>
+                                <a class="nav-link" href="#">Logout</a>
+@*                                <a href="#">Link 3</a>
+                            </div>
+                        </li>*@
+
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Home" asp-action="Index" title="Welcome">
+                                    Welcome @User.Identity.Name
+                                </a>
+                            </li>
+                           @* <li class="nav-item">
+                                <form class="form-inline" asp-controller="Customer" asp-action="Logout"
+                                      asp-route-returnUrl=@Url.Action("Index", "Home")>
+                                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                                </form>
+                            </li>*@
+                            <li class="nav-item dropdown">
+                                <p class="nav-link text-dark">
+                                    Dropdown
+                                    <i class="fa fa-caret-down"></i>
+                                </p>
+                                <div class="dropdown-content">
+                                    <a class="nav-link" asp-controller="Customer" asp-action="Index">Details</a>
+                                    <a class="nav-link" asp-controller="Customer" asp-action="Logout">Logout</a>
+                                    @*                                <a href="#">Link 3</a>*@
+                                </div>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Customer" asp-action="Create">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Customer" asp-action="Login">Login</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

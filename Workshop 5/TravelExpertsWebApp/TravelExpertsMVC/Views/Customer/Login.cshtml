@@ -1,0 +1,23 @@
+﻿@model TravelExpertsData.Customer
+@{
+	ViewData["Login"] = "Login"; //should this be viewdata title?
+}
+
+<form asp-action="Login" method="post">
+	<h3>Login</h3>
+	<div class="container">
+		<div class="row mx-auto">
+			<label asp-for="CustUsername" class="col-2">Username: </label>
+			<input asp-for="CustUsername" class="col-3" />
+			<span asp-validation-for="CustUsername" class="col2"></span>
+		</div>
+		<div class="row mx-auto">
+			<label asp-for="CustPassword" class="col-2">Password: </label>
+			<input asp-for="CustPassword" class="col-3" />
+			<span asp-validation-for="CustPassword" class="col-2"></span>
+		</div>
+		<div class="row mx-auto">
+			<input type="submit" value="Authenticate" class="btn btn-primary" />
+		</div>
+	</div>
+</form>

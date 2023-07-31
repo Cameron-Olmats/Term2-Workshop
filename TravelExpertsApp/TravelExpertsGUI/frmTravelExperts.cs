@@ -1,12 +1,13 @@
 /*
  * This form acts as a menu where you can select and access the different functions of the application
  * 
- * Author: Cameron Olmats
- * Date created: 7/10/2023
+ * Author: Dreesha
+ * Date created: July 2023
  */
 
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using System.DirectoryServices.ActiveDirectory;
 using TravelExpertsData;
 
 namespace TravelExpertsGUI
@@ -19,6 +20,7 @@ namespace TravelExpertsGUI
         private List<Product> products = new List<Product>();
         private List<Package> packages = new List<Package>();
         private List<Supplier> suppliers = new List<Supplier>();
+        private object txtPackageID;
 
         int CurrentSelected = -1;
 
@@ -249,6 +251,36 @@ namespace TravelExpertsGUI
             {
                 frmProducts secondForm = new frmProducts();
                 result = secondForm.ShowDialog();
+            }
+            else if (tableMode == "Packages")
+            {
+                //if (TravelExpertsContext.CurrentRow.Index = -1)
+                //{
+                //    Package.PackageID = Convert.ToInt32(dgvMain.Main.CurrentRow.Cells[0].Value);
+                //    using TravelExpertsContext db = new TravelExpertsContext();
+                //    {
+                //        Package package = db.Packages.Where(x => x.PackageId == package.PackageId).FirstOrDefault();
+                //        txtPackageID.text = package.PackageId;
+                //        txt
+                //        }
+                //    btnSave.text = "Update";
+                //    btnDelete.Enabled = true;
+                //}
+
+                //ORIGINAL: 
+
+                //if (TravelExpertsContext.CurrentRow.Index =-1)
+                //{
+                //    Package.PackageID = Convert.ToInt32(dgvMain.Main.CurrentRow.Cells[0].Value);
+                //    using TravelExpertsContext db = new TravelExpertsContext();
+                //        {
+                //            Package package = db.Packages.Where(x=> x.PackageId == package.PackageId).FirstOrDefault();
+                //            txtPackageID.text = package.PackageId;
+                //            txt
+                //        }
+                //    btnSave.text = "Update";
+                //    btnDelete.Enabled = true;
+                //}
             }
             else if (tableMode == "Suppliers")
             {

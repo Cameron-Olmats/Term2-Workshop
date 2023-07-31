@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using TravelExpertsData;
 
 namespace TravelExpertsData
 {
@@ -11,7 +12,7 @@ namespace TravelExpertsData
         public Package()
         {
             Bookings = new HashSet<Booking>();
-            PackagesProductsSuppliers = new HashSet<PackagesProductsSupplier>();
+            
         }
 
         [Key]
