@@ -23,9 +23,20 @@ namespace TravelExpertsMVC.Controllers
 
         // for viewing personal information:
         // GET: CustomerController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details()
         {
-            return View();
+            int id = Convert.ToInt32(User.FindFirst("Id").Value); // get user id from the Claim
+
+            // use that id to find the customer
+            Customer currentCust = CustomerManager.GetCustomerById(id, _context);
+            if (currentCust != null)
+            {
+                return View(currentCust);
+            }
+            return RedirectToAction("Logout", "Customer");
+            // right now it just logs you out if it can't find a customer that matches but this should never happen
+            // since you need to be logged in in order to see the details link and if you're logged in you are
+            // an existing customer.
         }
 
         // GET: CustomerController/Create
@@ -101,7 +112,8 @@ namespace TravelExpertsMVC.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginAsync(Customer customer)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginAsync(string returnUrl, Customer customer)
         {
             Customer? cust = CustomerManager.Authenticate(customer.CustUsername, customer.CustPassword, _context);
 
@@ -128,6 +140,12 @@ namespace TravelExpertsMVC.Controllers
             }
 
             return RedirectToAction("Index", "Home"); //I want this to be the return url but I don't know how
+        }
+
+        public async Task<IActionResult> LogoutAsync()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home"); // after logout - return to home page of website
         }
     }
 }

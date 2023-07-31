@@ -1,0 +1,75 @@
+﻿@model TravelExpertsData.Customer
+@{
+	ViewData["Title"] = "Personal Information";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+<div class="container-fluid border">
+	<div class="row">
+		<div class="col-3">
+			@Html.DisplayNameFor(model => model.CustomerId)
+		</div>
+		<div class="col-3">
+			@Html.DisplayNameFor(model => model.CustFirstName)
+		</div>
+		<div class="col-3">
+			@Html.DisplayNameFor(model => model.CustLastName)
+		</div>
+	</div>
+	@if (Model != null)
+	{
+		<div class="row">
+		
+			<div class="col-3">
+				@Model.CustomerId
+			</div>
+			<div class="col-3">
+				@Model.CustFirstName
+			</div>
+			<div class="col-3">
+				@Model.CustLastName
+			</div>
+		
+		</div>
+
+		<div class="row align-content-center"> <!--Display country and province information-->
+			<div class="col col-md-2 border"> <!--for border around country lable and data-->
+				<div class="row"> <!--To keep lable and data in same row-->
+					<div class="col">@Html.DisplayNameFor(model => model.CustCountry):</div>
+					<div class="col">@Model.CustCountry</div>
+				</div>
+			</div>
+
+			<div class="col col-md-3 border"> <!--for border around prov lable and data, col 3 to match postal code-->
+				<div class="row">
+					<div class="col">@Html.DisplayNameFor(model => model.CustProv):</div>
+					<div class="col">@Model.CustProv</div>
+				</div>
+			</div>
+		</div>
+		<div class="row"> <!--Display city and postal information-->
+			<div class="col col-md-2 border"> <!--for border around city lable and data-->
+				<div class="row">
+					<div class="col">@Html.DisplayNameFor(model => model.CustCity):</div>
+					<div class="col">@Model.CustCity</div>
+				</div>
+			</div>
+
+			<div class="col col-md-3 border"> <!--for border around postal lable and data-->
+				<div class="row">
+					<div class="col">@Html.DisplayNameFor(model => model.CustPostal):</div>
+					<div class="col">@Model.CustPostal</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row"></div>
+		<div class="row"></div>
+
+		<div class="row">
+
+		</div>
+
+	}
+</div>

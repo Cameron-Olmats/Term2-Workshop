@@ -10,43 +10,55 @@ namespace TravelExpertsData;
 public partial class Customer
 {
     [Key]
-    public int CustomerId { get; set; }
+	[Display(Name = "ID")]
+	public int CustomerId { get; set; }
 
     [StringLength(25)]
-    public string CustFirstName { get; set; } = null!;
+	[Display(Name = "First Name")]
+	public string CustFirstName { get; set; } = null!;
 
     [StringLength(25)]
-    public string CustLastName { get; set; } = null!;
+	[Display(Name = "Last Name")]
+	public string CustLastName { get; set; } = null!;
 
     [StringLength(75)]
-    public string CustAddress { get; set; } = null!;
+	[Display(Name = "Street Address")]
+	public string CustAddress { get; set; } = null!;
 
     [StringLength(50)]
     public string CustCity { get; set; } = null!;
 
     [StringLength(2)]
-    public string CustProv { get; set; } = null!;
+	[Display(Name = "Province")]
+	public string CustProv { get; set; } = null!;
 
     [StringLength(7)]
-    public string CustPostal { get; set; } = null!;
+	[Display(Name = "Postal Code")]
+	public string CustPostal { get; set; } = null!;
 
     [StringLength(25)]
-    public string? CustCountry { get; set; }
+	[Display(Name = "Country")]
+	public string? CustCountry { get; set; }
 
     [StringLength(20)]
-    public string? CustHomePhone { get; set; }
+	[Display(Name = "HomePhone")]
+	public string? CustHomePhone { get; set; }
 
     [StringLength(20)]
-    public string CustBusPhone { get; set; } = null!;
+	[Display(Name = "Email")]
+	public string CustBusPhone { get; set; } = null!;
 
     [StringLength(50)]
-    public string CustEmail { get; set; } = null!;
+	[Display(Name = "Email")]
+	public string CustEmail { get; set; } = null!;
 
     [StringLength(30)]
+    [Display(Name = "Username")]
     public string CustUsername { get; set; } = null!;
 
     [StringLength(30)]
-    public string CustPassword { get; set; } = null!;
+	[Display(Name = "Password")]
+	public string CustPassword { get; set; } = null!;
 
     [StringLength(30)]
     public string CustConfirmPassword { get; set; } = null!;
