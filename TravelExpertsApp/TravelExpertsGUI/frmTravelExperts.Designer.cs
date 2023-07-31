@@ -32,7 +32,7 @@
             btnTravelPackage = new Button();
             btnProducts = new Button();
             btnSuppliers = new Button();
-            groupBox1 = new GroupBox();
+            grpData = new GroupBox();
             btnLink = new Button();
             dgvMain = new DataGridView();
             btnModify = new Button();
@@ -40,7 +40,7 @@
             btnAdd = new Button();
             btnExit = new Button();
             pictureBox1 = new PictureBox();
-            groupBox1.SuspendLayout();
+            grpData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMain).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -78,20 +78,20 @@
             btnSuppliers.UseVisualStyleBackColor = true;
             btnSuppliers.Click += btnSuppliers_Click;
             // 
-            // groupBox1
+            // grpData
             // 
-            groupBox1.Controls.Add(btnLink);
-            groupBox1.Controls.Add(dgvMain);
-            groupBox1.Controls.Add(btnModify);
-            groupBox1.Controls.Add(btnRemove);
-            groupBox1.Controls.Add(btnAdd);
-            groupBox1.Location = new Point(453, 276);
-            groupBox1.Margin = new Padding(6);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(6);
-            groupBox1.Size = new Size(1165, 914);
-            groupBox1.TabIndex = 4;
-            groupBox1.TabStop = false;
+            grpData.Controls.Add(btnLink);
+            grpData.Controls.Add(dgvMain);
+            grpData.Controls.Add(btnModify);
+            grpData.Controls.Add(btnRemove);
+            grpData.Controls.Add(btnAdd);
+            grpData.Location = new Point(453, 276);
+            grpData.Margin = new Padding(6);
+            grpData.Name = "groupBox1";
+            grpData.Padding = new Padding(6);
+            grpData.Size = new Size(1165, 914);
+            grpData.TabIndex = 4;
+            grpData.TabStop = false;
             // 
             // btnLink
             // 
@@ -179,7 +179,7 @@
             ClientSize = new Size(1638, 1274);
             Controls.Add(pictureBox1);
             Controls.Add(btnExit);
-            Controls.Add(groupBox1);
+            Controls.Add(grpData);
             Controls.Add(btnSuppliers);
             Controls.Add(btnProducts);
             Controls.Add(btnTravelPackage);
@@ -187,8 +187,8 @@
             Name = "frmTravelExperts";
             Text = "Travel Experts";
             Load += frmTravelExperts_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            grpData.ResumeLayout(false);
+            grpData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvMain).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
@@ -199,7 +199,7 @@
         private Button btnTravelPackage;
         private Button btnProducts;
         private Button btnSuppliers;
-        private GroupBox groupBox1;
+        private GroupBox grpData;
         private Button btnModify;
         private Button btnRemove;
         private Button btnAdd;

@@ -1,8 +1,8 @@
 ﻿/*
  * Form for adding and editing travel packages
  * 
- * Author: Cameron Olmats
- * Date: 7/10/2023
+ * Author: Dreesha, Cameron
+ * Date: July 2023
  */
 
 using Microsoft.Data.SqlClient;
@@ -73,7 +73,11 @@ namespace TravelExpertsGUI
 
             txtName.Text = "";
             txtName.Focus();
+            txtEndDate.Text = "";
             txtStartDate.Text = "";
+            txtDescription.Text = "";
+            txtBasePrice.Text = "0";
+            txtAgencyCommission.Text = "0";
         }
 
         private void btnExit_Click(object sender, EventArgs e)
