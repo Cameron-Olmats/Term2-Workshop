@@ -105,7 +105,7 @@ namespace TravelExpertsGUI
 
 
 
-        //    private void btnClear_Click(object sender, EventArgs e)
+        //private void btnClear_Click(object sender, EventArgs e)
         //{
         //    if (Package.CurrentPackage != null)
         //    {

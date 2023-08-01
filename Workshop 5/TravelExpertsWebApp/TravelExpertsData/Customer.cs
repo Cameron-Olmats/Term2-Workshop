@@ -26,6 +26,7 @@ public partial class Customer
 	public string CustAddress { get; set; } = null!;
 
     [StringLength(50)]
+    [Display(Name = "City")]
     public string CustCity { get; set; } = null!;
 
     [StringLength(2)]
@@ -41,11 +42,11 @@ public partial class Customer
 	public string? CustCountry { get; set; }
 
     [StringLength(20)]
-	[Display(Name = "HomePhone")]
+	[Display(Name = "Home Phone")]
 	public string? CustHomePhone { get; set; }
 
     [StringLength(20)]
-	[Display(Name = "Email")]
+	[Display(Name = "Bus Phone")]
 	public string CustBusPhone { get; set; } = null!;
 
     [StringLength(50)]
@@ -61,6 +62,8 @@ public partial class Customer
 	public string CustPassword { get; set; } = null!;
 
     [StringLength(30)]
+    [Display(Name = "Confirm Password")]
+    [Compare("CustPassword")]
     public string CustConfirmPassword { get; set; } = null!;
 
     public int? AgentId { get; set; }

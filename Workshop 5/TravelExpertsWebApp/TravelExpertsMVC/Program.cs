@@ -5,11 +5,18 @@ using TravelExpertsData;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+//builder.Services.AddMvc(options => options.MaxModelValidationErrors = 1); Doesn't work. Wanted one error at a time.
+
 builder.Services.AddControllersWithViews();
+
 
 builder.Services.AddDbContext<TravelExpertsContext>(
     options => options.UseSqlServer
     (builder.Configuration.GetConnectionString("TEConnection")));
+
+
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt => opt.LoginPath="/Customer/Login");
 

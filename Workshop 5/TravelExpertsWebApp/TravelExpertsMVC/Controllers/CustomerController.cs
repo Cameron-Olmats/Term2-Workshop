@@ -48,14 +48,17 @@ namespace TravelExpertsMVC.Controllers
         // POST: CustomerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Customer newCustomer)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                CustomerManager.AddCustomer(newCustomer, _context);
+                return RedirectToAction(nameof(Login));
             }
             catch
             {
+                TempData["isError"] = "True";
+                TempData["Message"] = "False";
                 return View();
             }
         }
