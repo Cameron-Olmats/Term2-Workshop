@@ -1,7 +1,16 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿/*
+ * Controller for customers. Create action is also for modifying (if the user is logged in)
+ * 
+ * Author: Cameron Olmats
+ * Date: 2023-07-30
+ */
+
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Versioning;
 using System.Security.Claims;
 using TravelExpertsData;
 namespace TravelExpertsMVC.Controllers
@@ -23,6 +32,7 @@ namespace TravelExpertsMVC.Controllers
 
         // for viewing personal information:
         // GET: CustomerController/Details/5
+        [Authorize]
         public ActionResult Details()
         {
             int id = Convert.ToInt32(User.FindFirst("Id").Value); // get user id from the Claim
@@ -42,6 +52,15 @@ namespace TravelExpertsMVC.Controllers
         // GET: CustomerController/Create
         public ActionResult Create()
         {
+            if (User.Identity.IsAuthenticated) // if the user is logged in, display their data on the form for modification
+            {
+                int custId = Convert.ToInt32(User.FindFirstValue("id"));
+                Customer ? currentCust = CustomerManager.GetCustomerById(custId, _context);
+                if (currentCust != null)
+                {
+                    return View(currentCust);
+                }
+            }
             return View();
         }
 
@@ -50,16 +69,34 @@ namespace TravelExpertsMVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Customer newCustomer)
         {
-            try
+            if (User.Identity.IsAuthenticated)
             {
-                CustomerManager.AddCustomer(newCustomer, _context);
-                return RedirectToAction(nameof(Login));
+                try
+                {
+                    int id = Convert.ToInt32(User.FindFirst("Id").Value);
+                    CustomerManager.UpdateCustomer(id, newCustomer, _context);
+                    return RedirectToAction("Details", "Customer");
+                }
+                catch
+                {
+                    TempData["isError"] = "True";
+                    TempData["Message"] = "There was an error when updating your information. Please try again later.";
+                    return View();
+                }
             }
-            catch
+            else
             {
-                TempData["isError"] = "True";
-                TempData["Message"] = "False";
-                return View();
+                try
+                {
+                    CustomerManager.AddCustomer(newCustomer, _context);
+                    return RedirectToAction(nameof(Login));
+                }
+                catch
+                {
+                    TempData["isError"] = "True";
+                    TempData["Message"] = "There was an error when creating your account. Please try again later.";
+                    return View();
+                }
             }
         }
 

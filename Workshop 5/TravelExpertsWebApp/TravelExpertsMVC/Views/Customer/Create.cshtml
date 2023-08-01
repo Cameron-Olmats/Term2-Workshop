@@ -1,4 +1,10 @@
-﻿@model TravelExpertsData.Customer
+﻿@*  Create and Modify form for customers to log in or update their data.
+    
+    Author: Cameron Olmats
+    Date Created: 2023-08-31
+*@
+
+@model TravelExpertsData.Customer
 
 @{
     ViewData["Title"] = "Create";
@@ -28,21 +34,25 @@
                     <input asp-for="CustLastName" class="form-control" />
                     <span asp-validation-for="CustLastName" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="CustUsername" class="control-label"></label>
-                    <input asp-for="CustUsername" class="form-control" />
-                    <span asp-validation-for="CustUsername" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CustPassword" class="control-label"></label>
-                    <input asp-for="CustPassword" class="form-control" />
-                    <span asp-validation-for="CustPassword" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="CustConfirmPassword" class="control-label"></label>
-                    <input asp-for="CustConfirmPassword" class="form-control" />
-                    <span asp-validation-for="CustConfirmPassword" class="text-danger"></span>
-                </div>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div class="form-group">
+                        <label asp-for="CustUsername" class="control-label"></label>
+                        <input asp-for="CustUsername" class="form-control" />
+                        <span asp-validation-for="CustUsername" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CustPassword" class="control-label"></label>
+                        <input asp-for="CustPassword" class="form-control" />
+                        <span asp-validation-for="CustPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CustConfirmPassword" class="control-label"></label>
+                        <input asp-for="CustConfirmPassword" class="form-control" />
+                        <span asp-validation-for="CustConfirmPassword" class="text-danger"></span>
+                    </div>
+                }
+                
                 @*<div class="form-group">
                     <label asp-for="AgentId" class="control-label"></label>
                     <input asp-for="AgentId" class="form-control" />
@@ -92,9 +102,18 @@
                     <label asp-for="CustEmail" class="control-label"></label>
                     <input asp-for="CustEmail" class="form-control" />
                     <span asp-validation-for="CustEmail" class="text-danger"></span>
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group">
+                            <input type="submit" value="Modify" class="btn btn-primary" />
+                        </div>
+                    }
                 </div>
             </div>
         </div>
