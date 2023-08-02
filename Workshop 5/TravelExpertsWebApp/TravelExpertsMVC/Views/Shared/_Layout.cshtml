@@ -60,8 +60,10 @@
                                 </p>
                                 <div class="dropdown-content">
                                     <a class="nav-link" asp-controller="Customer" asp-action="Details">Details</a>
-                                    <a class="nav-link" asp-controller="Customer" asp-action="Logout">Logout</a>
+                                   
                                     <a class="nav-link" asp-controller="Customer" asp-action="Create">Update</a>
+                                    <a class="nav-link" asp-controller="Booking" asp-action="Index">My Purchases</a>
+                                    <a class="nav-link" asp-controller="Customer" asp-action="Logout">Logout</a>
                                     @*                                <a href="#">Link 3</a>*@
                                 </div>
                             </li>
@@ -81,7 +83,7 @@
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main  role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>

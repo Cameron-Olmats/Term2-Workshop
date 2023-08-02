@@ -48,3 +48,29 @@ body {
 .btn {
     margin-top: 1em;
 }
+
+.main-page-content {
+    background-image: url('../images/bgsunset.jpg');
+    background-size: cover;
+    color: wheat;
+}
+
+/*.img-thumbnail{
+    padding: 0,0,0,0;
+}*/
+
+.main-img{
+    transition: 0.5s ease;
+    /*border-style: solid;
+    border-radius: 0.3em;*/
+}
+
+.main-img:hover {
+    opacity: 0.3;
+}
+
+/*.main {
+    height: 5000px;
+    background-color: rgb(69, 111, 255);
+}*/
+
