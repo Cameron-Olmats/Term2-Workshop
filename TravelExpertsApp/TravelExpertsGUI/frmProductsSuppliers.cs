@@ -167,7 +167,7 @@ namespace TravelExpertsGUI
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult = DialogResult.Cancel;
         }
     }
 }
