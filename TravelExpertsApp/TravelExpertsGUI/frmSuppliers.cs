@@ -173,28 +173,25 @@ namespace TravelExpertsGUI
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (Validator.NotEmpty(tbxName))
+            for (int i = 0; i < contacts.Count; i++)
             {
-                for (int i = 0; i < contacts.Count; i++)
+                if (contacts[i].SupplierId == null && (contacts[i].SupConFirstName == null ||
+                    contacts[i].SupConLastName == null || contacts[i].SupConCompany == null ||
+                    contacts[i].SupConBusPhone == null || contacts[i].SupConEmail == null))
                 {
-                    if (contacts[i].SupplierId == null && (contacts[i].SupConFirstName == null ||
-                        contacts[i].SupConLastName == null || contacts[i].SupConCompany == null ||
-                        contacts[i].SupConBusPhone == null || contacts[i].SupConEmail == null))
-                    {
-                        DisplayContact(contacts[i]);
-                        MessageBox.Show("Required data isn't entered.");
-                        return;
-                    }
-                }
-                if (tbxName.Text == "")
-                {
-                    tbxName.Focus();
-                    MessageBox.Show("Supplier name required.");
+                    DisplayContact(contacts[i]);
+                    MessageBox.Show("Required data isn't entered.");
                     return;
                 }
-                sup.SupName = tbxName.Text;
-                DialogResult = DialogResult.OK;
             }
+            if (tbxName.Text == "")
+            {
+                tbxName.Focus();
+                MessageBox.Show("Supplier name required.");
+                return;
+            }
+            sup.SupName = tbxName.Text;
+            DialogResult = DialogResult.OK;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

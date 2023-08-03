@@ -8,7 +8,6 @@
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using System.DirectoryServices.ActiveDirectory;
-using System.Xml.Linq;
 using TravelExpertsData;
 
 namespace TravelExpertsGUI
@@ -17,16 +16,23 @@ namespace TravelExpertsGUI
     {
         private string tableMode = "";
 
+        //unused lists
         private List<Product> products = new List<Product>();
         private List<Package> packages = new List<Package>();
         private List<Supplier> suppliers = new List<Supplier>();
         private object txtPackageID;
 
         int CurrentSelected = -1;
+        private Product selectedProd;
 
         public frmTravelExperts()
         {
             InitializeComponent();
+        }
+
+        public frmTravelExperts(Product selectedProd)
+        {
+            this.selectedProd = selectedProd;
         }
 
         private void DisplayData(string Mode)
@@ -156,7 +162,6 @@ namespace TravelExpertsGUI
             {
                 frmProducts secondForm = new frmProducts();
                 result = secondForm.ShowDialog();
-                
             }
             else if (tableMode == "Suppliers")
             {
@@ -194,17 +199,19 @@ namespace TravelExpertsGUI
             else  // tableMode == "Packages"
             {
                 frmPackages secondForm = new frmPackages();
+                secondForm.isAdd = true;
                 result = secondForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
+
                     using (TravelExpertsContext db = new TravelExpertsContext())
                     {
-                        Package prod = secondForm.currentPackage;
-                        db.Packages.Add(prod);
+                        db.Packages.Add(secondForm.currentPackage);
                         db.SaveChanges();
+                        packages.Add(secondForm.currentPackage);
                     }
-                    DisplayData("Packages");
                 }
+                dgvMain.Update();
             }
         }
 
@@ -232,6 +239,9 @@ namespace TravelExpertsGUI
                         db.Dispose();
                     }
                 }
+
+
+
             }
         }
 
@@ -246,34 +256,38 @@ namespace TravelExpertsGUI
             else if (tableMode == "Products")
             {
                 frmProducts secondForm = new frmProducts();
+                secondForm.SelectedProd = products[dgvMain.CurrentCell.RowIndex];
                 result = secondForm.ShowDialog();
             }
             else if (tableMode == "Packages")
             {
-                if (CurrentSelected == -1 || packages.Count <= CurrentSelected)
-                {
-                    return;
-                }
-                frmPackages secondForm = new frmPackages();
-                secondForm.currentPackage = packages[CurrentSelected];
-                result = secondForm.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
-                    {
-                        Package? pack = db.Packages.Find(secondForm.currentPackage.PackageId);
-                        if (pack != null)
-                        {
-                            pack.PkgName = secondForm.currentPackage.PkgName;
-                            pack.PkgStartDate = secondForm.currentPackage.PkgStartDate;
-                            pack.PkgEndDate = secondForm.currentPackage.PkgEndDate;
-                            pack.PkgDesc = secondForm.currentPackage.PkgDesc;
-                            pack.PkgAgencyCommission = secondForm.currentPackage.PkgAgencyCommission;
-                            db.SaveChanges();
-                        }
-                    }
-                    DisplayData("Packages");
-                }
+                //if (TravelExpertsContext.CurrentRow.Index = -1)
+                //{
+                //    Package.PackageID = Convert.ToInt32(dgvMain.Main.CurrentRow.Cells[0].Value);
+                //    using TravelExpertsContext db = new TravelExpertsContext();
+                //    {
+                //        Package package = db.Packages.Where(x => x.PackageId == package.PackageId).FirstOrDefault();
+                //        txtPackageID.text = package.PackageId;
+                //        txt
+                //        }
+                //    btnSave.text = "Update";
+                //    btnDelete.Enabled = true;
+                //}
+
+                //ORIGINAL: 
+
+                //if (TravelExpertsContext.CurrentRow.Index =-1)
+                //{
+                //    Package.PackageID = Convert.ToInt32(dgvMain.Main.CurrentRow.Cells[0].Value);
+                //    using TravelExpertsContext db = new TravelExpertsContext();
+                //        {
+                //            Package package = db.Packages.Where(x=> x.PackageId == package.PackageId).FirstOrDefault();
+                //            txtPackageID.text = package.PackageId;
+                //            txt
+                //        }
+                //    btnSave.text = "Update";
+                //    btnDelete.Enabled = true;
+                //}
             }
             else if (tableMode == "Suppliers")
             {
@@ -390,57 +404,30 @@ namespace TravelExpertsGUI
                 {
                     return;
                 }
-                try
+                using (TravelExpertsContext db = new TravelExpertsContext())
                 {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    Supplier supplier = db.Suppliers.Find(suppliers[CurrentSelected].SupplierId);
+                    if (supplier != null)
                     {
-                        Supplier supplier = db.Suppliers.Find(suppliers[CurrentSelected].SupplierId);
-                        if (supplier != null)
+                        List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                        for (int i = 0; i < contacts.Count; i++)
                         {
-                            List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();
-                            for (int i = 0; i < contacts.Count; i++)
-                            {
-                                db.SupplierContacts.Remove(contacts[i]);
-                            }
-                            List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();
-                            for (int i = 0; i < prods.Count; i++)
-                            {
-                                db.ProductsSuppliers.Remove(prods[i]);
-                            }
-                            db.Suppliers.Remove(supplier);
-                            db.SaveChanges();
+                            db.SupplierContacts.Remove(contacts[i]);
                         }
+                        List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                        for (int i = 0; i < prods.Count; i++)
+                        {
+                            db.ProductsSuppliers.Remove(prods[i]);
+                        }
+                        db.Suppliers.Remove(supplier);
+                        db.SaveChanges();
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ran into an issue while removing a supplier. This can happen when customers have a purchase with them.");
                 }
                 DisplayData("Suppliers");
             }
             else
             {
-                if (CurrentSelected == -1 || packages.Count <= CurrentSelected)
-                {
-                    return;
-                }
-                try
-                {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
-                    {
-                        Package pack = db.Packages.Find(packages[CurrentSelected].PackageId);
-                        if (pack != null)
-                        {
-                            db.Packages.Remove(pack);
-                            db.SaveChanges();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Ran into an issue while removing package.");
-                }
-                DisplayData("Packages");
+
             }
         }
 

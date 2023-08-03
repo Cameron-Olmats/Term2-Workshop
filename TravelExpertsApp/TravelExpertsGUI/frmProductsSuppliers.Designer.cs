@@ -46,10 +46,11 @@
             lblInstructions.AutoSize = true;
             lblInstructions.BackColor = Color.AliceBlue;
             lblInstructions.Font = new Font("Segoe UI", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
-            lblInstructions.Location = new Point(783, 18);
-            lblInstructions.MaximumSize = new Size(505, 74);
+            lblInstructions.Location = new Point(482, 11);
+            lblInstructions.Margin = new Padding(2, 0, 2, 0);
+            lblInstructions.MaximumSize = new Size(311, 46);
             lblInstructions.Name = "lblInstructions";
-            lblInstructions.Size = new Size(358, 37);
+            lblInstructions.Size = new Size(226, 23);
             lblInstructions.TabIndex = 0;
             lblInstructions.Text = "Select a product to add to ";
             // 
@@ -57,10 +58,11 @@
             // 
             lvwProducts.Columns.AddRange(new ColumnHeader[] { prodID, prodName });
             lvwProducts.FullRowSelect = true;
-            lvwProducts.Location = new Point(783, 109);
+            lvwProducts.Location = new Point(482, 68);
+            lvwProducts.Margin = new Padding(2, 2, 2, 2);
             lvwProducts.MultiSelect = false;
             lvwProducts.Name = "lvwProducts";
-            lvwProducts.Size = new Size(505, 616);
+            lvwProducts.Size = new Size(312, 386);
             lvwProducts.TabIndex = 1;
             lvwProducts.UseCompatibleStateImageBehavior = false;
             lvwProducts.View = View.Details;
@@ -76,9 +78,10 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(957, 760);
+            btnAdd.Location = new Point(589, 475);
+            btnAdd.Margin = new Padding(2, 2, 2, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(150, 46);
+            btnAdd.Size = new Size(92, 29);
             btnAdd.TabIndex = 2;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -86,9 +89,10 @@
             // 
             // btnRemove
             // 
-            btnRemove.Location = new Point(194, 760);
+            btnRemove.Location = new Point(119, 475);
+            btnRemove.Margin = new Padding(2, 2, 2, 2);
             btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(150, 46);
+            btnRemove.Size = new Size(92, 29);
             btnRemove.TabIndex = 3;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = true;
@@ -98,10 +102,11 @@
             // 
             lvwOfferedProducts.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
             lvwOfferedProducts.FullRowSelect = true;
-            lvwOfferedProducts.Location = new Point(40, 109);
+            lvwOfferedProducts.Location = new Point(25, 68);
+            lvwOfferedProducts.Margin = new Padding(2, 2, 2, 2);
             lvwOfferedProducts.MultiSelect = false;
             lvwOfferedProducts.Name = "lvwOfferedProducts";
-            lvwOfferedProducts.Size = new Size(505, 616);
+            lvwOfferedProducts.Size = new Size(312, 386);
             lvwOfferedProducts.TabIndex = 4;
             lvwOfferedProducts.UseCompatibleStateImageBehavior = false;
             lvwOfferedProducts.View = View.Details;
@@ -120,17 +125,19 @@
             label1.AutoSize = true;
             label1.BackColor = Color.AliceBlue;
             label1.Font = new Font("Segoe UI", 10.125F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(40, 41);
+            label1.Location = new Point(25, 26);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(483, 37);
+            label1.Size = new Size(303, 23);
             label1.TabIndex = 5;
             label1.Text = "Select an offered product to remove";
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(1181, 841);
+            btnExit.Location = new Point(727, 526);
+            btnExit.Margin = new Padding(2, 2, 2, 2);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(150, 46);
+            btnExit.Size = new Size(92, 29);
             btnExit.TabIndex = 6;
             btnExit.Text = "Close";
             btnExit.UseVisualStyleBackColor = true;
@@ -138,10 +145,10 @@
             // 
             // frmProductsSuppliers
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSlateGray;
-            ClientSize = new Size(1362, 909);
+            ClientSize = new Size(838, 568);
             Controls.Add(btnExit);
             Controls.Add(label1);
             Controls.Add(lvwOfferedProducts);
@@ -149,6 +156,9 @@
             Controls.Add(btnAdd);
             Controls.Add(lvwProducts);
             Controls.Add(lblInstructions);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Margin = new Padding(2, 2, 2, 2);
+            MaximizeBox = false;
             Name = "frmProductsSuppliers";
             Text = "frmProductsSuppliers";
             Load += frmProductsSuppliers_Load;
