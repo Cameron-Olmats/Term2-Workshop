@@ -86,6 +86,17 @@ namespace TravelExpertsGUI
                 // Reload products when the modification is successful
                 LoadProducts();
             }
+
+            // Disable the control box (minimize, maximize, close buttons) of the frmProducts form
+            this.ControlBox = false;
+
+            // Enable and disable the necessary buttons
+            btnSubmit.Enabled = false;
+            btnModify.Enabled = true;
+            btnDelete.Enabled = false;
+
+            // Allow the user to modify the product name
+            txtProdName.ReadOnly = false;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -150,5 +161,5 @@ namespace TravelExpertsGUI
             }
         }
     }
-}
+ }
 
