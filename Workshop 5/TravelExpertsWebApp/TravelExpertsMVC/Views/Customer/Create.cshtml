@@ -5,15 +5,18 @@
 *@
 
 @model TravelExpertsData.Customer
-
-@{
-    ViewData["Title"] = "Create";
+@if (User.Identity.IsAuthenticated)
+{
+    ViewData["Title"] = "Edit";
+    <h1 class="main-page-header">Edit Your Information</h1>
+}
+else
+{
+    ViewData["Title"] = "Register";
+    <h1 class="main-page-header">Register</h1>
 }
 
-<h1>Create</h1>
-
-<h4>Customer</h4>
-<hr />
+@*<hr />*@
 <div class="row">
     <form asp-action="Create" method="post">
         <div class="row">
@@ -121,7 +124,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="Home">Back to Home Page</a>
 </div>
 
 @section Scripts {

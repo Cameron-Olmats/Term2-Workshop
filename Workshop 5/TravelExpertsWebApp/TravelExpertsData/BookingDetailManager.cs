@@ -30,7 +30,8 @@ namespace TravelExpertsData
                .Include(b => b.Fee)
                .Include(b => b.ProductSupplier.Product)
                .Include(b => b.Class)
-               .Include(b => b.Region)
+               //.Include(b => b.Region)
+               .Include(b => b.Booking.Package)
                .Where(b => b.BookingDetailId == id).First();
             return bookingDetail;
 		}

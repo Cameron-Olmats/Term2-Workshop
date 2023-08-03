@@ -39,43 +39,52 @@ namespace TravelExpertsMVC.Controllers
 
         public IActionResult Index()
         {
-            int id = Convert.ToInt32(User.FindFirst("Id").Value);
-            List<BookingDetail> info = BookingDetailManager.GetBookingDetailsByCustomer(id, _context);
-            
-            return View(info);
-            //List<Booking> bookings = new List<Booking>();
+            try
+            {
+                int id = Convert.ToInt32(User.FindFirst("Id").Value);
+                List<BookingDetail> info = BookingDetailManager.GetBookingDetailsByCustomer(id, _context);
 
-            //int id = Convert.ToInt32(User.FindFirst("Id").Value);
-            //bookings = BookingManager.GetBookingsByCustomerId(id, _context);
+                return View(info);
 
-           
-            //List<BookingDisplayModel> list = new List<BookingDisplayModel>();
-            //foreach (Booking b in bookings)
-            //{
-            //    BookingDisplayModel bookingDisplay = new BookingDisplayModel
-            //    {
-            //        BookingId = b.BookingId,
-            //        BookingNo = b.BookingNo,
-            //        BookingDate = b.BookingDate,
-            //        TravelerCount = b.TravelerCount
-                    
-            //    };
-
-
-            //    //bookingDisplay.TripTypeName = 
-
-            //    //bookingDisplay.TripTypeName = b.TripTypeName;
-            //    list.Add(bookingDisplay);
-            //}
-            
-
-            //return View(list);
+            }
+            catch 
+            {
+                TempData["IsError"] = true;
+                TempData["Message"] = "Could not display Booking Details. Please try again later";
+                return RedirectToAction("Index", "Home");
+            }
         }
 
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-
-            return View();
+            try
+            {
+                BookingDetail bookingDetail = BookingDetailManager.GetBookingDetailById(id, _context);
+                //if (bookingDetail.BookingId != null) // get the package base price associated with the booking and add it to view bag
+                //{
+                //    int bookingId = (int)bookingDetail.BookingId;
+                //    Booking booking = BookingManager.GetBookingById(bookingId, _context);
+                //    try
+                //    {
+                //        ViewBag.PackageBasePrice = booking.Package.PkgBasePrice;
+                //    }
+                //    catch (System.NullReferenceException ex)
+                //    {
+                //        ViewBag.PackageBasePrice = null;
+                //    }
+                //}
+                //else // if it can't get the base price of the package, assign null.
+                //{
+                //    ViewBag.PackageBasePrice = null;
+                //}
+                return View(bookingDetail);
+            }
+            catch
+            {
+                TempData["IsError"] = true;
+                TempData["Message"] = "Could not display Booking price breakdown. Please try again later";
+                return RedirectToAction("Index", "Booking");
+            }
         }
     }
 }
