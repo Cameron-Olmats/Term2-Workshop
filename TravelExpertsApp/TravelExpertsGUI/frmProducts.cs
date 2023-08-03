@@ -41,7 +41,7 @@ namespace TravelExpertsGUI
             products = FetchProducts();
             dataGView_Prods.DataSource = products;
         }
-        private void AddProduct(Product newProduct)
+        private void AddProduct(TravelExpertsData.Product newProduct)
         {
             using (var dbContext = new TravelExpertsContext())
             {
@@ -61,10 +61,11 @@ namespace TravelExpertsGUI
                 var existingProduct = dbContext.Products.Find(updatedProduct.ProdID);
                 if (existingProduct != null)
                 {
-                    existingProduct.Pkg = updatedProduct.ProdName;
-                    existingProduct.Prod = updatedProduct.ProdDesc;
-                    existingProduct. = updatedProduct.BasePrice;
-                    existingProduct.AgencyCommission = updatedProduct.AgencyCommission;
+                    existingProduct.ProdName = updatedProduct.ProdName;
+                    //existingProduct.Pkg = updatedProduct.ProdName;
+                    //existingProduct.Prod = updatedProduct.ProdDesc;
+                    //existingProduct.BasePrice = updatedProduct.BasePrice;
+                    //existingProduct.AgencyCommission = updatedProduct.AgencyCommission;
                     dbContext.SaveChanges();
                 }
             }

@@ -1,7 +1,7 @@
 ﻿/*
  * Form for adding and editing travel packages
  * 
- * Author: Dreesha, Cameron
+ * Author: Dreesha, Cameron O
  * Date: July 2023
  */
 

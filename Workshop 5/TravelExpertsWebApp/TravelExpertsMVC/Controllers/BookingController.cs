@@ -39,27 +39,37 @@ namespace TravelExpertsMVC.Controllers
 
         public IActionResult Details()
         {
-            List<Booking> bookings = new List<Booking>();
-
             int id = Convert.ToInt32(User.FindFirst("Id").Value);
-            bookings = BookingManager.GetBookingsByCustomerId(id, _context);
+            List<BookingDetail> info = BookingDetailManager.GetBookingDetailByCustomer(id, _context);
+            
+            return View(info);
+            //List<Booking> bookings = new List<Booking>();
 
-            BookingDisplayModel bookingDisplay = new BookingDisplayModel();
+            //int id = Convert.ToInt32(User.FindFirst("Id").Value);
+            //bookings = BookingManager.GetBookingsByCustomerId(id, _context);
 
-            foreach (Booking b in bookings)
-            {
-                bookingDisplay.BookingId = b.BookingId;
-                bookingDisplay.BookingNo = b.BookingNo;
-                bookingDisplay.BookingDate = b.BookingDate;
-                bookingDisplay.TravelerCount = b.TravelerCount;
-                //bookingDisplay.TripTypeName = 
+           
+            //List<BookingDisplayModel> list = new List<BookingDisplayModel>();
+            //foreach (Booking b in bookings)
+            //{
+            //    BookingDisplayModel bookingDisplay = new BookingDisplayModel
+            //    {
+            //        BookingId = b.BookingId,
+            //        BookingNo = b.BookingNo,
+            //        BookingDate = b.BookingDate,
+            //        TravelerCount = b.TravelerCount
+                    
+            //    };
 
-                //bookingDisplay.TripTypeName = b.TripTypeName;
-                
-            }
+
+            //    //bookingDisplay.TripTypeName = 
+
+            //    //bookingDisplay.TripTypeName = b.TripTypeName;
+            //    list.Add(bookingDisplay);
+            //}
             
 
-            return View(bookingDisplay);
+            //return View(list);
         }
     }
 }

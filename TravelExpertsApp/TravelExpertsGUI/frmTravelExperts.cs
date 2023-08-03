@@ -16,7 +16,6 @@ namespace TravelExpertsGUI
     {
         private string tableMode = "";
 
-        //unused lists
         private List<Product> products = new List<Product>();
         private List<Package> packages = new List<Package>();
         private List<Supplier> suppliers = new List<Supplier>();
@@ -233,9 +232,6 @@ namespace TravelExpertsGUI
                         db.Dispose();
                     }
                 }
-
-
-
             }
         }
 
