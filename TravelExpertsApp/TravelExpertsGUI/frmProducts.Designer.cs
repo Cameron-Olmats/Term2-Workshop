@@ -59,6 +59,7 @@
             dataGView_Prods.RowTemplate.Height = 29;
             dataGView_Prods.Size = new Size(394, 365);
             dataGView_Prods.TabIndex = 5;
+            dataGView_Prods.CellClick += dataGView_Prods_CellClick;
             // 
             // gboxAdd
             // 

@@ -116,14 +116,14 @@ namespace TravelExpertsGUI
         {
             // Gather the data from the input controls
             int productId;
-            if (!int.TryParse(textBoxProductId.Text, out productId))
+            if (!int.TryParse(txtProdID.Text, out productId))
             {
                 MessageBox.Show("Invalid Product ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string productName = textBoxProductName.Text;
-            string productDescription = textBoxProductDescription.Text;
+            string productName = txtProdName.Text;
+            string productDescription = txtPackDesc.Text;
             decimal basePrice;
             decimal agencyCommission;
 
@@ -133,7 +133,7 @@ namespace TravelExpertsGUI
                 return;
             }
 
-            if (!decimal.TryParse(textBoxBasePrice.Text, out basePrice) || !decimal.TryParse(textBoxAgencyCommission.Text, out agencyCommission))
+            if (!decimal.TryParse(txtBPrice.Text, out basePrice) || !decimal.TryParse(txtAgencyComm.Text, out agencyCommission))
             {
                 MessageBox.Show("Invalid price values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -156,6 +156,20 @@ namespace TravelExpertsGUI
             };
 
             EditProduct(updatedProduct);
+        }
+
+        // handles event of the data grid view to populate the input controls with the selected product data when the user wants to edit a product
+        private void dataGView_Prods_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGView_Prods.Rows[e.RowIndex];
+                txtProdID.Text = row.Cells["ProductId"].Value.ToString();
+                txtProdName.Text = row.Cells["ProductName"].Value.ToString();
+                txtPackDesc.Text = row.Cells["ProductDescription"].Value.ToString();
+                txtBPrice.Text = row.Cells["BasePrice"].Value.ToString();
+                txtAgencyComm.Text = row.Cells["AgencyCommission"].Value.ToString();
+            }
         }
     }
 }
