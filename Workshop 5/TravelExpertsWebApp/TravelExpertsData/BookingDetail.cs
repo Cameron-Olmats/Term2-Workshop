@@ -23,9 +23,11 @@ public partial class BookingDetail
     public double? ItineraryNo { get; set; }
 
     [Column(TypeName = "datetime")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime? TripStart { get; set; }
 
     [Column(TypeName = "datetime")]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime? TripEnd { get; set; }
 
     [StringLength(255)]
@@ -35,9 +37,11 @@ public partial class BookingDetail
     public string? Destination { get; set; }
 
     [Column(TypeName = "money")]
+    [DisplayFormat(DataFormatString = "{0:C}")]
     public decimal? BasePrice { get; set; }
 
     [Column(TypeName = "money")]
+    [DisplayFormat(DataFormatString = "{0:C}")]
     public decimal? AgencyCommission { get; set; }
 
     public int? BookingId { get; set; }

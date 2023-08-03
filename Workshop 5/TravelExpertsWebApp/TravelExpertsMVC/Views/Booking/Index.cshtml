@@ -1,69 +1,126 @@
-﻿@model IEnumerable<TravelExpertsData.Booking>
+﻿@*Form for accessing your booking information. Uses booking controller and bookingdetailsmanager.
+
+    Author: Cameron Olmats
+*@
+
+@model IEnumerable<TravelExpertsData.BookingDetail>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Purchases";
 }
 
-<h1>Index</h1>
+<h1>Purchases</h1>
 
-<p>
+@*<p>
     <a asp-action="Create">Create New</a>
-</p>
+</p>*@
 <table class="table">
     <thead>
         <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.BookingDetailId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.BookingNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ItineraryNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TripStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TripEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductSupplier.Product.ProdName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Class.ClassName)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.BasePrice)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.AgencyCommission)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.BookingId)
             </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Region.RegionName)
+            </th>*@
+            
             <th>
-                @Html.DisplayNameFor(model => model.BookingDate)
+                Total Due
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BookingNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TravelerCount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TripTypeId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PackageId)
-            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Fee.FeeAmt)
+            </th>*@
+            
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.BookingDetailId)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.BookingNo)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItineraryNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TripStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TripEnd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductSupplier.Product.ProdName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Class.ClassName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.BasePrice)
+            </td>*@
+            @*<td>
+                @Html.DisplayFor(modelItem => item.AgencyCommission)
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.BookingId)
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Region.RegionName)
+            </td>*@
+            
             <td>
-                @Html.DisplayFor(modelItem => item.BookingDate)
+               @(string.Format("{0:C}", item.Fee.FeeAmt + item.BasePrice + item.AgencyCommission))
             </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Fee.FeeAmt)
+            </td>*@
+            
             <td>
-                @Html.DisplayFor(modelItem => item.BookingNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TravelerCount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TripTypeId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PackageId)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |*@
+                @Html.ActionLink("Details", "Details", new {  id=item.BookingDetailId  }) |
+                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }
