@@ -41,7 +41,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-								<label asp-for="CustUsername" class="col-2">Username: </label>
+								@*<label asp-for="CustUsername" class="col-2">Username: </label>*@
 							<input asp-for="CustUsername" class="form-control" placeholder="username">
 								<span asp-validation-for="CustUsername" class="col2"></span>
 
@@ -50,8 +50,8 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-								<label asp-for="CustPassword" class="col-2">Password: </label>
-							<input asp-for="CustPassword" class="form-control" placeholder="password">
+								@*<label asp-for="CustPassword" class="col-2">Password: </label>*@
+								<input type="password" asp-for="CustPassword" class="form-control" placeholder="password">
 								<span asp-validation-for="CustPassword" class="col-2"></span>
 						</div>
 						<div class="row align-items-center remember">
