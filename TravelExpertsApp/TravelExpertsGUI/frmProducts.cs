@@ -65,7 +65,6 @@ namespace TravelExpertsGUI
                 // Display the selected product's details in the text boxes
                 txtProdID.Text = modifiedProduct.ProductId.ToString();
                 txtProdName.Text = modifiedProduct.ProdName;
-                // Add other TextBoxes to display other product details if needed
             }
         }
 
@@ -78,25 +77,37 @@ namespace TravelExpertsGUI
             }
 
             // Open the frmModifyProduct form and pass the selected product as an argument
-            frmProducts modifyForm = new frmProducts(modifiedProduct);
-            DialogResult result = modifyForm.ShowDialog();
+            //frmProducts modifyForm = new frmProducts(modifiedProduct);
+            //DialogResult result = modifyForm.ShowDialog();
+            ModifyProduct();
+            //if (result == DialogResult.OK)
+            //{
+            //    // Reload products when the modification is successful
+            //    LoadProducts();
+            //}
 
-            if (result == DialogResult.OK)
+
+            //// Enable and disable the necessary buttons
+            //btnSubmit.Enabled = false;
+            //btnModify.Enabled = true;
+            //btnDelete.Enabled = false;
+
+            //// Allow the user to modify the product name
+            //txtProdName.ReadOnly = false;
+        }
+
+        private void ModifyProduct()
+        {
+            using (var dbContext = new TravelExpertsContext())
             {
-                // Reload products when the modification is successful
-                LoadProducts();
+                Product currentProduct = dbContext.Products.Find(modifiedProduct.ProductId);
+                if (currentProduct != null)
+                    currentProduct.ProdName = txtProdName.Text;
+                dbContext.SaveChanges();
             }
 
-            // Disable the control box (minimize, maximize, close buttons) of the frmProducts form
-            this.ControlBox = false;
-
-            // Enable and disable the necessary buttons
-            btnSubmit.Enabled = false;
-            btnModify.Enabled = true;
-            btnDelete.Enabled = false;
-
-            // Allow the user to modify the product name
-            txtProdName.ReadOnly = false;
+            // Reload products when the addition is successful
+            LoadProducts();       
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

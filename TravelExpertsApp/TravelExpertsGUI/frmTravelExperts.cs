@@ -121,8 +121,8 @@ namespace TravelExpertsGUI
         private void btnProducts_Click(object sender, EventArgs e)
         {
             DisplayData("Products");
-            btnLink.Enabled = false;
-            btnLink.Text = "";
+            btnLink.Enabled = true;
+            btnLink.Text = "Add to Products";
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
@@ -239,11 +239,16 @@ namespace TravelExpertsGUI
                         db.Dispose();
                     }
                 }
+            }
 
-
-
+            else if (tableMode == "Products")
+            {
+                frmProducts secondForm = new frmProducts();
+                secondForm.SelectedProd = products[dgvMain.CurrentCell.RowIndex];
+                DialogResult result = secondForm.ShowDialog();
             }
         }
+    
 
         private void btnModify_Click(object sender, EventArgs e)
         {
