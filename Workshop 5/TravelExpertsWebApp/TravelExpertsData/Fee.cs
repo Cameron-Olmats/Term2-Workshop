@@ -16,6 +16,7 @@ public partial class Fee
     public string FeeName { get; set; } = null!;
 
     [Column(TypeName = "money")]
+    [DisplayFormat(DataFormatString = "{0:C}")]
     public decimal FeeAmt { get; set; }
 
     [StringLength(50)]
