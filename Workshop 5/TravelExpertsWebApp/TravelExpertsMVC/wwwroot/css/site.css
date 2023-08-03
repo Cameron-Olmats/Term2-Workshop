@@ -25,9 +25,6 @@ body {
   margin-bottom: 60px;
 }
 
-
-/*Nav bar styles*/
-
 .dropdown {
     float: left;
 }
@@ -52,26 +49,19 @@ body {
     display: block;
 }
 
-/*End of Navbar*/
-
 .btn {
     margin-top: 1em;
 }
 
-
-/*Main page styles*/
-body{
-
-    /*padding-top: 3em;
-    padding-bottom: 3em;*/
-}
-
 .main-page-content {
-    /*background-image: url('../images/bgsunset.jpg');*/
-    /* color: wheat;*/
-    /*height: fit-content;*/
-    min-height: 100%;
+    background-image: url('../images/bgsunset.jpg');
+    background-size: cover;
+    color: wheat;
 }
+
+/*.img-thumbnail{
+    padding: 0,0,0,0;
+}*/
 
 .main-img{
     transition: 0.5s ease;
@@ -83,16 +73,10 @@ body{
     opacity: 0.3;
 }
 
-.main {
-    
-}
-
-
-/*End of Main page*/
-
-
-/*Login Styles*/
-
+/*.main {
+    height: 5000px;
+    background-color: rgb(69, 111, 255);
+}*/
 
 @import url('https://fonts.googleapis.com/css?family=Numans');
 
@@ -178,6 +162,3 @@ input:focus {
     .links a {
         margin-left: 4px;
     }
-
-
-/*End of Login*/
