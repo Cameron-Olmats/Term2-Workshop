@@ -35,6 +35,7 @@ public partial class Customer
 
     [StringLength(7)]
 	[Display(Name = "Postal Code")]
+    [RegularExpression(@"^[a-zA-Z][0-9][a-zA-Z][ ]{0,1}[0-9][a-zA-Z][0-9]$", ErrorMessage = "Please enter a valid Postal Code")]
 	public string CustPostal { get; set; } = null!;
 
     [StringLength(25)]
@@ -43,11 +44,13 @@ public partial class Customer
 
     [StringLength(20)]
 	[Display(Name = "Home Phone")]
-	public string? CustHomePhone { get; set; }
+    [RegularExpression(@"^[(]{0,1}[0-9]{3}[)]{0,1}[\-, ]{0,1}[0-9]{3}[\-, ]{0,1}[0-9]{4}$", ErrorMessage = "Doesn't match the required input. ex: ###-###-####, (###)-###-####, (###) ### ####")]
+    public string? CustHomePhone { get; set; }
 
     [StringLength(20)]
 	[Display(Name = "Bus Phone")]
-	public string CustBusPhone { get; set; } = null!;
+    [RegularExpression(@"^[(]{0,1}[0-9]{3}[)]{0,1}[\-, ]{0,1}[0-9]{3}[\-, ]{0,1}[0-9]{4}$", ErrorMessage = "Doesn't match the required input. ex: ###-###-####, (###)-###-####, (###) ### ####")]
+    public string CustBusPhone { get; set; } = null!;
 
     [StringLength(50)]
 	[Display(Name = "Email")]
@@ -58,8 +61,8 @@ public partial class Customer
     public string CustUsername { get; set; } = null!;
 
     [StringLength(30)]
-	[Display(Name = "Password")]
-	public string CustPassword { get; set; } = null!;
+    [Display(Name = "Password")]
+    public string CustPassword { get; set; } = null!;
 
     [StringLength(30)]
     [Display(Name = "Confirm Password")]

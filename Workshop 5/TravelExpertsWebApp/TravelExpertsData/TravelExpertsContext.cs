@@ -55,13 +55,13 @@ public partial class TravelExpertsContext : DbContext
 
     public virtual DbSet<TripType> TripTypes { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    optionsBuilder.UseSqlServer
+    //   ("Data Source=localhost\\sqlexpress;Initial Catalog=TravelExperts5;" +
+    //       "Integrated Security=True;TrustServerCertificate=True");
+    //}
 
-    }
-        // optionsBuilder.UseSqlServer
-        //("Data Source=localhost\\sqlexpress;Initial Catalog=TravelExperts5;" +
-        //    "Integrated Security=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
