@@ -30,6 +30,7 @@
         {
             dataGView_Prods = new DataGridView();
             gboxAdd = new GroupBox();
+            btnDelete = new Button();
             txtAgencyComm = new TextBox();
             lblAgencyComm = new Label();
             btnModify = new Button();
@@ -64,6 +65,7 @@
             // 
             // gboxAdd
             // 
+            gboxAdd.Controls.Add(btnDelete);
             gboxAdd.Controls.Add(txtAgencyComm);
             gboxAdd.Controls.Add(lblAgencyComm);
             gboxAdd.Controls.Add(btnModify);
@@ -85,6 +87,16 @@
             gboxAdd.TabStop = false;
             gboxAdd.Text = "Add Product";
             // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(473, 342);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(158, 29);
+            btnDelete.TabIndex = 15;
+            btnDelete.Text = "Delete Product";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // txtAgencyComm
             // 
             txtAgencyComm.Location = new Point(184, 305);
@@ -103,21 +115,21 @@
             // 
             // btnModify
             // 
-            btnModify.Location = new Point(399, 341);
+            btnModify.Location = new Point(262, 342);
             btnModify.Name = "btnModify";
-            btnModify.Size = new Size(197, 29);
+            btnModify.Size = new Size(158, 29);
             btnModify.TabIndex = 12;
-            btnModify.Text = "Confirm Modify";
+            btnModify.Text = "Modify Product";
             btnModify.UseVisualStyleBackColor = true;
             btnModify.Click += btnModify_Click;
             // 
             // btnSubmit
             // 
-            btnSubmit.Location = new Point(88, 341);
+            btnSubmit.Location = new Point(63, 342);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(197, 29);
+            btnSubmit.Size = new Size(146, 29);
             btnSubmit.TabIndex = 11;
-            btnSubmit.Text = "Confirm Add";
+            btnSubmit.Text = "Add Product";
             btnSubmit.UseVisualStyleBackColor = true;
             btnSubmit.Click += btnSubmit_Click;
             // 
@@ -259,5 +271,6 @@
         private Label lblAgencyComm;
         private Label lblProdID;
         private TextBox txtProdID;
+        private Button btnDelete;
     }
 }

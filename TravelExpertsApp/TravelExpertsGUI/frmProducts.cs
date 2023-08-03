@@ -60,30 +60,25 @@ namespace TravelExpertsGUI
             if (e.RowIndex >= 0 && e.RowIndex < products.Count)
             {
                 // Get the selected product from the data grid view
-                SelectedProd = products[e.RowIndex];
+                modifiedProduct = products[e.RowIndex];
 
                 // Display the selected product's details in the text boxes
-                txtProdID.Text = SelectedProd.ProductId.ToString();
-                txtProdName.Text = SelectedProd.ProdName;
+                txtProdID.Text = modifiedProduct.ProductId.ToString();
+                txtProdName.Text = modifiedProduct.ProdName;
                 // Add other TextBoxes to display other product details if needed
-            }
-            else if (e.RowIndex >= 0 && e.RowIndex < products.Count && e.ColumnIndex >= 0)
-            {
-                // Store the modified product in the DataGridView
-                modifiedProduct = products[e.RowIndex];
             }
         }
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            if (dataGView_Prods.SelectedCells.Count == 0)
+            if (modifiedProduct == null)
             {
                 MessageBox.Show("Please select a product to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Open the frmModifyProduct form and pass the selected product as an argument
-            frmProducts modifyForm = new frmProducts(SelectedProd);
+            frmProducts modifyForm = new frmProducts(modifiedProduct);
             DialogResult result = modifyForm.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -95,28 +90,63 @@ namespace TravelExpertsGUI
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
+            // Gather the data from the input controls
+            string productName = txtProdName.Text;
+
+            if (string.IsNullOrEmpty(productName))
             {
-                if (modifiedProduct != null)
+                MessageBox.Show("Product Name cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Create a new product instance and add it to the database
+            Product newProduct = new Product
+            {
+                ProdName = productName
+                // Add other properties if needed
+            };
+
+            AddProduct(newProduct);
+        }
+
+        private void AddProduct(Product newProduct)
+        {
+            using (var dbContext = new TravelExpertsContext())
+            {
+                dbContext.Products.Add(newProduct);
+                dbContext.SaveChanges();
+            }
+
+            // Reload products when the addition is successful
+            LoadProducts();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (modifiedProduct == null)
+            {
+                MessageBox.Show("Please select a product to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                using (var dbContext = new TravelExpertsContext())
                 {
-                    // Save the modified product details back to the database
-                    using (var dbContext = new TravelExpertsContext())
+                    var existingProduct = dbContext.Products.Find(modifiedProduct.ProductId);
+                    if (existingProduct != null)
                     {
-                        var existingProduct = dbContext.Products.Find(modifiedProduct.ProductId);
-                        if (existingProduct != null)
-                        {
-                            // Update the product with the modified data
-                            existingProduct.ProdName = modifiedProduct.ProdName;
-                            // Update other product details here if needed
-                            dbContext.SaveChanges();
-                        }
+                        dbContext.Products.Remove(existingProduct);
+                        dbContext.SaveChanges();
                     }
-
-                    // Clear the modifiedProduct variable after saving changes
-                    modifiedProduct = null;
-
-                    // Reload products when the modification is successful
-                    LoadProducts();
                 }
+
+                // Clear the selected product after deletion
+                modifiedProduct = null;
+
+                // Reload products after deletion
+                LoadProducts();
             }
         }
     }
