@@ -52,12 +52,13 @@
             // 
             // dataGView_Prods
             // 
+            dataGView_Prods.BorderStyle = BorderStyle.Fixed3D;
             dataGView_Prods.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGView_Prods.Location = new Point(753, 65);
+            dataGView_Prods.Location = new Point(753, 72);
             dataGView_Prods.Name = "dataGView_Prods";
             dataGView_Prods.RowHeadersWidth = 51;
             dataGView_Prods.RowTemplate.Height = 29;
-            dataGView_Prods.Size = new Size(394, 365);
+            dataGView_Prods.Size = new Size(394, 358);
             dataGView_Prods.TabIndex = 5;
             dataGView_Prods.CellClick += dataGView_Prods_CellClick;
             // 
@@ -94,7 +95,7 @@
             // lblAgencyComm
             // 
             lblAgencyComm.AutoSize = true;
-            lblAgencyComm.Location = new Point(27, 305);
+            lblAgencyComm.Location = new Point(27, 308);
             lblAgencyComm.Name = "lblAgencyComm";
             lblAgencyComm.Size = new Size(93, 20);
             lblAgencyComm.TabIndex = 13;
@@ -106,7 +107,7 @@
             btnModify.Name = "btnModify";
             btnModify.Size = new Size(197, 29);
             btnModify.TabIndex = 12;
-            btnModify.Text = "Modify Product";
+            btnModify.Text = "Confirm Modify";
             btnModify.UseVisualStyleBackColor = true;
             btnModify.Click += btnModify_Click;
             // 
@@ -116,8 +117,9 @@
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(197, 29);
             btnSubmit.TabIndex = 11;
-            btnSubmit.Text = "Submit Product";
+            btnSubmit.Text = "Confirm Add";
             btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // txtBPrice
             // 
@@ -128,9 +130,9 @@
             // 
             // txtPackDesc
             // 
-            txtPackDesc.Location = new Point(240, 201);
+            txtPackDesc.Location = new Point(184, 201);
             txtPackDesc.Name = "txtPackDesc";
-            txtPackDesc.Size = new Size(423, 27);
+            txtPackDesc.Size = new Size(479, 27);
             txtPackDesc.TabIndex = 9;
             // 
             // txtEndDat
@@ -156,10 +158,9 @@
             // 
             // lblBasPric
             // 
-            lblBasPric.AutoSize = true;
             lblBasPric.Location = new Point(27, 261);
             lblBasPric.Name = "lblBasPric";
-            lblBasPric.Size = new Size(79, 20);
+            lblBasPric.Size = new Size(112, 23);
             lblBasPric.TabIndex = 5;
             lblBasPric.Text = "Base Price:";
             // 
@@ -225,9 +226,12 @@
             Controls.Add(lblProdID);
             Controls.Add(dataGView_Prods);
             Controls.Add(gboxAdd);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(2);
+            MaximizeBox = false;
             Name = "frmProducts";
             Text = "frmProducts";
+            Load += frmProducts_Load;
             ((System.ComponentModel.ISupportInitialize)dataGView_Prods).EndInit();
             gboxAdd.ResumeLayout(false);
             gboxAdd.PerformLayout();
