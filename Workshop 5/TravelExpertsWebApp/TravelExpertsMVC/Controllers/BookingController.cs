@@ -20,27 +20,27 @@ namespace TravelExpertsMVC.Controllers
             _context = context;
         }
 
+        //public IActionResult Index()
+        //{
+            
+        //    List<Booking> bookings = new List<Booking>();
+        //    try
+        //    {
+        //        int id = Convert.ToInt32(User.FindFirst("Id").Value);
+        //        bookings = BookingManager.GetBookingsByCustomerId(id, _context);
+        //    }
+        //    catch
+        //    {
+        //        TempData["IsError"] = true;
+        //        TempData["Message"] = "Could not access your purchases. Please log in and try again";
+        //    }
+        //    return View(bookings);
+        //}
+
         public IActionResult Index()
         {
-            
-            List<Booking> bookings = new List<Booking>();
-            try
-            {
-                int id = Convert.ToInt32(User.FindFirst("Id").Value);
-                bookings = BookingManager.GetBookingsByCustomerId(id, _context);
-            }
-            catch
-            {
-                TempData["IsError"] = true;
-                TempData["Message"] = "Could not access your purchases. Please log in and try again";
-            }
-            return View(bookings);
-        }
-
-        public IActionResult Details()
-        {
             int id = Convert.ToInt32(User.FindFirst("Id").Value);
-            List<BookingDetail> info = BookingDetailManager.GetBookingDetailByCustomer(id, _context);
+            List<BookingDetail> info = BookingDetailManager.GetBookingDetailsByCustomer(id, _context);
             
             return View(info);
             //List<Booking> bookings = new List<Booking>();
@@ -70,6 +70,12 @@ namespace TravelExpertsMVC.Controllers
             
 
             //return View(list);
+        }
+
+        public IActionResult Details()
+        {
+
+            return View();
         }
     }
 }
