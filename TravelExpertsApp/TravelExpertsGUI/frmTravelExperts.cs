@@ -23,10 +23,16 @@ namespace TravelExpertsGUI
         private object txtPackageID;
 
         int CurrentSelected = -1;
+        private Product selectedProd;
 
         public frmTravelExperts()
         {
             InitializeComponent();
+        }
+
+        public frmTravelExperts(Product selectedProd)
+        {
+            this.selectedProd = selectedProd;
         }
 
         private void DisplayData(string Mode)
@@ -250,6 +256,7 @@ namespace TravelExpertsGUI
             else if (tableMode == "Products")
             {
                 frmProducts secondForm = new frmProducts();
+                secondForm.SelectedProd = products[dgvMain.CurrentCell.RowIndex];
                 result = secondForm.ShowDialog();
             }
             else if (tableMode == "Packages")
