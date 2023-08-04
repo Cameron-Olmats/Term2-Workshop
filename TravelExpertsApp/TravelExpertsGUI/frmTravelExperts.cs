@@ -37,6 +37,8 @@ namespace TravelExpertsGUI
 
         private void DisplayData(string Mode)
         {
+            dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
             tableMode = Mode;
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
@@ -48,23 +50,41 @@ namespace TravelExpertsGUI
                         {
                             p.PackageId,
                             p.PkgName,
-                            p.PkgStartDate,
-                            p.PkgEndDate,
-                            p.PkgBasePrice,
-                            p.PkgAgencyCommission
+                            p.PkgStartDate, //col 2
+                            p.PkgEndDate, // col 3
+                            p.PkgBasePrice, // col 4
+                            p.PkgAgencyCommission //col 5
                         })
                         .ToList();
                     dgvMain.DataSource = query;
+                    dgvMain.Columns[2].DefaultCellStyle.Format = "d";
+                    dgvMain.Columns[3].DefaultCellStyle.Format = "d";
+                    dgvMain.Columns[4].DefaultCellStyle.Format = "c";
+                    dgvMain.Columns[5].DefaultCellStyle.Format = "c";
                 }
                 else if (tableMode == "Products")
                 {
                     products = db.Products.ToList();
-                    dgvMain.DataSource = products;
+                    var query = db.Products
+                       .Select(p => new
+                       {
+                           p.ProductId,
+                           p.ProdName
+                       })
+                       .ToList();
+                    dgvMain.DataSource = query;
                 }
                 else if (tableMode == "Suppliers")
                 {
                     suppliers = db.Suppliers.ToList();
-                    dgvMain.DataSource = suppliers;
+                    var query = db.Suppliers
+                        .Select(s => new
+                        {
+                            s.SupplierId,
+                            s.SupName
+                        })
+                        .ToList();
+                    dgvMain.DataSource = query;
                 }
             }
         }
@@ -114,7 +134,14 @@ namespace TravelExpertsGUI
         private void btnTravelPackage_Click(object sender, EventArgs e)
         {
             DisplayData("Packages");
+            btnAdd.Enabled = true;
             btnLink.Enabled = true;
+            btnModify.Enabled = true;
+            btnRemove.Enabled = true;
+            btnAdd.Visible = true;
+            btnLink.Visible = true;
+            btnModify.Visible = true;
+            btnRemove.Visible = true;
             btnLink.Text = "Add Products To Package";
         }
 
@@ -122,13 +149,29 @@ namespace TravelExpertsGUI
         {
             DisplayData("Products");
             btnLink.Enabled = true;
-            btnLink.Text = "Add to Products";
+            btnLink.Visible = true;
+
+            btnAdd.Enabled = false;
+            btnModify.Enabled = false;
+            btnRemove.Enabled = false;
+            btnAdd.Visible = false;
+            btnModify.Visible = false;
+            btnRemove.Visible = false;
+            btnLink.Text = "Edit Products";
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
             DisplayData("Suppliers");
+
+            btnAdd.Enabled = true;
             btnLink.Enabled = true;
+            btnModify.Enabled = true;
+            btnRemove.Enabled = true;
+            btnAdd.Visible = true;
+            btnLink.Visible = true;
+            btnModify.Visible = true;
+            btnRemove.Visible = true;
             btnLink.Text = "Add Products To Supplier";
         }
 
@@ -246,7 +289,7 @@ namespace TravelExpertsGUI
                 DialogResult result = secondForm.ShowDialog();
             }
         }
-    
+
 
         private void btnModify_Click(object sender, EventArgs e)
         {

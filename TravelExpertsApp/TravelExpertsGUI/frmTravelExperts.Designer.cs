@@ -47,6 +47,7 @@
             // 
             // btnTravelPackage
             // 
+            btnTravelPackage.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             btnTravelPackage.Location = new Point(17, 200);
             btnTravelPackage.Margin = new Padding(4, 4, 4, 4);
             btnTravelPackage.Name = "btnTravelPackage";
@@ -58,6 +59,7 @@
             // 
             // btnProducts
             // 
+            btnProducts.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             btnProducts.Location = new Point(17, 346);
             btnProducts.Margin = new Padding(4, 4, 4, 4);
             btnProducts.Name = "btnProducts";
@@ -69,6 +71,7 @@
             // 
             // btnSuppliers
             // 
+            btnSuppliers.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             btnSuppliers.Location = new Point(17, 490);
             btnSuppliers.Margin = new Padding(4, 4, 4, 4);
             btnSuppliers.Name = "btnSuppliers";
@@ -99,7 +102,7 @@
             btnLink.Location = new Point(428, 518);
             btnLink.Margin = new Padding(2, 2, 2, 2);
             btnLink.Name = "btnLink";
-            btnLink.Size = new Size(103, 30);
+            btnLink.Size = new Size(103, 42);
             btnLink.TabIndex = 8;
             btnLink.Text = "btnLink";
             btnLink.UseVisualStyleBackColor = true;
@@ -178,7 +181,7 @@
             AutoScaleDimensions = new SizeF(120F, 120F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.LightSlateGray;
-            ClientSize = new Size(1050, 796);
+            ClientSize = new Size(1097, 797);
             Controls.Add(pictureBox1);
             Controls.Add(btnExit);
             Controls.Add(grpData);
@@ -187,7 +190,6 @@
             Controls.Add(btnTravelPackage);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Margin = new Padding(2, 1, 2, 1);
-            MaximizeBox = false;
             Name = "frmTravelExperts";
             Text = "Travel Experts";
             Load += frmTravelExperts_Load;
