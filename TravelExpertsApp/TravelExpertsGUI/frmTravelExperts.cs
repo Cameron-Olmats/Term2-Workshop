@@ -114,7 +114,14 @@ namespace TravelExpertsGUI
         private void btnTravelPackage_Click(object sender, EventArgs e)
         {
             DisplayData("Packages");
+            btnAdd.Enabled = true;
             btnLink.Enabled = true;
+            btnModify.Enabled = true;
+            btnRemove.Enabled = true;
+            btnAdd.Visible = true;
+            btnLink.Visible = true;
+            btnModify.Visible = true;
+            btnRemove.Visible = true;
             btnLink.Text = "Add Products To Package";
         }
 
@@ -122,13 +129,29 @@ namespace TravelExpertsGUI
         {
             DisplayData("Products");
             btnLink.Enabled = true;
-            btnLink.Text = "Add to Products";
+            btnLink.Visible = true;
+
+            btnAdd.Enabled = false;
+            btnModify.Enabled = false;
+            btnRemove.Enabled = false;
+            btnAdd.Visible = false;
+            btnModify.Visible = false;
+            btnRemove.Visible = false;
+            btnLink.Text = "Edit Products";
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
             DisplayData("Suppliers");
+
+            btnAdd.Enabled = true;
             btnLink.Enabled = true;
+            btnModify.Enabled = true;
+            btnRemove.Enabled = true;
+            btnAdd.Visible = true;
+            btnLink.Visible = true;
+            btnModify.Visible = true;
+            btnRemove.Visible = true;
             btnLink.Text = "Add Products To Supplier";
         }
 
@@ -246,7 +269,7 @@ namespace TravelExpertsGUI
                 DialogResult result = secondForm.ShowDialog();
             }
         }
-    
+
 
         private void btnModify_Click(object sender, EventArgs e)
         {
