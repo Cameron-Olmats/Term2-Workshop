@@ -37,6 +37,8 @@ namespace TravelExpertsGUI
 
         private void DisplayData(string Mode)
         {
+            dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            
             tableMode = Mode;
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
@@ -48,23 +50,41 @@ namespace TravelExpertsGUI
                         {
                             p.PackageId,
                             p.PkgName,
-                            p.PkgStartDate,
-                            p.PkgEndDate,
-                            p.PkgBasePrice,
-                            p.PkgAgencyCommission
+                            p.PkgStartDate, //col 2
+                            p.PkgEndDate, // col 3
+                            p.PkgBasePrice, // col 4
+                            p.PkgAgencyCommission //col 5
                         })
                         .ToList();
                     dgvMain.DataSource = query;
+                    dgvMain.Columns[2].DefaultCellStyle.Format = "d";
+                    dgvMain.Columns[3].DefaultCellStyle.Format = "d";
+                    dgvMain.Columns[4].DefaultCellStyle.Format = "c";
+                    dgvMain.Columns[5].DefaultCellStyle.Format = "c";
                 }
                 else if (tableMode == "Products")
                 {
                     products = db.Products.ToList();
-                    dgvMain.DataSource = products;
+                    var query = db.Products
+                       .Select(p => new
+                       {
+                           p.ProductId,
+                           p.ProdName
+                       })
+                       .ToList();
+                    dgvMain.DataSource = query;
                 }
                 else if (tableMode == "Suppliers")
                 {
                     suppliers = db.Suppliers.ToList();
-                    dgvMain.DataSource = suppliers;
+                    var query = db.Suppliers
+                        .Select(s => new
+                        {
+                            s.SupplierId,
+                            s.SupName
+                        })
+                        .ToList();
+                    dgvMain.DataSource = query;
                 }
             }
         }
