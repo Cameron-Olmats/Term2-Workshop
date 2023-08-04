@@ -11,12 +11,19 @@ using TravelExpertsData;
 using Microsoft.EntityFrameworkCore;
 using static System.Net.Mime.MediaTypeNames;
 
+/*
+ *  Products form takes existing products from TravelExperts database, and puts them into grid-view box
+ *  Users can select each cell to modify, create new cells to add, or select a cell and delete
+ *  Validates for empty text fields, or unselected cell to modify/delete
+ *  Date: 03 AUG 23
+ *  Author: Nancy
+ */
 namespace TravelExpertsGUI
 {
     public partial class frmProducts : Form
     {
         private List<Product> products;
-        public Product SelectedProd;
+        public Product SelectedProd; // To track the selected product in the DataGridView
         private Product modifiedProduct; // To track the modified product in the DataGridView
 
         public frmProducts()
@@ -76,10 +83,9 @@ namespace TravelExpertsGUI
                 return;
             }
 
-            // Open the frmModifyProduct form and pass the selected product as an argument
-            //frmProducts modifyForm = new frmProducts(modifiedProduct);
-            //DialogResult result = modifyForm.ShowDialog();
             ModifyProduct();
+        }
+        
             //if (result == DialogResult.OK)
             //{
             //    // Reload products when the modification is successful
@@ -94,7 +100,7 @@ namespace TravelExpertsGUI
 
             //// Allow the user to modify the product name
             //txtProdName.ReadOnly = false;
-        }
+  
 
         private void ModifyProduct()
         {
@@ -125,7 +131,6 @@ namespace TravelExpertsGUI
             Product newProduct = new Product
             {
                 ProdName = productName
-                // Add other properties if needed
             };
 
             AddProduct(newProduct);
@@ -151,7 +156,7 @@ namespace TravelExpertsGUI
                 return;
             }
 
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Deletion validation
             if (result == DialogResult.Yes)
             {
                 using (var dbContext = new TravelExpertsContext())
