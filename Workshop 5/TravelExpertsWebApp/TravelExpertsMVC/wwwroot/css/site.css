@@ -167,6 +167,7 @@ body {
     font-size: 60px;
     margin-left: 10px;
     color: #FFC312;
+    top:-3%;
 }
 
     .social_icon span:hover {
@@ -181,7 +182,7 @@ body {
 .social_icon {
     position: absolute;
     right: 20px;
-    top: -45px;
+    top: -3%;
 }
 
 .input-group-prepend span {
