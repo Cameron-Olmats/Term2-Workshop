@@ -306,3 +306,30 @@ input:focus {
             text-decoration: underline;
         }
 /* end register css*/
+
+/*Start of Packages css*/
+
+.border-effect {
+    height: 15px;
+    width: 20%;
+    margin-top: 2px;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.h4{
+    color: coral;
+}
+.p{
+    color: antiquewhite;
+}
