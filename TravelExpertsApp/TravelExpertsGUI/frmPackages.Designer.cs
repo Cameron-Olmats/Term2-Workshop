@@ -48,119 +48,120 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(217, 122);
-            label2.Margin = new Padding(5, 0, 5, 0);
+            label2.ForeColor = SystemColors.ActiveCaptionText;
+            label2.Location = new Point(32, 34);
             label2.Name = "label2";
-            label2.Size = new Size(83, 32);
+            label2.Size = new Size(52, 20);
             label2.TabIndex = 1;
             label2.Text = "Name:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(217, 220);
-            label3.Margin = new Padding(5, 0, 5, 0);
+            label3.ForeColor = SystemColors.ActiveCaptionText;
+            label3.Location = new Point(32, 96);
             label3.Name = "label3";
-            label3.Size = new Size(124, 32);
+            label3.Size = new Size(79, 20);
             label3.TabIndex = 2;
             label3.Text = "Start Date:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(217, 329);
-            label4.Margin = new Padding(5, 0, 5, 0);
+            label4.ForeColor = SystemColors.ActiveCaptionText;
+            label4.Location = new Point(32, 164);
             label4.Name = "label4";
-            label4.Size = new Size(116, 32);
+            label4.Size = new Size(73, 20);
             label4.TabIndex = 3;
             label4.Text = "End Date:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(217, 434);
-            label5.Margin = new Padding(5, 0, 5, 0);
+            label5.ForeColor = SystemColors.ActiveCaptionText;
+            label5.Location = new Point(32, 229);
             label5.Name = "label5";
-            label5.Size = new Size(140, 32);
+            label5.Size = new Size(88, 20);
             label5.TabIndex = 4;
             label5.Text = "Description:";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(217, 532);
-            label6.Margin = new Padding(5, 0, 5, 0);
+            label6.ForeColor = SystemColors.ActiveCaptionText;
+            label6.Location = new Point(32, 290);
             label6.Name = "label6";
-            label6.Size = new Size(126, 32);
+            label6.Size = new Size(79, 20);
             label6.TabIndex = 5;
             label6.Text = "Base Price:";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(217, 617);
-            label7.Margin = new Padding(5, 0, 5, 0);
+            label7.ForeColor = SystemColors.ActiveCaptionText;
+            label7.Location = new Point(32, 344);
             label7.Name = "label7";
-            label7.Size = new Size(236, 32);
+            label7.Size = new Size(146, 20);
             label7.TabIndex = 6;
             label7.Text = "Agency Commission:";
             // 
             // txtName
             // 
-            txtName.Location = new Point(520, 116);
-            txtName.Margin = new Padding(5, 6, 5, 6);
+            txtName.Location = new Point(218, 30);
+            txtName.Margin = new Padding(3, 4, 3, 4);
             txtName.Name = "txtName";
-            txtName.Size = new Size(371, 39);
+            txtName.Size = new Size(230, 27);
             txtName.TabIndex = 8;
             // 
             // txtStartDate
             // 
-            txtStartDate.Location = new Point(520, 220);
-            txtStartDate.Margin = new Padding(5, 6, 5, 6);
+            txtStartDate.Location = new Point(218, 96);
+            txtStartDate.Margin = new Padding(3, 4, 3, 4);
             txtStartDate.Name = "txtStartDate";
-            txtStartDate.Size = new Size(259, 39);
+            txtStartDate.Size = new Size(161, 27);
             txtStartDate.TabIndex = 9;
             // 
             // txtEndDate
             // 
-            txtEndDate.Location = new Point(520, 329);
-            txtEndDate.Margin = new Padding(5, 6, 5, 6);
+            txtEndDate.Location = new Point(218, 164);
+            txtEndDate.Margin = new Padding(3, 4, 3, 4);
             txtEndDate.Name = "txtEndDate";
-            txtEndDate.Size = new Size(259, 39);
+            txtEndDate.Size = new Size(161, 27);
             txtEndDate.TabIndex = 10;
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(520, 434);
-            txtDescription.Margin = new Padding(5, 6, 5, 6);
+            txtDescription.Location = new Point(218, 229);
+            txtDescription.Margin = new Padding(3, 4, 3, 4);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(532, 39);
+            txtDescription.Size = new Size(329, 27);
             txtDescription.TabIndex = 11;
             // 
             // txtBasePrice
             // 
-            txtBasePrice.Location = new Point(520, 532);
-            txtBasePrice.Margin = new Padding(5, 6, 5, 6);
+            txtBasePrice.Location = new Point(218, 290);
+            txtBasePrice.Margin = new Padding(3, 4, 3, 4);
             txtBasePrice.Name = "txtBasePrice";
-            txtBasePrice.Size = new Size(259, 39);
+            txtBasePrice.Size = new Size(161, 27);
             txtBasePrice.TabIndex = 12;
             // 
             // txtAgencyCommission
             // 
             txtAgencyCommission.ForeColor = SystemColors.WindowText;
-            txtAgencyCommission.Location = new Point(520, 612);
-            txtAgencyCommission.Margin = new Padding(5, 6, 5, 6);
+            txtAgencyCommission.Location = new Point(218, 340);
+            txtAgencyCommission.Margin = new Padding(3, 4, 3, 4);
             txtAgencyCommission.Name = "txtAgencyCommission";
-            txtAgencyCommission.Size = new Size(259, 39);
+            txtAgencyCommission.Size = new Size(161, 27);
             txtAgencyCommission.TabIndex = 13;
             // 
             // btnSubmit
             // 
-            btnSubmit.BackColor = SystemColors.Desktop;
-            btnSubmit.Location = new Point(221, 751);
-            btnSubmit.Margin = new Padding(5, 6, 5, 6);
+            btnSubmit.BackColor = SystemColors.ButtonShadow;
+            btnSubmit.ForeColor = SystemColors.ActiveCaptionText;
+            btnSubmit.Location = new Point(106, 413);
+            btnSubmit.Margin = new Padding(3, 4, 3, 4);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(140, 50);
+            btnSubmit.Size = new Size(86, 31);
             btnSubmit.TabIndex = 14;
             btnSubmit.Text = "Submit";
             btnSubmit.UseVisualStyleBackColor = false;
@@ -168,11 +169,12 @@
             // 
             // btnClear
             // 
-            btnClear.BackColor = SystemColors.Desktop;
-            btnClear.Location = new Point(845, 751);
-            btnClear.Margin = new Padding(5, 6, 5, 6);
+            btnClear.BackColor = SystemColors.ButtonShadow;
+            btnClear.ForeColor = SystemColors.ActiveCaptionText;
+            btnClear.Location = new Point(246, 413);
+            btnClear.Margin = new Padding(3, 4, 3, 4);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(140, 50);
+            btnClear.Size = new Size(86, 31);
             btnClear.TabIndex = 15;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = false;
@@ -180,11 +182,12 @@
             // 
             // btnExit
             // 
-            btnExit.BackColor = SystemColors.Desktop;
-            btnExit.Location = new Point(1202, 751);
-            btnExit.Margin = new Padding(5, 6, 5, 6);
+            btnExit.BackColor = SystemColors.ButtonShadow;
+            btnExit.ForeColor = SystemColors.ActiveCaptionText;
+            btnExit.Location = new Point(389, 413);
+            btnExit.Margin = new Padding(3, 4, 3, 4);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(140, 50);
+            btnExit.Size = new Size(86, 31);
             btnExit.TabIndex = 16;
             btnExit.Text = "Cancel";
             btnExit.UseVisualStyleBackColor = false;
@@ -192,10 +195,10 @@
             // 
             // frmPackages
             // 
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ActiveCaptionText;
-            ClientSize = new Size(1485, 960);
+            BackColor = Color.LightSlateGray;
+            ClientSize = new Size(576, 478);
             Controls.Add(btnExit);
             Controls.Add(btnClear);
             Controls.Add(btnSubmit);
@@ -211,8 +214,8 @@
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            ForeColor = Color.Cyan;
-            Margin = new Padding(5, 6, 5, 6);
+            ForeColor = Color.Ivory;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmPackages";
             Text = "Travel Packages";
             Load += frmPackages_Load;
