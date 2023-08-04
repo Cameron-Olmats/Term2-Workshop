@@ -86,6 +86,21 @@ namespace TravelExpertsGUI
             return true;
         }
 
+        public static bool GreaterThan(TextBox tbxBigger, TextBox tbxSmaller)
+        {
+            if (!NotNegative(tbxBigger) || !NotNegative(tbxSmaller))
+            {
+                return false;
+            }
+            if (decimal.Parse(tbxBigger.Text) < decimal.Parse(tbxSmaller.Text))
+            {
+                tbxSmaller.Focus();
+                MessageBox.Show("The textbox: " + tbxSmaller.Name + " must be smaller then: " + tbxBigger.Name + ".");
+                return false;
+            }
+            return true;
+        }
+
         public static bool ValidDate(TextBox tbx)
         {
             if (!NotEmpty(tbx)) return false;

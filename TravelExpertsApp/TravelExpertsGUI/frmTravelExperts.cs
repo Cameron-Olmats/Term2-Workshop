@@ -199,19 +199,17 @@ namespace TravelExpertsGUI
             else  // tableMode == "Packages"
             {
                 frmPackages secondForm = new frmPackages();
-                secondForm.isAdd = true;
                 result = secondForm.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-
                     using (TravelExpertsContext db = new TravelExpertsContext())
                     {
-                        db.Packages.Add(secondForm.currentPackage);
+                        Package prod = secondForm.currentPackage;
+                        db.Packages.Add(prod);
                         db.SaveChanges();
-                        packages.Add(secondForm.currentPackage);
                     }
+                    DisplayData("Packages");
                 }
-                dgvMain.Update();
             }
         }
 
@@ -266,33 +264,30 @@ namespace TravelExpertsGUI
             }
             else if (tableMode == "Packages")
             {
-                //if (TravelExpertsContext.CurrentRow.Index = -1)
-                //{
-                //    Package.PackageID = Convert.ToInt32(dgvMain.Main.CurrentRow.Cells[0].Value);
-                //    using TravelExpertsContext db = new TravelExpertsContext();
-                //    {
-                //        Package package = db.Packages.Where(x => x.PackageId == package.PackageId).FirstOrDefault();
-                //        txtPackageID.text = package.PackageId;
-                //        txt
-                //        }
-                //    btnSave.text = "Update";
-                //    btnDelete.Enabled = true;
-                //}
-
-                //ORIGINAL: 
-
-                //if (TravelExpertsContext.CurrentRow.Index =-1)
-                //{
-                //    Package.PackageID = Convert.ToInt32(dgvMain.Main.CurrentRow.Cells[0].Value);
-                //    using TravelExpertsContext db = new TravelExpertsContext();
-                //        {
-                //            Package package = db.Packages.Where(x=> x.PackageId == package.PackageId).FirstOrDefault();
-                //            txtPackageID.text = package.PackageId;
-                //            txt
-                //        }
-                //    btnSave.text = "Update";
-                //    btnDelete.Enabled = true;
-                //}
+                if (CurrentSelected == -1 || packages.Count <= CurrentSelected)
+                {
+                    return;
+                }
+                frmPackages secondForm = new frmPackages();
+                secondForm.currentPackage = packages[CurrentSelected];
+                result = secondForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        Package? pack = db.Packages.Find(secondForm.currentPackage.PackageId);
+                        if (pack != null)
+                        {
+                            pack.PkgName = secondForm.currentPackage.PkgName;
+                            pack.PkgStartDate = secondForm.currentPackage.PkgStartDate;
+                            pack.PkgEndDate = secondForm.currentPackage.PkgEndDate;
+                            pack.PkgDesc = secondForm.currentPackage.PkgDesc;
+                            pack.PkgAgencyCommission = secondForm.currentPackage.PkgAgencyCommission;
+                            db.SaveChanges();
+                        }
+                    }
+                    DisplayData("Packages");
+                }
             }
             else if (tableMode == "Suppliers")
             {
@@ -400,39 +395,63 @@ namespace TravelExpertsGUI
                 MessageBox.Show("Please select a table to remove data from");
                 return;
             }
-            else if (tableMode == "Products")
-            {
-            }
             else if (tableMode == "Suppliers")
             {
                 if (CurrentSelected == -1 || suppliers.Count <= CurrentSelected)
                 {
                     return;
                 }
-                using (TravelExpertsContext db = new TravelExpertsContext())
+                try
                 {
-                    Supplier supplier = db.Suppliers.Find(suppliers[CurrentSelected].SupplierId);
-                    if (supplier != null)
+                    using (TravelExpertsContext db = new TravelExpertsContext())
                     {
-                        List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();
-                        for (int i = 0; i < contacts.Count; i++)
+                        Supplier supplier = db.Suppliers.Find(suppliers[CurrentSelected].SupplierId);
+                        if (supplier != null)
                         {
-                            db.SupplierContacts.Remove(contacts[i]);
+                            List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                            for (int i = 0; i < contacts.Count; i++)
+                            {
+                                db.SupplierContacts.Remove(contacts[i]);
+                            }
+                            List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                            for (int i = 0; i < prods.Count; i++)
+                            {
+                                db.ProductsSuppliers.Remove(prods[i]);
+                            }
+                            db.Suppliers.Remove(supplier);
+                            db.SaveChanges();
                         }
-                        List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();
-                        for (int i = 0; i < prods.Count; i++)
-                        {
-                            db.ProductsSuppliers.Remove(prods[i]);
-                        }
-                        db.Suppliers.Remove(supplier);
-                        db.SaveChanges();
                     }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ran into an issue while removing a supplier. This can happen when customers have a purchase with them.");
                 }
                 DisplayData("Suppliers");
             }
-            else
+            else if (tableMode == "Packages")
             {
-
+                if (CurrentSelected == -1 || packages.Count <= CurrentSelected)
+                {
+                    return;
+                }
+                try
+                {
+                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    {
+                        Package pack = db.Packages.Find(packages[CurrentSelected].PackageId);
+                        if (pack != null)
+                        {
+                            db.Packages.Remove(pack);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ran into an issue while removing package.");
+                }
+                DisplayData("Packages");
             }
         }
 
