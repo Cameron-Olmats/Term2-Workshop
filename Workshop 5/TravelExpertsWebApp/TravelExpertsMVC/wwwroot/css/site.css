@@ -167,6 +167,7 @@ body {
     font-size: 60px;
     margin-left: 10px;
     color: #FFC312;
+    top:-3%;
 }
 
     .social_icon span:hover {
@@ -181,7 +182,7 @@ body {
 .social_icon {
     position: absolute;
     right: 20px;
-    top: -45px;
+    top: -3%;
 }
 
 .input-group-prepend span {
@@ -232,3 +233,33 @@ input:focus {
 /*Register CSS*/
 
 /* end register css*/
+
+/*Start of Packages css*/
+
+.border-effect {
+    height: 15px;
+    width: 20%;
+    margin-top: 2px;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+#cardTitle{
+    color: coral;
+}
+#cardText{
+    color: antiquewhite;
+}
+#card {
+    margin-bottom:25px;
+}

@@ -30,8 +30,9 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Booking" asp-action="Index">My Purchases</a>
                             </li>
                         }
-
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Packages">Packages</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
@@ -96,11 +97,11 @@
         </main>
     </div>
 
-    <footer class="border-top footer bg-dark text-white text-muted fixed-bottom" style="position: relative;">
+    @*<footer class="border-top footer bg-dark text-white text-muted fixed-bottom">
         <div class="container">
             &copy; 2023 - TravelExpertsMVC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
