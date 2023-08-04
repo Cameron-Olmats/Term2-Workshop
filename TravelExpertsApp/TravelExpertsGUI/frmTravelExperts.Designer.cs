@@ -47,10 +47,11 @@
             // 
             // btnTravelPackage
             // 
-            btnTravelPackage.Location = new Point(17, 200);
-            btnTravelPackage.Margin = new Padding(4, 4, 4, 4);
+            btnTravelPackage.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnTravelPackage.Location = new Point(27, 320);
+            btnTravelPackage.Margin = new Padding(6, 6, 6, 6);
             btnTravelPackage.Name = "btnTravelPackage";
-            btnTravelPackage.Size = new Size(250, 101);
+            btnTravelPackage.Size = new Size(400, 162);
             btnTravelPackage.TabIndex = 0;
             btnTravelPackage.Text = "Edit Travel Packages";
             btnTravelPackage.UseVisualStyleBackColor = true;
@@ -58,10 +59,11 @@
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(17, 346);
-            btnProducts.Margin = new Padding(4, 4, 4, 4);
+            btnProducts.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnProducts.Location = new Point(27, 554);
+            btnProducts.Margin = new Padding(6, 6, 6, 6);
             btnProducts.Name = "btnProducts";
-            btnProducts.Size = new Size(250, 101);
+            btnProducts.Size = new Size(400, 162);
             btnProducts.TabIndex = 1;
             btnProducts.Text = "Products";
             btnProducts.UseVisualStyleBackColor = true;
@@ -69,10 +71,11 @@
             // 
             // btnSuppliers
             // 
-            btnSuppliers.Location = new Point(17, 490);
-            btnSuppliers.Margin = new Padding(4, 4, 4, 4);
+            btnSuppliers.Font = new Font("Segoe UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSuppliers.Location = new Point(27, 784);
+            btnSuppliers.Margin = new Padding(6, 6, 6, 6);
             btnSuppliers.Name = "btnSuppliers";
-            btnSuppliers.Size = new Size(250, 101);
+            btnSuppliers.Size = new Size(400, 162);
             btnSuppliers.TabIndex = 2;
             btnSuppliers.Text = "Suppliers";
             btnSuppliers.UseVisualStyleBackColor = true;
@@ -85,21 +88,20 @@
             grpData.Controls.Add(btnModify);
             grpData.Controls.Add(btnRemove);
             grpData.Controls.Add(btnAdd);
-            grpData.Location = new Point(283, 172);
-            grpData.Margin = new Padding(4, 4, 4, 4);
+            grpData.Location = new Point(453, 275);
+            grpData.Margin = new Padding(6, 6, 6, 6);
             grpData.Name = "grpData";
-            grpData.Padding = new Padding(4, 4, 4, 4);
-            grpData.Size = new Size(728, 571);
+            grpData.Padding = new Padding(6, 6, 6, 6);
+            grpData.Size = new Size(1165, 914);
             grpData.TabIndex = 4;
             grpData.TabStop = false;
             // 
             // btnLink
             // 
             btnLink.AutoSize = true;
-            btnLink.Location = new Point(428, 518);
-            btnLink.Margin = new Padding(2, 2, 2, 2);
+            btnLink.Location = new Point(685, 829);
             btnLink.Name = "btnLink";
-            btnLink.Size = new Size(103, 30);
+            btnLink.Size = new Size(165, 67);
             btnLink.TabIndex = 8;
             btnLink.Text = "btnLink";
             btnLink.UseVisualStyleBackColor = true;
@@ -109,21 +111,21 @@
             // 
             dgvMain.BackgroundColor = Color.FromArgb(60, 80, 99);
             dgvMain.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvMain.Location = new Point(24, 34);
-            dgvMain.Margin = new Padding(4, 4, 4, 4);
+            dgvMain.Location = new Point(38, 54);
+            dgvMain.Margin = new Padding(6, 6, 6, 6);
             dgvMain.Name = "dgvMain";
             dgvMain.RowHeadersWidth = 82;
             dgvMain.RowTemplate.Height = 25;
-            dgvMain.Size = new Size(631, 444);
+            dgvMain.Size = new Size(1010, 710);
             dgvMain.TabIndex = 7;
             dgvMain.CellClick += dgvMain_CellContentClick;
             // 
             // btnModify
             // 
-            btnModify.Location = new Point(172, 518);
-            btnModify.Margin = new Padding(4, 4, 4, 4);
+            btnModify.Location = new Point(275, 829);
+            btnModify.Margin = new Padding(6, 6, 6, 6);
             btnModify.Name = "btnModify";
-            btnModify.Size = new Size(94, 29);
+            btnModify.Size = new Size(150, 46);
             btnModify.TabIndex = 6;
             btnModify.Text = "Modify";
             btnModify.UseVisualStyleBackColor = true;
@@ -131,10 +133,10 @@
             // 
             // btnRemove
             // 
-            btnRemove.Location = new Point(300, 518);
-            btnRemove.Margin = new Padding(4, 4, 4, 4);
+            btnRemove.Location = new Point(480, 829);
+            btnRemove.Margin = new Padding(6, 6, 6, 6);
             btnRemove.Name = "btnRemove";
-            btnRemove.Size = new Size(94, 29);
+            btnRemove.Size = new Size(150, 46);
             btnRemove.TabIndex = 5;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = true;
@@ -142,10 +144,10 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(38, 518);
-            btnAdd.Margin = new Padding(4, 4, 4, 4);
+            btnAdd.Location = new Point(61, 829);
+            btnAdd.Margin = new Padding(6, 6, 6, 6);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
+            btnAdd.Size = new Size(150, 46);
             btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -153,10 +155,10 @@
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(888, 751);
-            btnExit.Margin = new Padding(4, 4, 4, 4);
+            btnExit.Location = new Point(1421, 1202);
+            btnExit.Margin = new Padding(6, 6, 6, 6);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(94, 29);
+            btnExit.Size = new Size(150, 46);
             btnExit.TabIndex = 5;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
@@ -165,20 +167,19 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-1, -4);
-            pictureBox1.Margin = new Padding(2, 2, 2, 2);
+            pictureBox1.Location = new Point(-2, -6);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1029, 129);
+            pictureBox1.Size = new Size(1646, 206);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 
             // frmTravelExperts
             // 
-            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleDimensions = new SizeF(192F, 192F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.LightSlateGray;
-            ClientSize = new Size(1050, 796);
+            ClientSize = new Size(1680, 1274);
             Controls.Add(pictureBox1);
             Controls.Add(btnExit);
             Controls.Add(grpData);
@@ -186,7 +187,7 @@
             Controls.Add(btnProducts);
             Controls.Add(btnTravelPackage);
             FormBorderStyle = FormBorderStyle.Fixed3D;
-            Margin = new Padding(2, 1, 2, 1);
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "frmTravelExperts";
             Text = "Travel Experts";
