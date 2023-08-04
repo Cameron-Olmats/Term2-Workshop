@@ -13,32 +13,85 @@
 
 
 <h1>@ViewData["Title"]</h1>
-<div class="container-fluid border">
-	<div class="row">
-		<div class="col-3">
-			@Html.DisplayNameFor(model => model.CustomerId)
-		</div>
-		<div class="col-3">
-			@Html.DisplayNameFor(model => model.CustFirstName)
-		</div>
-		<div class="col-3">
-			@Html.DisplayNameFor(model => model.CustLastName)
-		</div>
-	</div>
+<div class="container-fluid">
+	
 	@if (Model != null)
 	{
-		<div class="row">
-		
-			<div class="col-3">
-				@Model.CustomerId
+
+		<div class="row align-content-center">
+			<!--Display country and province information-->
+			<div class="col col-md-5 border">
+				<!--for border around country lable and data-->
+				<div class="row">
+					<!--To keep lable and data in same row-->
+					<div class="col">@Html.DisplayNameFor(model => model.CustomerId):</div>
+					<div class="col">@Model.CustomerId</div>
+				</div>
 			</div>
-			<div class="col-3">
-				@Model.CustFirstName
+		</div>
+
+		<div class="row align-content-center">
+			<!--Display country and province information-->
+			<div class="col col-md-2 border">
+				<!--for border around country lable and data-->
+				<div class="row">
+					<!--To keep lable and data in same row-->
+					<div class="col">@Html.DisplayNameFor(model => model.CustFirstName):</div>
+					<div class="col">@Model.CustFirstName</div>
+				</div>
 			</div>
-			<div class="col-3">
-				@Model.CustLastName
+
+			<div class="col col-md-3 border">
+				<!--for border around prov lable and data, col 3 to match postal code-->
+				<div class="row">
+					<div class="col">@Html.DisplayNameFor(model => model.CustLastName):</div>
+					<div class="col">@Model.CustLastName</div>
+				</div>
 			</div>
-		
+		</div>
+
+		<div class="row align-content-center">
+			<!--Display country and province information-->
+			<div class="col col-md-2 border">
+				<!--for border around country lable and data-->
+				<div class="row">
+					<!--To keep lable and data in same row-->
+					<div class="col">@Html.DisplayNameFor(model => model.CustHomePhone):</div>
+					<div class="col">@Model.CustHomePhone</div>
+				</div>
+			</div>
+
+			<div class="col col-md-3 border">
+				<!--for border around prov lable and data, col 3 to match postal code-->
+				<div class="row">
+					<div class="col">@Html.DisplayNameFor(model => model.CustBusPhone):</div>
+					<div class="col">@Model.CustBusPhone</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row align-content-center">
+			<!--Display country and province information-->
+			<div class="col col-md-5 border">
+				<!--for border around country lable and data-->
+				<div class="row">
+					<!--To keep lable and data in same row-->
+					<div class="col">@Html.DisplayNameFor(model => model.CustEmail):</div>
+					<div class="col">@Model.CustEmail</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row align-content-center">
+			<!--Display country and province information-->
+			<div class="col col-md-5 border">
+				<!--for border around country lable and data-->
+				<div class="row">
+					<!--To keep lable and data in same row-->
+					<div class="col">@Html.DisplayNameFor(model => model.CustAddress):</div>
+					<div class="col">@Model.CustAddress</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="row align-content-center"> <!--Display country and province information-->
@@ -71,13 +124,7 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="row"></div>
-		<div class="row"></div>
-
-		<div class="row">
-
-		</div>
+		<a href="Customer/Edit">Edit</a>
 
 	}
 </div>
