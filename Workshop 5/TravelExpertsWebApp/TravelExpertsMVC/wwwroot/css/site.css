@@ -253,9 +253,12 @@ input:focus {
     width: 100%;
 }
 
-.h4{
+#cardTitle{
     color: coral;
 }
-.p{
+#cardText{
     color: antiquewhite;
+}
+#card {
+    margin-bottom:25px;
 }
