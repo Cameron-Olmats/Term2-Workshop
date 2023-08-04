@@ -38,7 +38,7 @@ namespace TravelExpertsGUI
         private void DisplayData(string Mode)
         {
             dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            
+
             tableMode = Mode;
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
