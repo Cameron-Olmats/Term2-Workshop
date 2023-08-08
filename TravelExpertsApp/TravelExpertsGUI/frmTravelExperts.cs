@@ -1,7 +1,7 @@
 /*
  * This form acts as a menu where you can select and access the different functions of the application
  * 
- * Author: Dreesha
+ * Author: Dreesha, Cameron C
  * Date created: July 2023
  */
 
