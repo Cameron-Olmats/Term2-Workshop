@@ -114,10 +114,11 @@ namespace TravelExpertsGUI
                     nextLink.ProductId = prodToAdd.ProductId;
                     nextLink.SupplierId = selectedSupplier.SupplierId;
 
+                    //Have the user confirm the choice
                     DialogResult result = MessageBox.Show(
                         $"do you want to add {prodToAdd.ProdName} to {selectedSupplier.SupName}?",
                         "confirm", MessageBoxButtons.YesNo);
-                    if (result == DialogResult.Yes)
+                    if (result == DialogResult.Yes) // if yes add to database
                     {
                         db.ProductsSuppliers.Add(nextLink);
                         db.SaveChanges();
@@ -158,11 +159,37 @@ namespace TravelExpertsGUI
                     .Where(p => (p.SupplierId == selectedSupplier.SupplierId)
                     && (p.ProductId == Convert.ToInt32(lvwOfferedProducts.Items[selectedIndex].Text)))
                     .ToList();
-                if ((query.Count > 0) && (query != null))
+               
+                // get the product of the ProdSup that you are removing.
+                // For using it's ProdName in the confirmation message.
+                
+               
+
+
+                if ((query.Count > 0) && (query != null)) // make sure that the query isn't null or zero at this point.
                 {
-                    linkToDelete = query.FirstOrDefault();
-                    db.ProductsSuppliers.Remove(linkToDelete);
-                    db.SaveChanges();
+                    String prodNameToRemove = db.ProductsSuppliers // the name of the product to remove
+                        .Include(ps => ps.Product)
+                        .Select(ps => ps.Product.ProdName)
+                        .FirstOrDefault();
+
+                    linkToDelete = query.FirstOrDefault(); // the entry to remove from ProductSupplier
+                    DialogResult result = MessageBox.Show(
+                       $"do you want to remove {prodNameToRemove} from {selectedSupplier.SupName}?",
+                       "confirm", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes) // if yes add to database
+                    {
+                        try
+                        {
+                            db.ProductsSuppliers.Remove(linkToDelete);
+                            db.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error while removing product from supplier: {ex.GetType()}. {ex.InnerException.Message}");
+                        }
+
+                    }
                 }
                 else
                 {
