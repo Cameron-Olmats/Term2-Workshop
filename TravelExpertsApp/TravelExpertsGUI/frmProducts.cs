@@ -76,6 +76,7 @@ namespace TravelExpertsGUI
             }
         }
 
+        // Button Validations
         private void btnModify_Click(object sender, EventArgs e)
         {
             if (modifiedProduct == null)
@@ -94,28 +95,17 @@ namespace TravelExpertsGUI
             ModifyProduct();
         }
 
-        //if (result == DialogResult.OK)
-        //{
-        //    // Reload products when the modification is successful
-        //    LoadProducts();
-        //}
-
-
-        //// Enable and disable the necessary buttons
-        //btnSubmit.Enabled = false;
-        //btnModify.Enabled = true;
-        //btnDelete.Enabled = false;
-
-        //// Allow the user to modify the product name
-        //txtProdName.ReadOnly = false;
-
-
         private void ModifyProduct()
         {
             using (var dbContext = new TravelExpertsContext())
             {
+                // Find the current product to be modified based on its ProductId
                 Product currentProduct = dbContext.Products.Find(modifiedProduct.ProductId);
+
+                // Check if the product with the specified ProductId exists in the database
                 if (currentProduct != null)
+
+                    // Update the ProdName property of the current product with the value from txtProdName control
                     currentProduct.ProdName = txtProdName.Text;
                 dbContext.SaveChanges();
             }
@@ -148,6 +138,7 @@ namespace TravelExpertsGUI
         {
             using (var dbContext = new TravelExpertsContext())
             {
+                // Add the newProduct object to the Products DbSet in the context
                 dbContext.Products.Add(newProduct);
                 dbContext.SaveChanges();
             }
@@ -158,25 +149,31 @@ namespace TravelExpertsGUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            // Check if ID and Name text boxes are empty
-            if (string.IsNullOrEmpty(txtProdID.Text) || string.IsNullOrEmpty(txtProdName.Text))
+            // Check if Name text box is  empty
+            if (string.IsNullOrEmpty(txtProdName.Text))
             {
-                MessageBox.Show("Please enter both Product ID and Product Name to proceed with deletion.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter a valid Product Name to proceed with deletion.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // Check if a product is selected for deletion
             if (modifiedProduct == null)
             {
                 MessageBox.Show("Please select a product to delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
+            // Confirm deletion with user
             DialogResult result = MessageBox.Show("Are you sure you want to delete this product?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question); // Deletion validation
             if (result == DialogResult.Yes)
             {
+                // If user confirms deletion
                 using (var dbContext = new TravelExpertsContext())
                 {
+                    // Find the existing product in the database based on its ProductId
                     var existingProduct = dbContext.Products.Find(modifiedProduct.ProductId);
+
+                    // If the existing product is found
                     if (existingProduct != null)
                     {
                         try
