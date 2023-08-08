@@ -179,8 +179,16 @@ namespace TravelExpertsGUI
                     var existingProduct = dbContext.Products.Find(modifiedProduct.ProductId);
                     if (existingProduct != null)
                     {
-                        dbContext.Products.Remove(existingProduct);
-                        dbContext.SaveChanges();
+                        try
+                        {
+                            dbContext.Products.Remove(existingProduct);
+                            dbContext.SaveChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error: {ex.GetType()}. {ex.Message}");
+
+                        }
                     }
                 }
 

@@ -95,7 +95,20 @@ namespace TravelExpertsGUI
             if (decimal.Parse(tbxBigger.Text) < decimal.Parse(tbxSmaller.Text))
             {
                 tbxSmaller.Focus();
-                MessageBox.Show("The textbox: " + tbxSmaller.Name + " must be smaller then: " + tbxBigger.Name + ".");
+                //MessageBox.Show("The textbox: " + tbxSmaller.Name + " must be smaller then: " + tbxBigger.Name + ".");
+                MessageBox.Show("" + tbxSmaller.Tag + " must be smaller than " + tbxBigger.Tag + ".");
+                return false;
+            }
+            return true;
+        }
+
+        // Cameron O:
+        public static bool DateGreaterThan(DateTimePicker startPicker, DateTimePicker endPicker)
+        {
+            if (startPicker.Value > endPicker.Value)
+            {
+                startPicker.Focus();
+                MessageBox.Show($"{startPicker.Tag} must be before {endPicker.Tag}.");
                 return false;
             }
             return true;

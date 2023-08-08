@@ -24,7 +24,7 @@ namespace TravelExpertsGUI
         private List<Product> products = new List<Product>();
         private List<Package> packages = new List<Package>();
         private List<Supplier> suppliers = new List<Supplier>();
-        private object txtPackageID;
+        //private object txtPackageID;
 
         int CurrentSelected = -1;
         private Product selectedProd;

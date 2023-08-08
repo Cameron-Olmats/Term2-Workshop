@@ -56,9 +56,10 @@ namespace TravelExpertsGUI
         private void displayPackage()
         {
             txtName.Text = (string)currentPackage.PkgName;
-            dtpStart = (DateTimePicker)currentPackage.PkgStartDate;
-            dtpEnd = (DateTimePicker)currentPackage.PkgEndDate;
+            dtpStart.Text = currentPackage.PkgStartDate.ToString();
+            dtpEnd.Text = currentPackage.PkgEndDate.ToString();
             txtDescription.Text = currentPackage.PkgDesc.ToString();
+            txtBasePrice.Text = currentPackage.PkgBasePrice.ToString();
             txtAgencyCommission.Text = currentPackage.PkgAgencyCommission.ToString();
         }
         /// <summary>
@@ -69,16 +70,17 @@ namespace TravelExpertsGUI
         /// <param name="e"></param>
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (Validator.NotEmpty(txtName) && dtpEnd.Value > dtpStart.Value  && Validator.NotEmpty(txtDescription) && Validator.GreaterThan(txtBasePrice, txtAgencyCommission))
+            if (Validator.NotEmpty(txtName) && Validator.DateGreaterThan(dtpStart, dtpEnd) && Validator.NotEmpty(txtDescription) && Validator.GreaterThan(txtBasePrice, txtAgencyCommission))
             {
                 currentPackage.PkgName = txtName.Text;
-                currentPackage.PkgStartDate = Convert.ToDateTime(dtpStart);
-                currentPackage.PkgEndDate = Convert.ToDateTime(dtpEnd);
+                currentPackage.PkgStartDate = Convert.ToDateTime(dtpStart.Text);
+                currentPackage.PkgEndDate = Convert.ToDateTime(dtpEnd.Text);
                 currentPackage.PkgDesc = txtDescription.Text;
                 currentPackage.PkgBasePrice = Convert.ToDecimal(txtBasePrice.Text);
                 currentPackage.PkgAgencyCommission = Convert.ToDecimal(txtAgencyCommission.Text);
                 DialogResult = DialogResult.OK;
             }
+
         }
 
         /// <summary>
@@ -95,8 +97,8 @@ namespace TravelExpertsGUI
 
             txtName.Text = "";
             txtName.Focus();
-            _=dtpStart.Value;
-            _=dtpEnd.Value;
+            _ = dtpStart.Value;
+            _ = dtpEnd.Value;
             txtDescription.Text = "";
             txtBasePrice.Text = "0";
             txtAgencyCommission.Text = "0";
@@ -113,9 +115,9 @@ namespace TravelExpertsGUI
         }
     }
 }
-      
 
-      
+
+
 
 
 

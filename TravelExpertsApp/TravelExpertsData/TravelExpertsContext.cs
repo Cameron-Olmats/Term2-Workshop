@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-/// contains database of travel experts
-/// authors: Cam O, Dreesha
-/// Date: July/Aug 2023
+
 namespace TravelExpertsData
 {
     public partial class TravelExpertsContext : DbContext
     {
-        public static object? Package;
+        public static object Package;
 
         public TravelExpertsContext()
         {
@@ -54,12 +52,7 @@ namespace TravelExpertsData
             }
         }
 
-        private Package GetP()
-        {
-            return p;
-        }
-
-        void OnModelCreating(ModelBuilder modelBuilder, TravelExpertsData.Package p, Package p)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Affiliation>(entity =>
             {
@@ -209,10 +202,10 @@ namespace TravelExpertsData
                     .HasName("PK__Packages__53E8ED999C606AD1");
 
                 entity.HasOne(d => d.Package)
-                      .WithMany(p => p.PackagesProductsSuppliers)
-                      .HasForeignKey(d => d.PackageId)
-                      .OnDelete(DeleteBehavior.ClientSetNull)
-                      .HasConstraintName("Packages_Products_Supplie_FK00");
+                    .WithMany(p => p.PackagesProductsSuppliers)
+                    .HasForeignKey(d => d.PackageId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("Packages_Products_Supplie_FK00");
 
                 entity.HasOne(d => d.ProductSupplier)
                     .WithMany(p => p.PackagesProductsSuppliers)
