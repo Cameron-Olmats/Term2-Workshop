@@ -4,7 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 using TravelExpertsData;
-
+/// Displays packages using TravelExperts Data
+/// authors: Dreesha, Cam O.
+/// Date: July/Aug 2023
 namespace TravelExpertsData
 {
     public partial class Package
@@ -12,27 +14,25 @@ namespace TravelExpertsData
         public Package()
         {
             Bookings = new HashSet<Booking>();
-            
+
         }
 
         [Key]
-        public int PackageId { get; set; }
-        [StringLength(50)]
-        public string PkgName { get; set; } = null!;
-        [Column(TypeName = "datetime")]
-        public DateTime? PkgStartDate { get; set; }
-        [Column(TypeName = "datetime")]
-        public DateTime? PkgEndDate { get; set; }
-        [StringLength(50)]
-        public string? PkgDesc { get; set; }
-        [Column(TypeName = "money")]
-        public decimal PkgBasePrice { get; set; }
-        [Column(TypeName = "money")]
-        public decimal? PkgAgencyCommission { get; set; }
+        public HashSet<Booking> Bookings { get; set; }
+        public object PkgName { get; set; } = null;
+        public object PackageId { get; set; }
+        public object PkgBasePrice { get; set; }
+        public object PkgAgencyCommission { get; set; }
+        public object PkgStartDate { get; set; }
+        public object PkgEndDate { get; set; }
+        public object PkgDesc { get; set; }
+        public object PackagesProductsSuppliers { get; internal set; }
 
-        [InverseProperty("Package")]
-        public virtual ICollection<Booking> Bookings { get; set; }
-        [InverseProperty("Package")]
-        public virtual ICollection<PackagesProductsSupplier> PackagesProductsSuppliers { get; set; }
+        
+            [InverseProperty("Package")]
+            public virtual ICollection<Booking> Bookings { get; set; }
+            [InverseProperty("Package")]
+            public virtual ICollection<PackagesProductsSupplier> PackagesProductsSuppliers { get; set;}
+        }
     }
-}
+

@@ -1,7 +1,11 @@
 /*
  * This form acts as a menu where you can select and access the different functions of the application
  * 
+<<<<<<< Updated upstream
  * Author: Cameron O, Dreesha, Cameron C
+=======
+ * Author: Dreesha, Nancy, Cam C, Cam O.
+>>>>>>> Stashed changes
  * Date created: July 2023
  */
 
