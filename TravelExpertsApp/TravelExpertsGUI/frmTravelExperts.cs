@@ -89,6 +89,13 @@ namespace TravelExpertsGUI
             }
         }
 
+        /*
+         * This is our main function for when the form loads, we set it to the default of Packages
+         * which is used in our other functions. We then make a new connection to the database and store our data
+         * in lists.
+         * 
+         */
+
         private void frmTravelExperts_Load(object sender, EventArgs e)
         {
 
@@ -175,22 +182,29 @@ namespace TravelExpertsGUI
             btnLink.Text = "Add Products To Supplier";
         }
 
+        /*
+         * This method takes a could arguments, this basically determines what ID the SupplierContact should have.
+         * This method is used in 2 other methods, but both are used when we are adding a new SupplierContact since
+         * the ID of them aren't automatically generated, we find an emtpy ID starting at however many SupplierContacts there are.
+         * 
+         * By: Cameron C
+         */
         private int GetNextInt(List<SupplierContact> lst, TravelExpertsContext db, int Strt)
         {
-            int i = lst.Count();
-            if (Strt > i)
+            int i = lst.Count();//We grab the lengtho f the list lst
+            if (Strt > i)//Check to see if the amount we pass in for Strt is bigger then i: this is for continuous use.
             {
-                i = Strt;
+                i = Strt;//We set i to Strt
             }
-            while (true)
+            while (true)//We create a loop which we eventually break out of
             {
-                if (db.SupplierContacts.Find(i) != null)
+                if (db.SupplierContacts.Find(i) == null)//We make sure the id we currently have selected (i) returns null when we try to find a SupplierContact with it
                 {
-                    break;
+                    break;//We break the loop so we can return the id we found
                 }
-                i++;
+                i++;//Adds 1 to i
             }
-            return i;
+            return i;//return i: the ID we are going to use for the SupplierContact
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -206,37 +220,38 @@ namespace TravelExpertsGUI
                 frmProducts secondForm = new frmProducts();
                 result = secondForm.ShowDialog();
             }
-            else if (tableMode == "Suppliers")
+            else if (tableMode == "Suppliers")//This part was made by Cameron C
             {
-                frmSuppliers secondForm = new frmSuppliers();
-                result = secondForm.ShowDialog();
-                if (result == DialogResult.OK)
+                frmSuppliers secondForm = new frmSuppliers();//This makes a new Supplier Form
+                result = secondForm.ShowDialog();//We get the result of the form to compare for later
+                if (result == DialogResult.OK)//We check to make sure the result is OK
                 {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    using (TravelExpertsContext db = new TravelExpertsContext())//We make a new connection to the database
                     {
-                        int nextInt = db.Suppliers.ToList().Count;
-                        while (true)
+                        int nextInt = db.Suppliers.ToList().Count;//We set the start value to the length of the Suppliers list; this is basically the same as our GetNextInt method
+                        while (true)//Make a loop
                         {
-                            if (db.Suppliers.Find(nextInt) == null)
+                            if (db.Suppliers.Find(nextInt) == null)//Make sure the returned Supplier is null for the ID
                             {
-                                break;
+                                break;//Break the loop
                             }
-                            nextInt++;
+                            nextInt++;//We add 1 to nextInt if it found a Supplier
                         }
-                        Supplier cont = secondForm.sup;
-                        cont.SupplierId = nextInt;
-                        db.Suppliers.Add(cont);
-                        int lstI = -1;
-                        for (int x = 0; x < secondForm.contacts.Count; x++)
+                        Supplier cont = secondForm.sup;//We get our contact
+                        cont.SupplierId = nextInt;//We set the Id to the one we got
+                        db.Suppliers.Add(cont);//We add it to the list
+                        int lstI = -1;//We set the start to -1: this is probably a left over before I replaced it with a method
+                        for (int x = 0; x < secondForm.contacts.Count; x++)//We make a new loop for the length of contacts
                         {
-                            lstI = GetNextInt(db.SupplierContacts.ToList(), db, lstI);
-                            secondForm.contacts[x].SupplierContactId = lstI;
-                            db.SupplierContacts.Add(secondForm.contacts[x]);
-                            lstI++;
+                            lstI = GetNextInt(db.SupplierContacts.ToList(), db, lstI);//We get an empty ID to use for our contact
+                            secondForm.contacts[x].SupplierContactId = lstI;//We set the ID
+                            secondForm.contacts[x].SupplierId = nextInt;//We set the SupplierID
+                            db.SupplierContacts.Add(secondForm.contacts[x]);//We add it to the list
+                            lstI++;//We set the next ID to +1 to not have to loop through the list to the start again using less resources overall
                         }
-                        db.SaveChanges();
+                        db.SaveChanges();//We save the changes to the database
                     }
-                    DisplayData("Suppliers");
+                    DisplayData("Suppliers");//We display the data for Suppliers
                 }
             }
             else  // tableMode == "Packages"
@@ -332,40 +347,41 @@ namespace TravelExpertsGUI
                     DisplayData("Packages");
                 }
             }
-            else if (tableMode == "Suppliers")
+            else if (tableMode == "Suppliers")//This was also made by Cameron C
             {
-                if (CurrentSelected == -1 || suppliers.Count <= CurrentSelected)
+                if (CurrentSelected == -1 || suppliers.Count <= CurrentSelected)//We make sure that we have a selection
                 {
                     return;
                 }
-                frmSuppliers secondForm = new frmSuppliers();
-                Supplier currentSupplier = suppliers[CurrentSelected];
-                secondForm.sup = currentSupplier;
-                List<SupplierContact> contacts;
-                using (TravelExpertsContext db = new TravelExpertsContext())
+                frmSuppliers secondForm = new frmSuppliers();//We make a new form for Suppliers
+                Supplier currentSupplier = suppliers[CurrentSelected];//We get our current Supplier that is selected
+                secondForm.sup = currentSupplier;//We set the new form's Supplier
+                List<SupplierContact> contacts;//We make a new contacts list
+                using (TravelExpertsContext db = new TravelExpertsContext())//We make a connection to the database
                 {
-                    contacts = db.SupplierContacts.Where(s => s.SupplierId == currentSupplier.SupplierId).ToList();
+                    contacts = db.SupplierContacts.Where(s => s.SupplierId == currentSupplier.SupplierId).ToList();//Get the list of contacts that are connected to the supplier
                 }
-                secondForm.contacts = contacts;
-                result = secondForm.ShowDialog();
-                if (result == DialogResult.OK)
+                secondForm.contacts = contacts;//We set the form's contacts to the one we got
+                result = secondForm.ShowDialog();//We get the result
+                if (result == DialogResult.OK)//Make sure the result is OK
                 {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    using (TravelExpertsContext db = new TravelExpertsContext())//Make a new connection to the database
                     {
                         int lstI = -1;
-                        for (int x = 0; x < secondForm.contacts.Count; x++)
+                        for (int x = 0; x < secondForm.contacts.Count; x++)//Loop through the contacts of secondForm
                         {
-                            if (secondForm.contacts[x].SupplierContactId == 0 || db.SupplierContacts.Find(secondForm.contacts[x].SupplierContactId) == null)
+                            if (secondForm.contacts[x].SupplierContactId == 0 || db.SupplierContacts.Find(secondForm.contacts[x].SupplierContactId) == null)//Check to see if the SupplierContactId is 0 or it doesn't exist in SupplierContacts
                             {
-                                lstI = GetNextInt(db.SupplierContacts.ToList(), db, lstI);
-                                secondForm.contacts[x].SupplierContactId = lstI;
-                                db.SupplierContacts.Add(secondForm.contacts[x]);
+                                lstI = GetNextInt(db.SupplierContacts.ToList(), db, lstI);//Get an empty ID
+                                secondForm.contacts[x].SupplierContactId = lstI;//Set the SupplierContactId to the new ID
+                                secondForm.contacts[x].SupplierId = currentSupplier.SupplierId;//Set the SupplierId to the currentSupplier's
+                                db.SupplierContacts.Add(secondForm.contacts[x]);//Add the new Contact to the list
                                 lstI++;
                             }
                             else
                             {
-                                SupplierContact contact = db.SupplierContacts.Find(secondForm.contacts[x].SupplierContactId);
-                                contact.SupConFirstName = secondForm.contacts[x].SupConFirstName;
+                                SupplierContact contact = db.SupplierContacts.Find(secondForm.contacts[x].SupplierContactId);//Get the contact if it exists
+                                contact.SupConFirstName = secondForm.contacts[x].SupConFirstName;//Update all of it's data
                                 contact.SupConLastName = secondForm.contacts[x].SupConLastName;
                                 contact.SupConEmail = secondForm.contacts[x].SupConEmail;
                                 contact.SupConCity = secondForm.contacts[x].SupConCity;
@@ -380,27 +396,28 @@ namespace TravelExpertsGUI
                             }
 
                         }
-                        for (int x = 0; x < secondForm.removedContacts.Count; x++)
+                        for (int x = 0; x < secondForm.removedContacts.Count; x++)//We have a separate Contact's list inside of the form, this one is for ones that we've removed, we loop through it and remove
+                            //Any contact that we find.
                         {
-                            SupplierContact contact = db.SupplierContacts.Find(secondForm.removedContacts[x].SupplierContactId);
-                            if (contact != null)
+                            SupplierContact contact = db.SupplierContacts.Find(secondForm.removedContacts[x].SupplierContactId);//We get the contact
+                            if (contact != null)//If it isn't null - it exists
                             {
-                                db.SupplierContacts.Remove(contact);
+                                db.SupplierContacts.Remove(contact);//We remove it
                             }
                         }
-                        currentSupplier = db.Suppliers.Find(currentSupplier.SupplierId);
-                        if (currentSupplier == null)
+                        currentSupplier = db.Suppliers.Find(currentSupplier.SupplierId);//We get the updated currentSupplier
+                        if (currentSupplier == null)//If it's null - it was removed by someone else?
                         {
-                            db.Suppliers.Add(secondForm.sup);
-                            db.SaveChanges();
+                            db.Suppliers.Add(secondForm.sup);//We add a new supplier to the list
+                            db.SaveChanges();//We save the changes
                             return;
                         }
-                        currentSupplier.SupName = secondForm.sup.SupName;
-                        db.SaveChanges();
+                        currentSupplier.SupName = secondForm.sup.SupName;//We update the supplier's name
+                        db.SaveChanges();//We save the changes
 
                     }
                 }
-                DisplayData("Suppliers");
+                DisplayData("Suppliers");//Display the updated changes
             }
             else  // tableMode == "Packages"
             {
@@ -438,7 +455,8 @@ namespace TravelExpertsGUI
                 MessageBox.Show("Please select a table to remove data from");
                 return;
             }
-            else if (tableMode == "Suppliers")
+            else if (tableMode == "Suppliers")//This was made by Cameron C
+                //We check to make sure the user has something selected
             {
                 if (CurrentSelected == -1 || suppliers.Count <= CurrentSelected)
                 {
