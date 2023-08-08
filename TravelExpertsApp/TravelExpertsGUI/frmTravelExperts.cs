@@ -464,31 +464,31 @@ namespace TravelExpertsGUI
                 }
                 try
                 {
-                    using (TravelExpertsContext db = new TravelExpertsContext())
+                    using (TravelExpertsContext db = new TravelExpertsContext())//Make a new connection
                     {
-                        Supplier supplier = db.Suppliers.Find(suppliers[CurrentSelected].SupplierId);
+                        Supplier supplier = db.Suppliers.Find(suppliers[CurrentSelected].SupplierId);//Make sure the supplier exists
                         if (supplier != null)
                         {
-                            List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                            List<SupplierContact> contacts = db.SupplierContacts.Where(s => s.SupplierId == supplier.SupplierId).ToList();//Get the contacts and loop through and remove any that are connected to the Supplier
                             for (int i = 0; i < contacts.Count; i++)
                             {
-                                db.SupplierContacts.Remove(contacts[i]);
+                                db.SupplierContacts.Remove(contacts[i]);//Remove them
                             }
-                            List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();
+                            List<ProductsSupplier> prods = db.ProductsSuppliers.Where(s => s.SupplierId == supplier.SupplierId).ToList();//We go through our ProductSuppliers and remove any that are connected to the Supplier
                             for (int i = 0; i < prods.Count; i++)
                             {
-                                db.ProductsSuppliers.Remove(prods[i]);
+                                db.ProductsSuppliers.Remove(prods[i]);//Remove them
                             }
-                            db.Suppliers.Remove(supplier);
-                            db.SaveChanges();
+                            db.Suppliers.Remove(supplier);//We remove the Supplier
+                            db.SaveChanges();//We try to save the changes
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception ex)//We catch any exception since if some customers have a purchase with them it'll cause an error to occure
                 {
-                    MessageBox.Show("Ran into an issue while removing a supplier. This can happen when customers have a purchase with them.");
+                    MessageBox.Show("Ran into an issue while removing a supplier. This can happen when customers have a purchase with them.");//Inform the user
                 }
-                DisplayData("Suppliers");
+                DisplayData("Suppliers");//We display our updated data.
             }
             else if (tableMode == "Packages")
             {
