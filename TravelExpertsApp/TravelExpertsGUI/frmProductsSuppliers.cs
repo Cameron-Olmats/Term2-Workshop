@@ -49,9 +49,14 @@ namespace TravelExpertsGUI
         }
 
 
+
+        /// <summary>
+        /// Updates the list of products that are offered by the supplier.
+        /// </summary>
         private void UpdateOfferedProductList()
         {
-            int suppID = selectedSupplier.SupplierId;
+            int suppID = selectedSupplier.SupplierId; 
+            // selected supplier is set by the main form when frmProductsSuppliers is created.
             lvwOfferedProducts.Items.Clear();
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
@@ -62,9 +67,9 @@ namespace TravelExpertsGUI
                         (p, ps) => new { p.ProductId, p.ProdName, ps.SupplierId })
                     .Where(ps => ps.SupplierId == suppID)
                     .OrderBy(pps => pps.ProductId)
-                    .ToList();
+                    .ToList(); // get productID, Name, and SupplierID from the selected supplier.
 
-                for (int i = 0; i < query.Count; i++)
+                for (int i = 0; i < query.Count; i++) // add each item to the list
                 {
                     ListViewItem nextItem =
                         new ListViewItem(query[i].ProductId.ToString());
@@ -75,6 +80,8 @@ namespace TravelExpertsGUI
 
         }
 
+
+        // Add the selected product to the current supplier
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //check that there is a selected product
@@ -124,6 +131,8 @@ namespace TravelExpertsGUI
             return;
         }
 
+
+        // remove the selected product from the current supplier
         private void btnRemove_Click(object sender, EventArgs e)
         {
 

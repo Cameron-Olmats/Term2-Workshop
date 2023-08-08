@@ -22,28 +22,31 @@ namespace TravelExpertsGUI
 {
     public partial class frmPackagesProductsSuppliers : Form
     {
-        public TravelExpertsData.Package selectedPackage;
-        private List<Int32> includedProductSupplierIds = new List<Int32>(); // list of ProductSupplierIds included in
-        private List<Int32> offeredProductSupplierIds = new List<Int32>();
+        public TravelExpertsData.Package selectedPackage; // passed in from the main form.
+        private List<Int32> includedProductSupplierIds = new List<Int32>(); // list of ProdSupIds that
+                                                                            // are already included
+                                                                            // in the current package
 
-        private List<PackagesProductsSupplier> packprodsups = new List<PackagesProductsSupplier>();
-        private List<ProductsSupplier> prodSups = new List<ProductsSupplier>();
+        private List<Int32> offeredProductSupplierIds = new List<Int32>(); // List of all ProdSupIds that
+                                                                           // are available to put in
+                                                                           // a travel package
 
-        // the selected package
+        //private List<PackagesProductsSupplier> packprodsups = new List<PackagesProductsSupplier>();
+        //private List<ProductsSupplier> prodSups = new List<ProductsSupplier>();
+
         public frmPackagesProductsSuppliers()
         {
-
             InitializeComponent();
         }
 
-
+        
         private void frmPackagesProductsSuppliers_Load(object sender, EventArgs e)
         {
             lblInstructions.Text = $"Select a product to add to {selectedPackage.PkgName}";
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                UpdateIncludedProductsList(db);
-                offeredProductSupplierIds.Clear();
+                UpdateIncludedProductsList(db); // update the products included in the current package 
+                offeredProductSupplierIds.Clear(); // Get the list of offeredProdSupsIds ready for updating
                 var query = (from ps in db.ProductsSuppliers
                              join p in db.Products on ps.ProductId equals p.ProductId
                              join s in db.Suppliers on ps.SupplierId equals s.SupplierId
@@ -56,7 +59,7 @@ namespace TravelExpertsGUI
                                  s.SupplierId
                              }).ToList();
 
-                for (int i = 0; i < query.Count; i++)
+                for (int i = 0; i < query.Count; i++) // add each prodsupid to the list.
                 {
                     ListViewItem nextItem = new ListViewItem(query[i].ProdName);
                     nextItem.SubItems.Add(query[i].SupName);
@@ -72,9 +75,6 @@ namespace TravelExpertsGUI
             int packID = selectedPackage.PackageId;
             lvwIncludedProducts.Items.Clear();
             includedProductSupplierIds.Clear();
-            //using (TravelExpertsContext db = new TravelExpertsContext())
-            //{
-
 
             var query = (from pps in db.PackagesProductsSuppliers
                          join ps in db.ProductsSuppliers
@@ -83,7 +83,7 @@ namespace TravelExpertsGUI
                          join p in db.Products on ps.ProductId equals p.ProductId
                          where pps.PackageId == selectedPackage.PackageId
                          orderby ps.ProductId, p.ProdName, s.SupplierId
-                         select new //does the user need to see the PackageProductSupplierId?
+                         select new
                          {
                              //pps.PackageProductSupplierId,
                              pps.ProductSupplierId,
@@ -98,10 +98,12 @@ namespace TravelExpertsGUI
                     new ListViewItem(query[i].ProductId.ToString());
                 nextItem.SubItems.Add(query[i].ProdName);
                 nextItem.SubItems.Add(query[i].SupName);
-                lvwIncludedProducts.Items.Add(nextItem);
-
+                lvwIncludedProducts.Items.Add(nextItem); // add each included product
+                // to the list of products in the travel package
 
                 includedProductSupplierIds.Add(query[i].ProductSupplierId);
+                // add each supplier id to the list of suppliers. (same order as the
+                // ProdSups in the List View)
             }
 
         }
@@ -119,7 +121,8 @@ namespace TravelExpertsGUI
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
                 //List<ProductsSupplier> prodSups = db.ProductsSuppliers.OrderBy(ps => ps.ProductId).ToList();
-                List<ProductsSupplier> prodSups = new List<ProductsSupplier>();
+                // get all the prodsups from the database and add them to a list
+                List<ProductsSupplier> prodSups = new List<ProductsSupplier>(); 
                 var query = (from ps in db.ProductsSuppliers
                              join p in db.Products on ps.ProductId equals p.ProductId
                              join s in db.Suppliers on ps.SupplierId equals s.SupplierId
@@ -130,7 +133,7 @@ namespace TravelExpertsGUI
                                  ps.ProductId,
                                  ps.SupplierId
                              }).ToList();
-                for (int i = 0; i < query.Count(); i++)
+                for (int i = 0; i < query.Count(); i++) 
                 {
                     ProductsSupplier nextProdSup = new ProductsSupplier();
                     nextProdSup.ProductSupplierId = query[i].ProductSupplierId;
@@ -138,7 +141,7 @@ namespace TravelExpertsGUI
                     nextProdSup.SupplierId = query[i].SupplierId;
                     prodSups.Add(nextProdSup);
                 }
-                {
+                //{
                     ProductsSupplier prodSupToAdd = prodSups[selectedIndex];
                     Console.WriteLine(prodSups.ToString());
                     if (prodSupToAdd != null)
@@ -151,30 +154,30 @@ namespace TravelExpertsGUI
                                 return;
                             }
                         }
-                        //add it to the products that the supplier offers if it isn't offered
+                    //add it to the products that the supplier offers if it isn't offered
 
+                    //Create the PackageProductSuppliers to add to the database
+                    PackagesProductsSupplier nextLink = new PackagesProductsSupplier();
+                    nextLink.ProductSupplierId = prodSupToAdd.ProductSupplierId;
+                    nextLink.PackageId = selectedPackage.PackageId; 
 
-
-                        PackagesProductsSupplier nextLink = new PackagesProductsSupplier();
-                        nextLink.ProductSupplierId = prodSupToAdd.ProductSupplierId;
-                        nextLink.PackageId = selectedPackage.PackageId;
-
-                        string msgProdName = lvwAvailableProducts.Items[selectedIndex].SubItems[0].Text;
-                        string msgSupName = lvwAvailableProducts.Items[selectedIndex].SubItems[1].Text;
-
-                        DialogResult result = MessageBox.Show(
-                            $"do you want to add {msgProdName} by {msgSupName} to {selectedPackage.PkgName}?",
-                            "confirm", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.Yes)
-                        {
-                            db.PackagesProductsSuppliers.Add(nextLink);
-                            db.SaveChanges();
-                            //MessageBox.Show("Success");
-                        }
+                    // get names of product and sup for the confirmation message
+                    string msgProdName = lvwAvailableProducts.Items[selectedIndex].SubItems[0].Text;
+                    string msgSupName = lvwAvailableProducts.Items[selectedIndex].SubItems[1].Text;
+                    
+                    DialogResult result = MessageBox.Show(
+                        $"do you want to add {msgProdName} by {msgSupName} to {selectedPackage.PkgName}?",
+                        "confirm", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        db.PackagesProductsSuppliers.Add(nextLink);
+                        db.SaveChanges();
+                        //MessageBox.Show("Success");
                     }
+                }
                     //update offered products list
                     UpdateIncludedProductsList(db);
-                }
+                //}
                 return;
             }
         }
