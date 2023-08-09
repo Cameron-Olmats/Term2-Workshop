@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*
+ * Home controller
+ */
+
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using TravelExpertsMVC.Models;
 

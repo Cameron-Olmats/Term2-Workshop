@@ -187,11 +187,11 @@ namespace TravelExpertsGUI
                             db.ProductsSuppliers.Remove(linkToDelete);
                             db.SaveChanges();
                         }
-                        catch (DbUpdateException) // if the entry is referenced in another table the foreign key constraint stops the operation.
-                        {
-                            MessageBox.Show("Database update exception. " +
-                                "This could be because the entry is referenced on another table");
-                        }
+                        //catch (DbUpdateException) // if the entry is referenced in another table the foreign key constraint stops the operation.
+                        //{
+                        //    MessageBox.Show("Database update exception. " +
+                        //        "This could be because the entry is referenced on another table");
+                        //}
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Error while removing product from supplier: {ex.GetType()}. {ex.InnerException.Message}");

@@ -20,22 +20,6 @@ namespace TravelExpertsMVC.Controllers
             _context = context;
         }
 
-        //public IActionResult Index()
-        //{
-            
-        //    List<Booking> bookings = new List<Booking>();
-        //    try
-        //    {
-        //        int id = Convert.ToInt32(User.FindFirst("Id").Value);
-        //        bookings = BookingManager.GetBookingsByCustomerId(id, _context);
-        //    }
-        //    catch
-        //    {
-        //        TempData["IsError"] = true;
-        //        TempData["Message"] = "Could not access your purchases. Please log in and try again";
-        //    }
-        //    return View(bookings);
-        //}
 
         public IActionResult Index()
         {
@@ -60,23 +44,6 @@ namespace TravelExpertsMVC.Controllers
             try
             {
                 BookingDetail bookingDetail = BookingDetailManager.GetBookingDetailById(id, _context);
-                //if (bookingDetail.BookingId != null) // get the package base price associated with the booking and add it to view bag
-                //{
-                //    int bookingId = (int)bookingDetail.BookingId;
-                //    Booking booking = BookingManager.GetBookingById(bookingId, _context);
-                //    try
-                //    {
-                //        ViewBag.PackageBasePrice = booking.Package.PkgBasePrice;
-                //    }
-                //    catch (System.NullReferenceException ex)
-                //    {
-                //        ViewBag.PackageBasePrice = null;
-                //    }
-                //}
-                //else // if it can't get the base price of the package, assign null.
-                //{
-                //    ViewBag.PackageBasePrice = null;
-                //}
                 return View(bookingDetail);
             }
             catch

@@ -184,7 +184,6 @@ namespace TravelExpertsGUI
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Error: {ex.GetType()}. {ex.Message}");
-
                         }
                     }
                 }

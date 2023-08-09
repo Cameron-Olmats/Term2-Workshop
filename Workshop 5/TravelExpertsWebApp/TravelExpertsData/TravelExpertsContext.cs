@@ -6,9 +6,9 @@ namespace TravelExpertsData;
 
 public partial class TravelExpertsContext : DbContext
 {
-    public TravelExpertsContext()
-    {
-    }
+    //public TravelExpertsContext()
+    //{
+    //}
 
     public TravelExpertsContext(DbContextOptions<TravelExpertsContext> options)
         : base(options)
@@ -55,12 +55,8 @@ public partial class TravelExpertsContext : DbContext
 
     public virtual DbSet<TripType> TripTypes { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer
-       ("Data Source=localhost\\sqlexpress;Initial Catalog=TravelExperts5;" +
-           "Integrated Security=True;TrustServerCertificate=True");
-    }
+
+    // I removed the on configuring for security. I have it if it's needed
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
