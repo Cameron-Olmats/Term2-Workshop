@@ -232,13 +232,13 @@ input:focus {
 
 /*Register CSS*/
 /* Background image for the body */
-body {
+/*.create-bg {
     background-image: url('../images/background.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
-
+*/
 /* Styles for the registration container */
 .registration-container {
     background-color: rgba(255, 255, 255, 0.8);

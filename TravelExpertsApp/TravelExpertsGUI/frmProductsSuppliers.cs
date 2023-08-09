@@ -156,6 +156,7 @@ namespace TravelExpertsGUI
             {
                 ProductsSupplier linkToDelete;
                 var query = db.ProductsSuppliers
+                    .Include(p => p.Product)
                     .Where(p => (p.SupplierId == selectedSupplier.SupplierId)
                     && (p.ProductId == Convert.ToInt32(lvwOfferedProducts.Items[selectedIndex].Text)))
                     .ToList();
@@ -168,12 +169,14 @@ namespace TravelExpertsGUI
 
                 if ((query.Count > 0) && (query != null)) // make sure that the query isn't null or zero at this point.
                 {
-                    String prodNameToRemove = db.ProductsSuppliers // the name of the product to remove
-                        .Include(ps => ps.Product)
-                        .Select(ps => ps.Product.ProdName)
-                        .FirstOrDefault();
+                    //String prodNameToRemove = db.ProductsSuppliers // the name of the product to remove
+                    //    .Include(ps => ps.Product)
+                    //    .Select(ps => ps.Product.ProdName)
+                    //    .FirstOrDefault();
 
                     linkToDelete = query.FirstOrDefault(); // the entry to remove from ProductSupplier
+                    String prodNameToRemove = query.FirstOrDefault().Product.ProdName;  // get the name of the product to remove
+                   
                     DialogResult result = MessageBox.Show(
                        $"do you want to remove {prodNameToRemove} from {selectedSupplier.SupName}?",
                        "confirm", MessageBoxButtons.YesNo);
@@ -183,6 +186,11 @@ namespace TravelExpertsGUI
                         {
                             db.ProductsSuppliers.Remove(linkToDelete);
                             db.SaveChanges();
+                        }
+                        catch (DbUpdateException) // if the entry is referenced in another table the foreign key constraint stops the operation.
+                        {
+                            MessageBox.Show("Database update exception. " +
+                                "This could be because the entry is referenced on another table");
                         }
                         catch (Exception ex)
                         {

@@ -131,6 +131,7 @@
             // 
             txtBasePrice.Location = new Point(354, 464);
             txtBasePrice.Margin = new Padding(5, 6, 5, 6);
+            txtBasePrice.MaxLength = 9;
             txtBasePrice.Name = "txtBasePrice";
             txtBasePrice.Size = new Size(532, 39);
             txtBasePrice.TabIndex = 12;
@@ -141,6 +142,7 @@
             txtAgencyCommission.ForeColor = SystemColors.WindowText;
             txtAgencyCommission.Location = new Point(354, 573);
             txtAgencyCommission.Margin = new Padding(5, 6, 5, 6);
+            txtAgencyCommission.MaxLength = 9;
             txtAgencyCommission.Name = "txtAgencyCommission";
             txtAgencyCommission.Size = new Size(532, 39);
             txtAgencyCommission.TabIndex = 13;

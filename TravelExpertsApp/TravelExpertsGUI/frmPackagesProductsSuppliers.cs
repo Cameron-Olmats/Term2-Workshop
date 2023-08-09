@@ -181,6 +181,8 @@ namespace TravelExpertsGUI
                 return;
             }
         }
+
+
         private void btnRemove_Click(object sender, EventArgs e)
         {
             // check that there are products to delete
@@ -202,14 +204,30 @@ namespace TravelExpertsGUI
             {
                 PackagesProductsSupplier linkToDelete;
                 var query = db.PackagesProductsSuppliers
+                    .Include(p => p.ProductSupplier)
+                    .Include("ProductSupplier.Product")
+                    .Include("ProductSupplier.Supplier") // this syntax lets you include on includes.
+                    //.ThenInclude(ps => ps.Product)
                     .Where(p => (p.PackageId == selectedPackage.PackageId)
                     && (p.ProductSupplierId == includedProductSupplierIds[selectedIndex]))
                     .ToList();
+
                 if ((query.Count > 0) && (query != null))
                 {
+
                     linkToDelete = query.FirstOrDefault();
-                    db.PackagesProductsSuppliers.Remove(linkToDelete);
-                    db.SaveChanges();
+                    string deleteProdName = linkToDelete.ProductSupplier.Product.ProdName;
+                    string deleteSupName = linkToDelete.ProductSupplier.Supplier.SupName;
+                    DialogResult result = MessageBox.Show(
+                      $"do you want to remove " +
+                      $"{deleteProdName} by {deleteSupName} from {selectedPackage.PkgName}?",
+                      "confirm", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes) 
+                    {
+                        db.PackagesProductsSuppliers.Remove(linkToDelete);
+                        db.SaveChanges();
+                    }
+                    
                 }
                 else
                 {

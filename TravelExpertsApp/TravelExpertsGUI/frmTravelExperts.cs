@@ -20,7 +20,7 @@ namespace TravelExpertsGUI
     {
         private string tableMode = "";
 
-        //unused lists
+        // lists
         private List<Product> products = new List<Product>();
         private List<Package> packages = new List<Package>();
         private List<Supplier> suppliers = new List<Supplier>();
@@ -39,6 +39,8 @@ namespace TravelExpertsGUI
             this.selectedProd = selectedProd;
         }
 
+        // Cameron O
+        //Method for displaying data on the data grid view
         private void DisplayData(string Mode)
         {
             dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -46,7 +48,7 @@ namespace TravelExpertsGUI
             tableMode = Mode;
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                if (tableMode == "Packages")
+                if (tableMode == "Packages") // Set the data grid view to display packages
                 {
                     packages = db.Packages.ToList();
                     var query = db.Packages.
@@ -54,19 +56,22 @@ namespace TravelExpertsGUI
                         {
                             p.PackageId,
                             p.PkgName,
-                            p.PkgStartDate, //col 2
-                            p.PkgEndDate, // col 3
-                            p.PkgBasePrice, // col 4
-                            p.PkgAgencyCommission //col 5
+                            p.PkgStartDate,         // col 2
+                            p.PkgEndDate,           // col 3
+                            p.PkgBasePrice,         // col 4
+                            p.PkgAgencyCommission   // col 5
                         })
                         .ToList();
                     dgvMain.DataSource = query;
-                    dgvMain.Columns[2].DefaultCellStyle.Format = "d";
-                    dgvMain.Columns[3].DefaultCellStyle.Format = "d";
-                    dgvMain.Columns[4].DefaultCellStyle.Format = "c";
-                    dgvMain.Columns[5].DefaultCellStyle.Format = "c";
+                    dgvMain.Columns[2].DefaultCellStyle.Format = "d";    // format the columns to date
+                    dgvMain.Columns[3].DefaultCellStyle.Format = "d";    // (Start Date, End Date)
+                    dgvMain.Columns[4].DefaultCellStyle.Format = "c";    // format the columns to currency
+                    dgvMain.Columns[5].DefaultCellStyle.Format = "c";    // (Base Price, AgencyCommission)
+
+                    // set the button text
+                    btnLink.Text = "Edit Products in Package";
                 }
-                else if (tableMode == "Products")
+                else if (tableMode == "Products") // Set the data grid view to display products
                 {
                     products = db.Products.ToList();
                     var query = db.Products
@@ -77,8 +82,11 @@ namespace TravelExpertsGUI
                        })
                        .ToList();
                     dgvMain.DataSource = query;
+
+                    // set the button text
+                    btnLink.Text = "Edit Products";
                 }
-                else if (tableMode == "Suppliers")
+                else if (tableMode == "Suppliers") // Set the data grid view to display suppliers
                 {
                     suppliers = db.Suppliers.ToList();
                     var query = db.Suppliers
@@ -89,9 +97,16 @@ namespace TravelExpertsGUI
                         })
                         .ToList();
                     dgvMain.DataSource = query;
+
+                    // set the button text
+                    btnLink.Text = "Edit Offered Products";
                 }
             }
         }
+
+
+
+
 
         /*
          * This is our main function for when the form loads, we set it to the default of Packages
@@ -100,27 +115,21 @@ namespace TravelExpertsGUI
          * 
          */
 
+        // Cameron O.
         private void frmTravelExperts_Load(object sender, EventArgs e)
         {
-
+            // start on the packages form
             tableMode = "Packages";
             btnLink.Enabled = true;
-            btnLink.Text = "Add Products To Package";
+            btnLink.Text = "";
 
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                //var source = db.Packages.Select(i => new
-                //{
-                //    i.PackageId,
-                //    i.PkgName,
-                //    i.PkgBasePrice
-                //})
-                //    .ToList();
-                //dgvMain.DataSource = source;
-
                 DisplayData(tableMode);
 
-                //code only for testing frmProductsSuppliers
+                
+                // On form load, ready lists for data and then fill lists from database.
+                // there is a list for the packages, products, and suppliers
                 packages.Clear();
                 foreach (Package p in db.Packages)
                 {
@@ -139,7 +148,7 @@ namespace TravelExpertsGUI
             }
         }
 
-
+        // Cameron: O
         //When the TravelPackage, Products, and supplier buttons are clicked:
         //The data grid view updates it's data and the buttons are chagned to match the selected button
         private void btnTravelPackage_Click(object sender, EventArgs e)
@@ -153,7 +162,7 @@ namespace TravelExpertsGUI
             btnLink.Visible = true;
             btnModify.Visible = true;
             btnRemove.Visible = true;
-            btnLink.Text = "Add Products To Package";
+            //btnLink.Text = "Edit Products in Package";
         }
 
         private void btnProducts_Click(object sender, EventArgs e)
@@ -168,7 +177,7 @@ namespace TravelExpertsGUI
             btnAdd.Visible = false;
             btnModify.Visible = false;
             btnRemove.Visible = false;
-            btnLink.Text = "Edit Products";
+            //btnLink.Text = "Edit Products";
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
@@ -183,7 +192,7 @@ namespace TravelExpertsGUI
             btnLink.Visible = true;
             btnModify.Visible = true;
             btnRemove.Visible = true;
-            btnLink.Text = "Add Products To Supplier";
+            //btnLink.Text = "Edit Offered Products";
         }
 
         /*
@@ -219,7 +228,7 @@ namespace TravelExpertsGUI
                 MessageBox.Show("Please select a table to add data to");
                 return;
             }
-            else if (tableMode == "Products")
+            else if (tableMode == "Products") // Open a new products form
             {
                 frmProducts secondForm = new frmProducts();
                 result = secondForm.ShowDialog();
@@ -262,7 +271,7 @@ namespace TravelExpertsGUI
             {
                 frmPackages secondForm = new frmPackages();
                 result = secondForm.ShowDialog();
-                if (result == DialogResult.OK)
+                if (result == DialogResult.OK) 
                 {
                     using (TravelExpertsContext db = new TravelExpertsContext())
                     {

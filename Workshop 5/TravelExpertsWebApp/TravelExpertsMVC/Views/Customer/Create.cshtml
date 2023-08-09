@@ -1,4 +1,13 @@
-﻿@model TravelExpertsData.Customer
+﻿@*
+    Page for registering as well as updating user information.
+    If a customer is already logged in it will display their information and they can modify it.
+    If they are not logged in the fields will be blank and they can fill out their accounts information
+
+    Author: Nancy, Cameron O
+*@
+
+@model TravelExpertsData.Customer
+
 
 @if (User.Identity.IsAuthenticated)
 {
@@ -10,8 +19,19 @@ else
     ViewData["Title"] = "Register";
     <h1 class="main-page-header">Register</h1>
 }
+<style>
+    body {
+        background-image: url('../images/background.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
 
-<div class="row">
+    .main-page-header {
+        color: black;
+    }
+</style>
+<div class="create-bg row">
     <form asp-action="Create" method="post" class="col-md-8 offset-md-2">
         <div class="form-group">
             <label asp-for="CustFirstName" class="control-label">First Name</label>
@@ -81,9 +101,18 @@ else
             <input asp-for="CustEmail" class="form-control" />
             <span asp-validation-for="CustEmail" class="text-danger"></span>
         </div>
-        <div class="form-group">
-            <input type="submit" value="Register" class="btn btn-primary" />
-        </div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        }
+        else
+        {
+            <div class="form-group">
+                <input type="submit" value="Register" class="btn btn-primary" />
+            </div>
+        }
     </form>
 </div>
 
